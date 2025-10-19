@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_tracking_app/generated/l10n.dart';
+import 'package:elevate_Super_Fitness/generated/l10n.dart';
+
 
 String handleDioError(DioException error) {
   switch (error.type) {

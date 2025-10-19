@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
+
   static MaterialColor white = const MaterialColor(0xFFF9F9F9, <int, Color>{
     10: Color(0xFFfefefe),
     20: Color(0xFFfdfdfd),
@@ -14,18 +16,32 @@ abstract class AppColors {
     100: Color(0xFF323232),
   });
 
-  static MaterialColor mainColor = const MaterialColor(0xFFD21E6A, <int, Color>{
-    10: Color(0xFFf6d2e1),
-    20: Color(0xFFf0b4cd),
-    30: Color(0xFFe98fb5),
-    40: Color(0xFFe1699c),
-    50: Color(0xFFda4483),
-    60: Color(0xFFaf1958),
-    70: Color(0xFF8c1447),
-    80: Color(0xFF690f35),
-    90: Color(0xFF460a23),
-    100: Color(0xFF2a0615),
+  static MaterialColor backGroundL = const MaterialColor(0xFFD21E6A, <int, Color>{
+    10: Color(0xFF242424),
+    20: Color(0xFF3A3A3A),
+    30: Color(0xFF505050),
+    40: Color(0xFF666666),
+    50: Color(0xFF7C7C7C),
+    60: Color(0xFF919191),
+    70: Color(0xFFA7A7A7),
+    80: Color(0xFFBDBDBD),
+    90: Color(0xFFD3D3D3),
+    100: Color(0xFFE9E9E9),
   });
+
+  static MaterialColor mainColorL = const MaterialColor(0xFFD21E6A, <int, Color>{
+    10: Color(0xFFFF4100),
+    20: Color(0xFFFF541A),
+    30: Color(0xFFFF6733),
+    40: Color(0xFFFF7A4D),
+    50: Color(0xFFFF8D66),
+    60: Color(0xFFFFA080),
+    70: Color(0xFFFFB399),
+    80: Color(0xFFFFC6B2),
+    90: Color(0xFFFFD9CC),
+    100: Color(0xFFFFECE5),
+  });
+
 
   static MaterialColor black = const MaterialColor(0xFF0C1015, <int, Color>{
     10: Color(0xFFcecfd0),

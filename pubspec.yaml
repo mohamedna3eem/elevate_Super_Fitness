@@ -1,4 +1,4 @@
-name: elevate_tracking_app
+name: elevate_Super_Fitness
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -46,7 +46,6 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   pretty_dio_logger: ^1.4.0
   flutter_bloc: ^9.1.1
-  google_maps_flutter: ^2.13.1
   geolocator: ^14.0.2
   equatable: ^2.0.7
   cached_network_image: ^3.4.1
@@ -108,6 +107,9 @@ flutter:
     - family: IMFellEnglish
       fonts:
         - asset: assets/fonts/IMFellEnglish.ttf
+    - family: BalooThambi2
+      fonts:
+        - asset: assets/fonts/BalooThambi2-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

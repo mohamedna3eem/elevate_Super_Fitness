@@ -1,24 +1,25 @@
-import 'package:elevate_tracking_app/core/constants/app_colors.dart';
-import 'package:elevate_tracking_app/core/constants/const_keys.dart';
+import 'package:elevate_Super_Fitness/core/constants/app_colors.dart';
+import 'package:elevate_Super_Fitness/core/constants/const_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.white,
-    fontFamily: "Inter",
+    fontFamily: "BalooThambi2",
     colorScheme: ColorScheme(
       brightness: Brightness.light,
-      primary: AppColors.mainColor,
+      primary: AppColors.mainColorL,
       onPrimary: AppColors.white,
       secondary: AppColors.black,
       onSecondary: AppColors.white,
       error: AppColors.red,
       onError: AppColors.white,
       surface: AppColors.white,
-      onSurface: AppColors.mainColor,
+      onSurface: AppColors.mainColorL,
     ),
     textTheme: TextTheme(
       bodySmall: getTextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
@@ -26,13 +27,13 @@ abstract class AppTheme {
       bodyLarge: getTextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
       headlineMedium: getTextStyle(
         fontSize: 18.sp,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
-      headlineSmall: getTextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+      headlineSmall: getTextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
       labelSmall: getTextStyle(
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
-        fontFamily: ConstKeys.interFont,
+        fontFamily: ConstKeys.balooThambi2Font,
       ),
     ),
     appBarTheme: AppBarTheme(
@@ -41,7 +42,7 @@ abstract class AppTheme {
       elevation: 0,
       titleTextStyle: getTextStyle(
         fontSize: 20.sp,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w800,
       ),
       iconTheme: IconThemeData(color: AppColors.black),
     ),
@@ -52,12 +53,12 @@ abstract class AppTheme {
       contentPadding: EdgeInsets.only(left: 16.w, top: 4.h, bottom: 4.h),
       hintStyle: getTextStyle(
         color: AppColors.white[70],
-        fontFamily: ConstKeys.robotoFont,
+        fontFamily: ConstKeys.balooThambi2Font,
         fontWeight: FontWeight.w400,
       ),
       labelStyle: getTextStyle(
         color: AppColors.gray,
-        fontFamily: ConstKeys.robotoFont,
+        fontFamily: ConstKeys.balooThambi2Font,
         fontWeight: FontWeight.w400,
       ),
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
@@ -86,10 +87,10 @@ abstract class AppTheme {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.mainColor,
+        backgroundColor: AppColors.mainColorL,
         disabledBackgroundColor: AppColors.black[30],
         foregroundColor: AppColors.white,
-        textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+        textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
     ),
@@ -122,7 +123,7 @@ abstract class AppTheme {
     return TextStyle(
       color: color ?? AppColors.black,
       fontSize: fontSize ?? 14.sp,
-      fontFamily: fontFamily ?? ConstKeys.interFont,
+      fontFamily: fontFamily ?? ConstKeys.balooThambi2Font,
       fontWeight: fontWeight ?? FontWeight.w400,
     );
   }

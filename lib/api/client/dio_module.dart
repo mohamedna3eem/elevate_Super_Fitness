@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_tracking_app/core/utils/token_storage/token_storage.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../core/utils/token_storage/token_storage.dart';
 
 @module
 abstract class ApiModule {
@@ -10,7 +11,7 @@ abstract class ApiModule {
   Dio provideDio() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: "https://flower.elevateegy.com/",
+        baseUrl: "https://fitness.elevateegy.com/",
         receiveDataWhenStatusError: true,
         receiveTimeout: const Duration(seconds: 20),
         connectTimeout: const Duration(seconds: 20),
