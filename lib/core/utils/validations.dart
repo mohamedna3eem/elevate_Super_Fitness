@@ -2,7 +2,7 @@
 
 
 
-import 'package:elevate_Super_Fitness/generated/l10n.dart';
+import 'package:elevate_super_fitness/generated/l10n.dart';
 
 class Validations {
   Validations._();

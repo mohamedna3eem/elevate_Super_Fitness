@@ -1,5 +1,5 @@
-import 'package:elevate_Super_Fitness/core/constants/app_colors.dart';
-import 'package:elevate_Super_Fitness/core/constants/const_keys.dart';
+import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:elevate_super_fitness/core/constants/const_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
