@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          title: AppLocalizations.of(context).appName,
+          title: AppLocalizations().appName,
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           onGenerateRoute: AppRouter.onGenerateRoute,
