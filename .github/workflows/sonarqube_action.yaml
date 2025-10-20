@@ -49,7 +49,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=Bablu521_Elevate-Tracking-App
+            -Dsonar.projectKey=mohamedna3eem_elevate_Super_Fitness
             -Dsonar.sources=lib,pubspec.yaml
             -Dsonar.tests=test
 
