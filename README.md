@@ -1,4 +1,5 @@
-# initialize_project
+<<<<<<< HEAD
+# elevate_Super_Fitness
 
 A new Flutter project.
 
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# elevate_Super_Fitness
+elevate_Super_Fitness
+>>>>>>> a8661825c1f6cb29c1c3ee7051535706fc2b59ae
