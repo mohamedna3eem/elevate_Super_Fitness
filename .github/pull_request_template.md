@@ -9,7 +9,7 @@
      - 📗 Update any related documentation (README, comments, etc.).
 -->
 
-## What type of PR is this? (check all applicable)
+# What type of PR is this? (check all applicable)
 
 - [ ] ✨ Feature
 - [ ] 🐛 Bug Fix
@@ -26,6 +26,7 @@
 ---
 
 ## Related Issues / Tickets
+
 - Closes #  
 - Related to #
 
@@ -50,7 +51,9 @@ _Please provide instructions for testing locally (e.g., commands, devices, simul
 ---
 
 ## UI accessibility checklist
+
 _If your PR includes UI changes, please check the following:_
+
 - [ ] Semantic widgets used where possible? (e.g., `Semantics`, `Text`, `IconButton`)
 - [ ] Tested with screen readers (TalkBack/VoiceOver)?
 - [ ] Proper color contrast?
@@ -59,6 +62,7 @@ _If your PR includes UI changes, please check the following:_
 ---
 
 ## Added/Updated Tests?
+
 - [ ] ✅ Unit Tests (e.g., business logic, Cubit/Bloc, repositories)
 - [ ] ✅ Widget Tests (e.g., rendering, UI state, widget interactions)
 - [ ] ✅ Integration Tests (e.g., full app flow, navigation, API calls)

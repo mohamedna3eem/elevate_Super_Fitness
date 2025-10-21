@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 abstract class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RouteNames.home:
+      case RouteNames.mainHome:
         return MaterialPageRoute(builder: (_) => const SizedBox());
 
       case RouteNames.splash:
@@ -17,6 +17,7 @@ abstract class AppRouter {
 
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const SizedBox());
+        
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());
     }
