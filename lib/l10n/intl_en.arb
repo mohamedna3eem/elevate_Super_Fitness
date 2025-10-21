@@ -28,5 +28,13 @@
   "ok": "Ok",
   "no": "No",
   "yes": "Yes",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "onBoarding1Title": "The Price Of Excellence\n Is Discipline",
+  "onBoarding2Title": "Fitness Has Never Been So\n Much Fun",
+  "onBoarding3Title": "NO MORE EXCUSES\n Do It Now",
+  "onBoardingDesc": "Lorem Ipsum Dolor Sit Amet Consectetur. Eu Urna\n Ut Gravida Quis Id Pretium Purus. Mauris Massa ",
+  "skip": "Skip",
+  "next": "Next",
+  "back": "Back",
+  "doIt": "Do IT"
 }

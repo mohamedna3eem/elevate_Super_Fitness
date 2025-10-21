@@ -90,8 +90,8 @@ abstract class AppTheme {
         backgroundColor: AppColors.mainColorL,
         disabledBackgroundColor: AppColors.black[30],
         foregroundColor: AppColors.white,
-        textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        textStyle: getTextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     ),
 
