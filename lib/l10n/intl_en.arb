@@ -43,7 +43,7 @@
   "email": "Email",
   "password": "Password",
   "forgotPassword": "Forgot Password ?",
-  "donotHaveAccountYet": "Don't have an account Yet ?",
+  "doNotHaveAccountYet": "Don't have an account Yet ?",
   "register": "Register",
   "or": "Or"
 }
