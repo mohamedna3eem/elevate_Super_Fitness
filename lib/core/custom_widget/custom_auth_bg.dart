@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomAuthBg extends StatelessWidget {
-  const CustomAuthBg({super.key, this.arrowIconPath, required this.widget});
+  const CustomAuthBg({super.key, this.arrowIconPath, required this.child});
   final String? arrowIconPath;
-  final Widget widget;
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -50,7 +50,7 @@ class CustomAuthBg extends StatelessWidget {
                 Image.asset(AppImages.logoImage, width: 70.w, height: 48.h),
               ],
             ),
-            widget,
+            child,
           ],
         ),
       ],
