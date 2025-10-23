@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:elevate_super_fitness/core/constants/app_images.dart';
+import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,6 +12,7 @@ class CustomAuthBg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      key: const Key(WidgetsKeys.authBgKey),
       children: [
         ImageFiltered(
           imageFilter: ImageFilter.blur(
