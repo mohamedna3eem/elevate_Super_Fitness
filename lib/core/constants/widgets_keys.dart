@@ -3,5 +3,6 @@ abstract final class WidgetsKeys {
       "login_screen_continue_button";
   static const orDividerWidgetKey = "or_divider_widget_key";
   static const orDividerTextKey = "or_divider_text_key";
-  static const glassShapeWidget = "glass_shape_widget";
+  static const glassShapeWidgetKey = "glass_shape_widget";
+  static const authBgKey = "auth_background_key";
 }

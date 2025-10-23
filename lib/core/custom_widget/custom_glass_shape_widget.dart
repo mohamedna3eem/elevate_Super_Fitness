@@ -10,7 +10,7 @@ class CustomGlassShapeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      key: const Key(WidgetsKeys.glassShapeWidget),
+      key: const Key(WidgetsKeys.glassShapeWidgetKey),
       borderRadius: BorderRadius.circular(50),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 34.6, sigmaY: 34.6),
