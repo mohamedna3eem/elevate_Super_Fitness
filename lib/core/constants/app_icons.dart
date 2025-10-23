@@ -22,4 +22,6 @@ abstract class AppIcons {
   static const String gym = "$_iconsPath/gym.png";
   static const String home = "$_iconsPath/home.png";
   static const String profile = "$_iconsPath/profile.png";
+  static const String arrowBack = "$_iconsPath/arrow.svg";
+
 }
