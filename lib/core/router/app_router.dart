@@ -17,7 +17,7 @@ abstract class AppRouter {
 
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const SizedBox());
-        
+
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());
     }
