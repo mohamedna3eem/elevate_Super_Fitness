@@ -40,5 +40,14 @@
   "explore": "Explore",
   "smartCoach": "Smart Coach",
   "workouts": "Workouts",
-  "profile": "Profile"
+  "profile": "Profile",
+  "heyThere": "Hey There",
+  "welcomeBack": "WELCOME BACK",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password ?",
+  "doNotHaveAccountYet": "Don't have an account Yet ?",
+  "register": "Register",
+  "or": "Or"
 }
