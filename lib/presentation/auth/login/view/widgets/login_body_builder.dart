@@ -1,3 +1,4 @@
+import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:elevate_super_fitness/core/constants/app_icons.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_auth_bg.dart';
@@ -22,127 +23,131 @@ class LoginBodyBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final local = AppLocalizations.of(context);
-    return CustomAuthBg(
-      child: Column(
-        children: [
-          SizedBox(height: 77.h, width: double.infinity),
-          const SectionTextLogin(),
-          CustomGlassShapeWidget(
-            child: Column(
-              children: [
-                Text(
-                  key: const Key(WidgetsKeys.kLoginScreenLoginTitleTextKey),
-                  local.login,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w800,
-                    color: theme.colorScheme.onSecondary,
+    return Scaffold(
+      backgroundColor: AppColors.gray,
+      body: CustomAuthBg(
+        child: Column(
+          children: [
+            SizedBox(height: 77.h, width: double.infinity),
+            const SectionTextLogin(),
+            CustomGlassShapeWidget(
+              child: Column(
+                children: [
+                  Text(
+                    key: const Key(WidgetsKeys.kLoginScreenLoginTitleTextKey),
+                    local.login,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w800,
+                      color: theme.colorScheme.onSecondary,
+                    ),
                   ),
-                ),
-                SizedBox(height: 16.h),
-                Column(
-                  children: [
-                    SectionLoginFormFiled(globalKey: globalKey),
-                    SizedBox(height: 8.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          key: const Key(
-                            WidgetsKeys.kLoginScreenTextButtonForgetPasswordKey,
-                          ),
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              RouteNames.forgetPassword,
-                            );
-                          },
-                          child: Text(
-                            local.forgotPassword,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    const CustomOrDivider(),
-                    SizedBox(height: 24.h),
-                    Row(
-                      key: const Key(
-                        WidgetsKeys.kLoginScreenAnotherButtonToLoginKey,
-                      ),
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 16.w,
-                      children: [
-                        SvgPicture.asset(AppIcons.faceBook),
-                        SvgPicture.asset(AppIcons.googleSvg),
-                        SvgPicture.asset(AppIcons.appelSvg),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    SizedBox(
-                      height: 38.h,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        key: const Key(WidgetsKeys.kLoginScreenLoginButton),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusGeometry.circular(20.r),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (globalKey.currentState!.validate()) {
-                            context.read<LoginViewModel>().doIntent(
-                              LoginViewModelSignInEvent(),
-                            );
-                          }
-                        },
-                        child: Text(
-                          local.login,
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            color: theme.colorScheme.onSecondary,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text.rich(
-                      key: const Key(WidgetsKeys.kLoginScreenTextRichKey),
-                      TextSpan(
+                  SizedBox(height: 16.h),
+                  Column(
+                    children: [
+                      SectionLoginFormFiled(globalKey: globalKey),
+                      SizedBox(height: 8.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextSpan(
-                            text: local.doNotHaveAccountYet,
-                            style: theme.textTheme.headlineSmall?.copyWith(
-                              color: theme.colorScheme.onSecondary,
+                          GestureDetector(
+                            key: const Key(
+                              WidgetsKeys
+                                  .kLoginScreenTextButtonForgetPasswordKey,
                             ),
-                          ),
-                          TextSpan(
-                            text: local.register,
-                            style: theme.textTheme.headlineSmall?.copyWith(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.w800,
-                              decoration: TextDecoration.underline,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames.forgetPassword,
+                              );
+                            },
+                            child: Text(
+                              local.forgotPassword,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.primary,
+                              ),
                             ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushNamed(
-                                  context,
-                                  RouteNames.register,
-                                );
-                              },
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(height: 24.h),
+                      const CustomOrDivider(),
+                      SizedBox(height: 24.h),
+                      Row(
+                        key: const Key(
+                          WidgetsKeys.kLoginScreenAnotherButtonToLoginKey,
+                        ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: 16.w,
+                        children: [
+                          SvgPicture.asset(AppIcons.faceBook),
+                          SvgPicture.asset(AppIcons.googleSvg),
+                          SvgPicture.asset(AppIcons.appelSvg),
+                        ],
+                      ),
+                      SizedBox(height: 24.h),
+                      SizedBox(
+                        height: 38.h,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          key: const Key(WidgetsKeys.kLoginScreenLoginButton),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadiusGeometry.circular(20.r),
+                            ),
+                          ),
+                          onPressed: () {
+                            if (globalKey.currentState!.validate()) {
+                              context.read<LoginViewModel>().doIntent(
+                                LoginViewModelSignInEvent(),
+                              );
+                            }
+                          },
+                          child: Text(
+                            local.login,
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              color: theme.colorScheme.onSecondary,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text.rich(
+                        key: const Key(WidgetsKeys.kLoginScreenTextRichKey),
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: local.doNotHaveAccountYet,
+                              style: theme.textTheme.headlineSmall?.copyWith(
+                                color: theme.colorScheme.onSecondary,
+                              ),
+                            ),
+                            TextSpan(
+                              text: local.register,
+                              style: theme.textTheme.headlineSmall?.copyWith(
+                                color: theme.colorScheme.primary,
+                                fontWeight: FontWeight.w800,
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteNames.register,
+                                  );
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
