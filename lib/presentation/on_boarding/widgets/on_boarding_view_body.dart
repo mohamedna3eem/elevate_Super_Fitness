@@ -108,7 +108,6 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 34.6, sigmaY: 34.6),
                       child: Container(
-                        height: 275.h,
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(
                           vertical: 25.h,
@@ -119,6 +118,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Center(
                               child: Text(
@@ -240,7 +240,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                                               width: 90,
                                               child: ElevatedButton(
                                                 onPressed: () {
-                                                    _pageController.nextPage(
+                                                  _pageController.nextPage(
                                                     duration: const Duration(
                                                       milliseconds: 300,
                                                     ),
