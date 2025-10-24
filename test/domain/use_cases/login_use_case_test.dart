@@ -34,7 +34,7 @@ void main() {
         mockAuthRepo.login(request: requestEntity),
       ).thenAnswer((_) async => expectResult);
       //Act
-      final result = await loginUseCase.call(request: requestEntity);
+      final result = await loginUseCase.call(requestEntity);
       //Assert
       expect(result, isA<ApiSuccessResult>());
       expect(
@@ -51,7 +51,7 @@ void main() {
         mockAuthRepo.login(request: requestEntity),
       ).thenAnswer((_) async => expectResult);
       //Act
-      final result = await loginUseCase.call(request: requestEntity);
+      final result = await loginUseCase.call(requestEntity);
       //Assert
       expect(result, isA<ApiErrorResult>());
       expect(
@@ -68,7 +68,7 @@ void main() {
         mockAuthRepo.login(request: requestEntity),
       ).thenAnswer((_) async => expectResult);
       //Act
-      final result = await mockAuthRepo.login(request: requestEntity);
+      final result = await loginUseCase.call(requestEntity);
       //Assert
       expect(result, isA<ApiErrorResult>());
       expect(

@@ -9,9 +9,9 @@ class LoginUseCase {
   final AuthRepo _authRepo;
 
   LoginUseCase(this._authRepo);
-  Future<ApiResult<LoginResponseEntity>> call({
-    required LoginRequestEntity request,
-  }) async {
+  Future<ApiResult<LoginResponseEntity>> call(
+   LoginRequestEntity request,
+  ) async {
     return _authRepo.login(request: request);
   }
 }
