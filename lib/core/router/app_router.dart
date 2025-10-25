@@ -3,6 +3,7 @@ import 'package:elevate_super_fitness/presentation/auth/login/view/screen/login_
 import 'package:elevate_super_fitness/presentation/main_home/view/screen/main_home_screen.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
 import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/auth/register/view/screen/register_screen.dart';
@@ -24,6 +25,10 @@ abstract class AppRouter {
 
       case RouteNames.register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        
+        case RouteNames.forgetPassword:
+        return MaterialPageRoute(builder: (_) => const ForgetPassword());
+
 
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());

@@ -18,5 +18,6 @@ abstract class AppImages {
   static const String authBg = "$_imagesPath/auth_bg.png";
   static const String maleImage = "$_imagesPath/male.svg";
   static const String femaleImage = "$_imagesPath/female.svg";
+  static const String forgetPasswordPG = "$_imagesPath/forgetPasswordPG.png";
 }
 

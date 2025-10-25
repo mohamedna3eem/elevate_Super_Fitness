@@ -60,6 +60,8 @@ dependencies:
   dashed_circular_progress_bar: ^0.0.6
   awesome_extensions: ^2.0.26
   wheel_chooser: ^1.1.2
+  pin_code_fields: ^8.0.1
+
 
 dev_dependencies:
   flutter_test:
