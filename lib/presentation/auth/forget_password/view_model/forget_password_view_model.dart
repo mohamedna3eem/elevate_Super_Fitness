@@ -130,10 +130,11 @@ import 'package:elevate_super_fitness/domain/entites/forget_password_request/res
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/api_result/api_result.dart';
 import '../../../../domain/entites/forget_password_request/forget_password_request_entity.dart';
-import '../../../../domain/entites/forget_password_response/forget_password_response_entity.dart';
 import '../../../../domain/entites/forget_password_response/email_verification_entity.dart';
+import '../../../../domain/entites/forget_password_response/forget_password_response_entity.dart';
 import '../../../../domain/entites/forget_password_response/reset_password_response_entity.dart';
 import '../../../../domain/use_cases/email_verification_use_case.dart';
 import '../../../../domain/use_cases/forget_password_use_case.dart';
@@ -155,13 +156,12 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
 
   final GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final GlobalKey<FormState> verifyResetCodeFormKey = GlobalKey<FormState>();
   final TextEditingController resetCodeController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
   final GlobalKey<FormState> resetPasswordFormKey = GlobalKey<FormState>();
-
-
 
   void doIntent(ForgetPasswordEvents event) {
     switch (event) {
@@ -170,88 +170,94 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
       case VerifyResetCodeEvent():
         _verifyResetCode(emailController.text);
       case ResetPasswordEvent():
-        _resetPassword(
-          newPasswordController.text,
-        );
+        _resetPassword(newPasswordController.text);
     }
   }
-
-
-
 
   Future<void> _forgetPassword(String email) async {
     if (email.isEmpty) return;
 
     emit(state.copyWith(status: ForgetPasswordStatus.loading));
 
-    final result = await forgetPasswordUseCase(ForgetPasswordRequestEntity(email: emailController.text));
+    final result = await forgetPasswordUseCase(
+      ForgetPasswordRequestEntity(email: emailController.text),
+    );
 
     if (result is ApiSuccessResult<ForgetPasswordResponseEntity>) {
-      emit(state.copyWith(
-        status: ForgetPasswordStatus.success,
-        currentStep: ForgetPasswordStep.verifyCode,
-        forgetPasswordResponse: result.data,
-        errorMessage: null,
-        email: email,
-      ));
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.success,
+          currentStep: ForgetPasswordStep.verifyCode,
+          forgetPasswordResponse: result.data,
+          errorMessage: null,
+          email: email,
+        ),
+      );
     } else if (result is ApiErrorResult) {
-      emit(state.copyWith(
-        status: ForgetPasswordStatus.error,
-        errorMessage: "error",
-      ));
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.error,
+          errorMessage: "error",
+        ),
+      );
     }
   }
-
 
   Future<void> _verifyResetCode(String email) async {
     emit(state.copyWith(status: ForgetPasswordStatus.loading));
 
-    final result = await emailVerificationUseCase(EmailVerificationRequestEntity(resetCode: resetCodeController.text));
+    final result = await emailVerificationUseCase(
+      EmailVerificationRequestEntity(resetCode: resetCodeController.text),
+    );
 
     if (result is ApiSuccessResult<EmailVerificationEntity>) {
-      emit(state.copyWith(
-        status: ForgetPasswordStatus.success,
-        currentStep: ForgetPasswordStep.resetPassword,
-        emailVerificationEntity: result.data,
-        errorMessage: null,
-
-      ));
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.success,
+          currentStep: ForgetPasswordStep.resetPassword,
+          emailVerificationEntity: result.data,
+          errorMessage: null,
+        ),
+      );
     } else if (result is ApiErrorResult) {
-      emit(state.copyWith(
-        status: ForgetPasswordStatus.error,
-        errorMessage: "error",
-      ));
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.error,
+          errorMessage: "error",
+        ),
+      );
     }
   }
 
-  Future<void> _resetPassword( String newPassword) async {
+  Future<void> _resetPassword(String newPassword) async {
     if (newPassword.isEmpty) return;
 
     emit(state.copyWith(status: ForgetPasswordStatus.loading));
     final email = state.email ?? emailController.text.trim();
     final result = await resetPasswordUseCase(
-        ResetPasswordRequestEntity(
-         email:   email ,newPassword: newPasswordController.text));
+      ResetPasswordRequestEntity(
+        email: email,
+        newPassword: newPasswordController.text,
+      ),
+    );
 
     if (result is ApiSuccessResult<ResetPasswordResponseEntity>) {
-      emit(state.copyWith(
-        email: email,
-        status: ForgetPasswordStatus.success,
-        resetPasswordResponse: result.data,
-        currentStep: ForgetPasswordStep.enterEmail,
-        errorMessage: null,
-      ));
+      emit(
+        state.copyWith(
+          email: email,
+          status: ForgetPasswordStatus.success,
+          resetPasswordResponse: result.data,
+          currentStep: ForgetPasswordStep.enterEmail,
+          errorMessage: null,
+        ),
+      );
     } else if (result is ApiErrorResult) {
-      emit(state.copyWith(
-        status: ForgetPasswordStatus.error,
-        errorMessage: "eror",
-      ));
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.error,
+          errorMessage: "eror",
+        ),
+      );
     }
   }
-
-
-
-
 }
-
-

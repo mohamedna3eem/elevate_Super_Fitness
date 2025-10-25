@@ -3,10 +3,11 @@ import 'package:elevate_super_fitness/presentation/auth/forget_password/view/wid
 import 'package:elevate_super_fitness/presentation/auth/forget_password/view/widgets/otp_iput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/constants/app_images.dart';
-import '../../../../core/di/di.dart';
-import '../../../../core/custom_widget/custom_dialog.dart';
+
 import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/custom_widget/custom_dialog.dart';
+import '../../../../core/di/di.dart';
 import '../view_model/foget_password_states.dart';
 import '../view_model/forget_password_events.dart';
 import '../view_model/forget_password_view_model.dart';
@@ -69,7 +70,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         child: SafeArea(
           child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordStates>(
             bloc: _forgetPasswordViewModel,
-            listenWhen: (previous, current) => previous.status != current.status,
+            listenWhen: (previous, current) =>
+                previous.status != current.status,
             listener: (context, state) {
               if (state.status == ForgetPasswordStatus.loading) {
                 if (!isDialogShow) {
@@ -110,30 +112,35 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         EmailInputContainer(
+                          forgetPasswordViewModel: _forgetPasswordViewModel,
                           onNext: () {
                             if (_forgetPasswordViewModel
-                                .forgetPasswordFormKey.currentState!
+                                .forgetPasswordFormKey
+                                .currentState!
                                 .validate()) {
                               _nextPage();
                               _forgetPasswordViewModel.doIntent(
                                 ForgetPasswordEvent(),
-
                               );
                             }
                           },
                         ),
 
                         OtpInputContainer(
+                          forgetPasswordViewModel: _forgetPasswordViewModel,
                           onConfirm: () {
                             _currentPage = 1;
                             _nextPage();
-                          }
-
+                          },
                         ),
 
-                        CreateNewPasswordContainer(onDone: () {
-                          _currentPage = 1;
-                        _nextPage();  },)
+                        CreateNewPasswordContainer(
+                          forgetPasswordViewModel: _forgetPasswordViewModel,
+                          onDone: () {
+                            _currentPage = 1;
+                            _nextPage();
+                          },
+                        ),
                       ],
                     ),
                   ),

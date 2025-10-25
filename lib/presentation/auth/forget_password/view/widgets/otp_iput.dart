@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
 import '../../../../../core/constants/app_colors.dart';
-import '../../../../../core/di/di.dart';
 import '../../../../../generated/l10n.dart';
-import '../../view_model/forget_password_view_model.dart';
 import '../../view_model/forget_password_events.dart';
+import '../../view_model/forget_password_view_model.dart';
 
 class OtpInputContainer extends StatefulWidget {
+  final ForgetPasswordViewModel forgetPasswordViewModel;
   final VoidCallback onConfirm;
 
-  const OtpInputContainer({super.key, required this.onConfirm});
+  const OtpInputContainer({
+    super.key,
+    required this.onConfirm,
+    required this.forgetPasswordViewModel,
+  });
 
   @override
   State<OtpInputContainer> createState() => _OtpInputContainerState();
 }
 
 class _OtpInputContainerState extends State<OtpInputContainer> {
-  late final ForgetPasswordViewModel _forgetPasswordViewModel;
   final _otpControllers = List.generate(6, (_) => TextEditingController());
   String otpCode = "";
-
-  @override
-  void initState() {
-    super.initState();
-    _forgetPasswordViewModel = getIt<ForgetPasswordViewModel>();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +69,7 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
               ],
             ),
             child: Form(
-              key: _forgetPasswordViewModel.verifyResetCodeFormKey,
+              key: widget.forgetPasswordViewModel.verifyResetCodeFormKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -86,9 +84,9 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                   ),
 
                   PinCodeTextField(
-                    onTap: () {
-                    },
-                    controller: _forgetPasswordViewModel.resetCodeController,
+                    onTap: () {},
+                    controller:
+                        widget.forgetPasswordViewModel.resetCodeController,
                     backgroundColor: Colors.transparent,
                     appContext: context,
                     length: 6,
@@ -129,18 +127,29 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                         ),
                       ),
                       onPressed: () {
-                        _forgetPasswordViewModel.resetCodeController.text = otpCode.trim();
+                        widget
+                            .forgetPasswordViewModel
+                            .resetCodeController
+                            .text = otpCode
+                            .trim();
 
                         if (otpCode.length != 6) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Please enter all 6 digits")),
+                            const SnackBar(
+                              content: Text("Please enter all 6 digits"),
+                            ),
                           );
                           return;
                         }
 
-                        final form = _forgetPasswordViewModel.verifyResetCodeFormKey.currentState;
+                        final form = widget
+                            .forgetPasswordViewModel
+                            .verifyResetCodeFormKey
+                            .currentState;
                         if (form != null && form.validate()) {
-                          _forgetPasswordViewModel.doIntent(VerifyResetCodeEvent());
+                          widget.forgetPasswordViewModel.doIntent(
+                            VerifyResetCodeEvent(),
+                          );
 
                           widget.onConfirm();
                         }
@@ -158,7 +167,9 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                   // 🔁 Resend
                   InkWell(
                     onTap: () {
-                      _forgetPasswordViewModel.doIntent(ForgetPasswordEvent());
+                      widget.forgetPasswordViewModel.doIntent(
+                        ForgetPasswordEvent(),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -188,4 +199,3 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
     );
   }
 }
-

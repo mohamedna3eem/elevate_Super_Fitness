@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:flutter/material.dart';
 
-import '../../../../../core/di/di.dart';
-import '../../../../../core/utils/validations.dart';
 import '../../view_model/forget_password_events.dart';
 import '../../view_model/forget_password_view_model.dart';
 
 class CreateNewPasswordContainer extends StatefulWidget {
+  final ForgetPasswordViewModel forgetPasswordViewModel;
   final VoidCallback onDone;
 
   const CreateNewPasswordContainer({
     super.key,
     required this.onDone,
+    required this.forgetPasswordViewModel,
   });
 
   @override
@@ -21,17 +21,10 @@ class CreateNewPasswordContainer extends StatefulWidget {
 
 class _CreateNewPasswordContainerState
     extends State<CreateNewPasswordContainer> {
-  late final ForgetPasswordViewModel _forgetPasswordViewModel;
   bool isDialogShow = false;
 
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _forgetPasswordViewModel = getIt<ForgetPasswordViewModel>();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +33,7 @@ class _CreateNewPasswordContainerState
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Form(
-        key: _forgetPasswordViewModel.resetPasswordFormKey,
+        key: widget.forgetPasswordViewModel.resetPasswordFormKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -74,7 +67,8 @@ class _CreateNewPasswordContainerState
                 children: [
                   // 🔹 Password field
                   _buildPasswordField(
-                    controller: _forgetPasswordViewModel.newPasswordController,
+                    controller:
+                        widget.forgetPasswordViewModel.newPasswordController,
                     label: "Password",
                     obscure: _obscurePassword,
                     onToggle: () =>
@@ -84,8 +78,9 @@ class _CreateNewPasswordContainerState
 
                   // 🔹 Confirm Password field
                   TextFormField(
-                    controller:
-                    _forgetPasswordViewModel.confirmPasswordController,
+                    controller: widget
+                        .forgetPasswordViewModel
+                        .confirmPasswordController,
                     obscureText: _obscureConfirm,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -95,16 +90,20 @@ class _CreateNewPasswordContainerState
                         return "Password must be at least 8 characters";
                       }
                       if (value !=
-                          _forgetPasswordViewModel
-                              .newPasswordController.text) {
+                          widget
+                              .forgetPasswordViewModel
+                              .newPasswordController
+                              .text) {
                         return "Passwords do not match";
                       }
                       return null;
                     },
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      prefixIcon:
-                      const Icon(Icons.lock_outline, color: Colors.white),
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.white,
+                      ),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscureConfirm
@@ -140,11 +139,14 @@ class _CreateNewPasswordContainerState
                         ),
                       ),
                       onPressed: () {
-                        if (_forgetPasswordViewModel
-                            .resetPasswordFormKey.currentState!
+                        if (widget
+                            .forgetPasswordViewModel
+                            .resetPasswordFormKey
+                            .currentState!
                             .validate()) {
-                          _forgetPasswordViewModel
-                              .doIntent(ResetPasswordEvent());
+                          widget.forgetPasswordViewModel.doIntent(
+                            ResetPasswordEvent(),
+                          );
                         }
                       },
                       child: const Text(
@@ -204,6 +206,4 @@ class _CreateNewPasswordContainerState
       ),
     );
   }
-
 }
-
