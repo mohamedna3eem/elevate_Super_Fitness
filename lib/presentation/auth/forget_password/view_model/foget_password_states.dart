@@ -59,7 +59,7 @@ import '../../../../domain/entites/forget_password_response/email_verification_e
 import '../../../../domain/entites/forget_password_response/forget_password_response_entity.dart';
 import '../../../../domain/entites/forget_password_response/reset_password_response_entity.dart';
 
-enum ForgetPasswordStatus { initial, loading, success, error }
+enum ForgetPasswordStatus { initial, loading, success, error,resendSuccess }
 enum ForgetPasswordStep { enterEmail, verifyCode, resetPassword }
 
 class ForgetPasswordStates extends Equatable {

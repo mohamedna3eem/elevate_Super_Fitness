@@ -75,11 +75,13 @@ class _EmailInputContainerState extends State<EmailInputContainer> {
                     controller: widget.forgetPasswordViewModel.emailController,
                     validator: Validations.validateEmail,
                     keyboardType: TextInputType.emailAddress,
+                    style: const TextStyle(color: Colors.white,fontWeight:FontWeight.w400, ),
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: AppColors.white,
                       ),
+                      labelStyle: TextStyle(color: AppColors.white),
                       labelText: AppLocalizations.of(context).email,
                       hintText: AppLocalizations.of(context).enterYouEmail,
                       filled: true,
@@ -89,11 +91,11 @@ class _EmailInputContainerState extends State<EmailInputContainer> {
                         vertical: 14,
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(40),
                         borderSide: BorderSide(
                           color: AppColors.mainColorL,
                           width: 2,
@@ -123,11 +125,11 @@ class _EmailInputContainerState extends State<EmailInputContainer> {
                         }
                       },
                       child: Text(
-                        AppLocalizations.of(context).confirm,
+                      "Sent OTP",
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                     ),

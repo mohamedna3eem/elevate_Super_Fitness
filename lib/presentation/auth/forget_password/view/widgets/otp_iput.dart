@@ -73,17 +73,11 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 0.05 * height),
-                  Center(
-                    child: Text(
-                      AppLocalizations.of(context).emailVerification,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(color: AppColors.black),
-                    ),
-                  ),
+
 
                   PinCodeTextField(
+
+                    hintStyle: TextStyle(color: AppColors.mainColorL),
                     onTap: () {},
                     controller:
                         widget.forgetPasswordViewModel.resetCodeController,
@@ -94,9 +88,10 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                     cursorColor: AppColors.mainColorL,
                     keyboardType: TextInputType.number,
                     enableActiveFill: false,
-                    textStyle: const TextStyle(
+                    textStyle:  TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
+                        color:  AppColors.mainColorL
                     ),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.underline,
@@ -115,6 +110,7 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                       otpCode = value;
                     },
                   ),
+                  const SizedBox(height: 25),
 
                   SizedBox(
                     width: double.infinity,
@@ -151,7 +147,7 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                             VerifyResetCodeEvent(),
                           );
 
-                          widget.onConfirm();
+                          // widget.onConfirm();
                         }
                       },
                       child: Text(
@@ -164,20 +160,27 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                       ),
                     ),
                   ),
-                  // 🔁 Resend
+                  const SizedBox(height: 25),
                   InkWell(
                     onTap: () {
-                      widget.forgetPasswordViewModel.doIntent(
-                        ForgetPasswordEvent(),
-                      );
+                      if (widget.forgetPasswordViewModel
+                          .forgetPasswordFormKey
+                          .currentState!
+                          .validate()) {
+                        widget.forgetPasswordViewModel.doIntent(
+                         ResendOtpEvent(),
+                        );
+                      }
                     },
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           AppLocalizations.of(context).didnotReceiveCode,
                           style: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: AppColors.black),
+                              .copyWith(color: AppColors.white,
+                          fontWeight: FontWeight.w400,fontSize: 16
+                          ),
                         ),
                         Text(
                           AppLocalizations.of(context).resend,
@@ -185,6 +188,7 @@ class _OtpInputContainerState extends State<OtpInputContainer> {
                               .copyWith(
                                 color: AppColors.mainColorL,
                                 decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w700,fontSize: 16
                               ),
                         ),
                       ],

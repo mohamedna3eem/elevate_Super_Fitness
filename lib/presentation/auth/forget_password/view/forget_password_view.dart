@@ -8,6 +8,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/custom_widget/custom_dialog.dart';
 import '../../../../core/di/di.dart';
+import '../../../../core/router/route_names.dart';
 import '../view_model/foget_password_states.dart';
 import '../view_model/forget_password_events.dart';
 import '../view_model/forget_password_view_model.dart';
@@ -22,7 +23,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   final PageController _pageController = PageController();
-  int _currentPage = 2;
+  int _currentPage = 0;
   bool isDialogShow = false;
 
   late final ForgetPasswordViewModel _forgetPasswordViewModel;
@@ -96,7 +97,17 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               }
 
               if (state.status == ForgetPasswordStatus.success) {
-                _nextPage();
+                if (_currentPage == 2) {
+                  Navigator.of(context).pushReplacementNamed(RouteNames.login);
+                } else {
+                  _nextPage();
+                }
+              }
+              if (state.status == ForgetPasswordStatus.resendSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("OTP code resent successfully")),
+                );
+                return;
               }
             },
             builder: (context, state) {
@@ -137,8 +148,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         CreateNewPasswordContainer(
                           forgetPasswordViewModel: _forgetPasswordViewModel,
                           onDone: () {
-                            _currentPage = 1;
-                            _nextPage();
                           },
                         ),
                       ],
@@ -147,10 +156,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   const SizedBox(height: 20),
                   if (_currentPage > 0)
-                    ElevatedButton(
-                      onPressed: _prevPage,
-                      child: const Text("back"),
-                    ),
+
                   const SizedBox(height: 20),
                 ],
               );

@@ -171,6 +171,36 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
         _verifyResetCode(emailController.text);
       case ResetPasswordEvent():
         _resetPassword(newPasswordController.text);
+      case ResendOtpEvent():
+        resenCode(emailController.text);
+    }
+  }
+  Future<void> resenCode(String email) async {
+    if (email.isEmpty) return;
+
+    emit(state.copyWith(status: ForgetPasswordStatus.loading));
+
+    final result = await forgetPasswordUseCase(
+      ForgetPasswordRequestEntity(email: emailController.text),
+    );
+
+    if (result is ApiSuccessResult<ForgetPasswordResponseEntity>) {
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.resendSuccess,
+          currentStep: ForgetPasswordStep.verifyCode,
+          forgetPasswordResponse: result.data,
+          errorMessage: null,
+          email: email,
+        ),
+      );
+    } else if (result is ApiErrorResult) {
+      emit(
+        state.copyWith(
+          status: ForgetPasswordStatus.error,
+          errorMessage: "error",
+        ),
+      );
     }
   }
 
