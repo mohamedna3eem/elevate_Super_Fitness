@@ -138,7 +138,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
   }
 
   Future<void> _register() async {
-    CustomDialog.loading(context: context);
+    CustomDialog.fitnessLoading(context: context);
     final result = await _registerUseCase(
       RegisterRequestEntity(
         firstName: firstNameController.text,
@@ -158,7 +158,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
     switch (result) {
       case ApiSuccessResult<String>():
         Navigator.of(context).pop();
-        CustomDialog.positiveButton(
+        CustomDialog.fitnessPositiveButton(
           context: context,
           cancelable: false,
           title: AppLocalizations.of(context).success,
@@ -170,7 +170,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
         break;
       case ApiErrorResult<String>():
         Navigator.of(context).pop();
-        CustomDialog.positiveButton(
+        CustomDialog.fitnessPositiveButton(
           context: context,
           title: AppLocalizations.of(context).error,
           message: result.errorMessage,

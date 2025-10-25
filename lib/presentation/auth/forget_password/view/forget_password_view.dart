@@ -45,17 +45,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     }
   }
 
-  // void _prevPage() {
-  //   if (_currentPage > 0) {
-  //     setState(() => _currentPage--);
-  //     _pageController.animateToPage(
-  //       _currentPage,
-  //       duration: const Duration(milliseconds: 400),
-  //       curve: Curves.easeInOut,
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -77,7 +66,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               if (state.status == ForgetPasswordStatus.loading) {
                 if (!isDialogShow) {
                   isDialogShow = true;
-                  CustomDialog.loading(context: context);
+                  CustomDialog.fitnessLoading(context: context);
                 }
                 return;
               }
@@ -88,7 +77,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               }
 
               if (state.status == ForgetPasswordStatus.error) {
-                CustomDialog.positiveButton(
+                CustomDialog.fitnessPositiveButton(
                   context: context,
                   title: AppLocalizations.of(context).error,
                   message: state.errorMessage ?? "error",
@@ -97,6 +86,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               }
 
               if (state.status == ForgetPasswordStatus.success) {
+                CustomDialog.fitnessPositiveButton(
+                  context: context,
+                  title: "Success",
+                );
                 if (_currentPage == 2) {
                   Navigator.of(context).pushReplacementNamed(RouteNames.login);
                 } else {
@@ -104,9 +97,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 }
               }
               if (state.status == ForgetPasswordStatus.resendSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("OTP code resent successfully")),
+                CustomDialog.fitnessPositiveButton(
+                  context: context,
+                  message: "OTP code resent successfully",
                 );
+
                 return;
               }
             },
@@ -147,17 +142,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                         CreateNewPasswordContainer(
                           forgetPasswordViewModel: _forgetPasswordViewModel,
-                          onDone: () {
-                          },
+                          onDone: () {},
                         ),
                       ],
                     ),
                   ),
 
                   const SizedBox(height: 20),
-                  if (_currentPage > 0)
-
-                  const SizedBox(height: 20),
+                  if (_currentPage > 0) const SizedBox(height: 20),
                 ],
               );
             },

@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.white,
+    scaffoldBackgroundColor: AppColors.backGroundD,
     fontFamily: ConstKeys.balooThambi2Font,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
