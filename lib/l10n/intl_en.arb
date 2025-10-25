@@ -79,5 +79,6 @@
   "learnTheBasic": "Learn the basic",
   "error": "Error",
   "success": "Success",
-  "accountCreatedSuccessfully": "Account created successfully"
+  "accountCreatedSuccessfully": "Account created successfully",
+  "logout": "Logout"
 }

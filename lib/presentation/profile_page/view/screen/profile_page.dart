@@ -1,6 +1,7 @@
 import 'package:elevate_super_fitness/core/constants/const_keys.dart';
 import 'package:elevate_super_fitness/core/di/di.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
+import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -40,14 +41,20 @@ class ProfilePage extends StatelessWidget {
               onPressed: () async {
                 final FlutterSecureStorage secureStorage = getIt
                     .get<FlutterSecureStorage>();
+
                 await secureStorage.delete(key: ConstKeys.keyRememberMe);
+
+                if (!context.mounted) {
+                  return;
+                } 
+
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   RouteNames.login,
                   (route) => false,
                 );
               },
-              child: const Text("Logout"),
+              child: Text(AppLocalizations.of(context).logout),
             ),
           ],
         ),
