@@ -5,6 +5,7 @@ import 'package:elevate_super_fitness/domain/entites/login_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/login_request_entity.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entites/requests/register_request_entity.dart';
 import '../../domain/repo/auth_repo.dart';
 
 @Injectable(as: AuthRepo)

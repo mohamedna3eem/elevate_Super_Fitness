@@ -5,6 +5,9 @@ import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../models/requests/auth/register/register_request.dart';
+import '../models/responses/auth/register/register_response.dart';
+
 part 'api_client.g.dart';
 
 @injectable

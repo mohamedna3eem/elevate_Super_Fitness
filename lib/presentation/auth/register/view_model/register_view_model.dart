@@ -26,18 +26,10 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextEditingController firstNameController = TextEditingController(
-    text: "testname"
-  );
-  TextEditingController lastNameController = TextEditingController(
-    text: "testlast"
-  );
-  TextEditingController emailController = TextEditingController(
-    text: "testemail@gmail.com"
-  );
-  TextEditingController passwordController = TextEditingController(
-    text: "Aa11335577#\$"
-  );
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(false);
 
