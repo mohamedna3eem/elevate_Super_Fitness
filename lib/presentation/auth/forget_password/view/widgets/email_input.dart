@@ -1,13 +1,10 @@
-
-
-import 'package:elevate_super_fitness/core/constants/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/di/di.dart';
-import '../../../../core/utils/validations.dart';
-import '../../../../generated/l10n.dart';
-import '../view_model/forget_password_view_model.dart';
+import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/di/di.dart';
+import '../../../../../core/utils/validations.dart';
+import '../../../../../generated/l10n.dart';
+import '../../view_model/forget_password_events.dart';
+import '../../view_model/forget_password_view_model.dart';
 
 class EmailInputContainer extends StatefulWidget {
   final VoidCallback onNext;
@@ -28,74 +25,109 @@ class _EmailInputContainerState extends State<EmailInputContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
 
-
-    return Center(
-      child: Padding(
+    return  Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          constraints: const BoxConstraints(
-            maxWidth: 350,
-            maxHeight: 200,
+        child:
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 25),
+          Text(
+            AppLocalizations.of(context).enterYouEmail,
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: AppColors.white,fontWeight: FontWeight.w400),
           ),
+              const SizedBox(height: 10),
+          Text(
+            AppLocalizations.of(context).forgetPassword,
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: AppColors.white,fontWeight: FontWeight.w800),
+          ),
+              const SizedBox(height: 25),
+        Container(
+          width: width * 0.9,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.4),
-            borderRadius: BorderRadius.circular(30),
+            color: Colors.black.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
-
-                color: Colors.black.withOpacity(0.3),
-                offset: const Offset(0, 4),
-                blurRadius: 15,
+                color: Colors.black.withOpacity(0.2),
+                offset: const Offset(0, 6),
+                blurRadius: 12,
               ),
             ],
           ),
-          child: Column(
-            // mainAxisSize: MainAxisSize.max ,
-            children: [
-
-
-              // Email TextField
-            TextFormField(
-            controller: _forgetPasswordViewModel.emailController,
-            style: Theme.of(context).textTheme.bodySmall,
-            validator: Validations.validateEmail,
-            decoration: InputDecoration(
-              labelText: AppLocalizations.of(context).email,
-              hintText: AppLocalizations.of(context).enterYouEmail,
-            )),
-
-
-
-              // Send OTP Button
-
-                 SizedBox(
-                   width: double.infinity,
-                   child: ElevatedButton(
-                    onPressed: widget.onNext,
+          child: Form(
+            key: _forgetPasswordViewModel.forgetPasswordFormKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  controller: _forgetPasswordViewModel.emailController,
+                  validator: Validations.validateEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon:  Icon(Icons.email_outlined,color: AppColors.white,),
+                    labelText: AppLocalizations.of(context).email,
+                    hintText: AppLocalizations.of(context).enterYouEmail,
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(color: AppColors.mainColorL, width: 2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.mainColorD,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      backgroundColor: AppColors.mainColorL,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      elevation: 6,
                     ),
-                    child: const Text(
-                      "Send OTP",
-                      style: TextStyle(
-                        fontSize: 16,
+                    onPressed: () {
+                      if (_forgetPasswordViewModel
+                          .forgetPasswordFormKey.currentState!
+                          .validate()) {
+                        _forgetPasswordViewModel
+                            .doIntent(ForgetPasswordEvent());
+                      }
+                    },
+                    child: Text(
+                      AppLocalizations.of(context).confirm,
+                      style: const TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                   ),
-                 )
-            ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ),])
+      );
+
   }
 }
