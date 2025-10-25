@@ -14,4 +14,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
   @POST(Endpoints.signIn)
   Future<LoginResponseDto> login(@Body()LoginRequestDto request);
+
+  @POST(Endpoints.signUp)
+  Future<RegisterResponse> register(@Body() RegisterRequest request);
 }

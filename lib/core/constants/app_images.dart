@@ -16,5 +16,7 @@ abstract class AppImages {
   static const String onBoardingBgImage = "$_imagesPath/onboarding_bg.png";
   static const String homeBgImage = "$_imagesPath/home_bg.png";
   static const String authBg = "$_imagesPath/auth_bg.png";
+  static const String maleImage = "$_imagesPath/male.svg";
+  static const String femaleImage = "$_imagesPath/female.svg";
 }
 

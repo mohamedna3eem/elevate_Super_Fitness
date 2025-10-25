@@ -6,4 +6,6 @@ abstract interface class AuthRepo {
   Future<ApiResult<LoginResponseEntity>> login({
     required LoginRequestEntity request,
   });
+
+  Future<ApiResult<String>> register(RegisterRequestEntity request);
 }

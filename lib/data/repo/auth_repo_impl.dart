@@ -28,4 +28,9 @@ class AuthRepoImpl implements AuthRepo {
     }
     return responseEntity;
   }
+
+  @override
+  Future<ApiResult<String>> register(RegisterRequestEntity request) {
+    return _authRemoteDataSource.register(request);
+  }
 }

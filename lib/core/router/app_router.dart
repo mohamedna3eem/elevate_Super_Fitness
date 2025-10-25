@@ -20,6 +20,9 @@ abstract class AppRouter {
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
 
+      case RouteNames.register:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());
     }

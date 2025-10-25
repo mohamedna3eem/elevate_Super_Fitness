@@ -24,4 +24,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return _apiClient.login(requestDto);
     }, (response) => response.toEntity());
   }
+
+  @override
+  Future<ApiResult<String>> register(RegisterRequestEntity request) {
+    return safeApiCall(
+          () => _apiClient.register(request.toRequest()),
+          (response) => response.message ?? "",
+    );
+  }
 }
