@@ -56,6 +56,8 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_svg: ^2.2.1
   dashed_circular_progress_bar: ^0.0.6
+  awesome_extensions: ^2.0.26
+  wheel_chooser: ^1.1.2
 
 dev_dependencies:
   flutter_test:
