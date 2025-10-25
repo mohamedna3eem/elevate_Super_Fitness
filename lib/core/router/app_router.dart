@@ -8,7 +8,7 @@ abstract class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.mainHome:
-        return MaterialPageRoute(builder: (_) => const SizedBox());
+        return MaterialPageRoute(builder: (_) => const MainHomeScreen());
 
       case RouteNames.splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
