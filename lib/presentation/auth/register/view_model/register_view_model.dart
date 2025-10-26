@@ -1,8 +1,6 @@
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
-import 'package:elevate_super_fitness/core/custom_widget/custom_dialog.dart';
 import 'package:elevate_super_fitness/core/enums/gender_enum.dart';
 import 'package:elevate_super_fitness/core/enums/goal_enum.dart';
-import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/register_request_entity.dart';
 import 'package:elevate_super_fitness/domain/use_cases/register_use_case.dart';
 import 'package:equatable/equatable.dart';
@@ -11,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/enums/level_enum.dart';
-import '../../../../generated/l10n.dart';
 import 'register_events.dart';
 
 part 'register_state.dart';
@@ -26,18 +23,10 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  TextEditingController firstNameController = TextEditingController(
-    text: "testname"
-  );
-  TextEditingController lastNameController = TextEditingController(
-    text: "testlast"
-  );
-  TextEditingController emailController = TextEditingController(
-    text: "testemail@gmail.com"
-  );
-  TextEditingController passwordController = TextEditingController(
-    text: "Aa11335577#\$"
-  );
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(false);
 
@@ -60,8 +49,6 @@ class RegisterViewModel extends Cubit<RegisterState> {
   );
 
   ValueNotifier<double> registerProgress = ValueNotifier<double>(4);
-
-  late final BuildContext context;
 
   void doIntent(RegisterEvents events) {
     switch (events) {
@@ -146,7 +133,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
   }
 
   Future<void> _register() async {
-    CustomDialog.loading(context: context);
+    emit(const RegisterState(isLoading: true));
     final result = await _registerUseCase(
       RegisterRequestEntity(
         firstName: firstNameController.text,
@@ -162,26 +149,13 @@ class RegisterViewModel extends Cubit<RegisterState> {
         activityLevel: selectedLevel.value.value,
       ),
     );
-    if (!context.mounted) return;
     switch (result) {
       case ApiSuccessResult<String>():
-        Navigator.of(context).pop();
-        CustomDialog.positiveButton(
-          context: context,
-          cancelable: false,
-          title: AppLocalizations.of(context).success,
-          message: AppLocalizations.of(context).accountCreatedSuccessfully,
-          positiveOnClick: () {
-            Navigator.of(context).pushReplacementNamed(RouteNames.login);
-          },
-        );
+        emit(state.copyWith(isSuccessful: true, isLoading: false));
         break;
       case ApiErrorResult<String>():
-        Navigator.of(context).pop();
-        CustomDialog.positiveButton(
-          context: context,
-          title: AppLocalizations.of(context).error,
-          message: result.errorMessage,
+        emit(
+          state.copyWith(errorMessage: result.errorMessage, isLoading: false),
         );
         break;
     }
