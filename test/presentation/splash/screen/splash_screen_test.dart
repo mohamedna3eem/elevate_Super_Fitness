@@ -4,7 +4,6 @@ import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.d
 import 'package:elevate_super_fitness/presentation/splash/widgets/splash_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
 
 void main() {
   setUpAll(() {
