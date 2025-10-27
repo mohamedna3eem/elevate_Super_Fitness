@@ -7,21 +7,20 @@ echo "🚀 Running pre-push checks..."
 # 0. Validate branch name
 echo "🔍 Validating branch name..."
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-echo "Branch: $BRANCH_NAME"
+BRANCH_REGEX="^(bugfix|hotfix|release|feature)\/[Ee][Ss][Ff]-[0-9]+\/[a-zA-Z0-9\-]+$"
 
-BRANCH_REGEX="^(bugfix|hotfix|release|feature)\/[Ee][Ss][Ff]-[0-9]+-[a-zA-Z0-9\-]+$"
+echo "Branch: $BRANCH_NAME"
 
 if echo "$BRANCH_NAME" | grep -Eq "$BRANCH_REGEX"; then
   echo "✅ Branch name is valid."
 else
   echo "❌ Invalid branch name!"
-  echo "✅ Allowed format: <prefix>/ESF-<ticketNumber>-<task-name>"
+  echo "✅ Allowed format: <prefix>/ESF-<ticketNumber>/<task-name>"
   echo "Examples:"
-  echo "   feature/ESF-27-Initialize-Project"
-  echo "   bugfix/esf-0-Fix-Login"
+  echo "   feature/ESF-27/Initialize-Project"
+  echo "   bugfix/esf-0/Fix-Login"
   exit 1
 fi
-
 # 1. Get packages
 echo "📦 Running flutter pub get..."
 flutter pub get
