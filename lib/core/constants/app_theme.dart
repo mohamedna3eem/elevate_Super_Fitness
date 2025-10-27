@@ -1,14 +1,12 @@
-import 'package:elevate_Super_Fitness/core/constants/app_colors.dart';
-import 'package:elevate_Super_Fitness/core/constants/const_keys.dart';
+import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:elevate_super_fitness/core/constants/const_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.white,
+    scaffoldBackgroundColor: AppColors.gray,
     fontFamily: "BalooThambi2",
     colorScheme: ColorScheme(
       brightness: Brightness.light,
@@ -48,9 +46,10 @@ abstract class AppTheme {
     ),
 
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
+      filled: false,
       fillColor: AppColors.white,
       contentPadding: EdgeInsets.only(left: 16.w, top: 4.h, bottom: 4.h),
+
       hintStyle: getTextStyle(
         color: AppColors.white[70],
         fontFamily: ConstKeys.balooThambi2Font,
@@ -68,9 +67,9 @@ abstract class AppTheme {
         return getTextStyle(color: AppColors.gray);
       }),
       errorStyle: getTextStyle(color: AppColors.red),
-      border: getOutlineInputBorder(color: AppColors.gray),
-      focusedBorder: getOutlineInputBorder(color: AppColors.gray),
-      enabledBorder: getOutlineInputBorder(color: AppColors.gray),
+      border: getOutlineInputBorder(color: AppColors.lightGray),
+      focusedBorder: getOutlineInputBorder(color: AppColors.lightGray),
+      enabledBorder: getOutlineInputBorder(color: AppColors.lightGray),
       errorBorder: getOutlineInputBorder(color: AppColors.red),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -90,8 +89,8 @@ abstract class AppTheme {
         backgroundColor: AppColors.mainColorL,
         disabledBackgroundColor: AppColors.black[30],
         foregroundColor: AppColors.white,
-        textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        textStyle: getTextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     ),
 
@@ -109,7 +108,7 @@ abstract class AppTheme {
 
   static InputBorder getOutlineInputBorder({required Color color}) {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(4.r),
+      borderRadius: BorderRadius.circular(20.r),
       borderSide: BorderSide(color: color, width: 1.w),
     );
   }

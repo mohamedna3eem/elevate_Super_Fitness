@@ -1,5 +1,5 @@
 
-import 'package:elevate_Super_Fitness/core/api_result/api_result.dart';
+import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 
 Future<ApiResult<TOut>> safeApiCall<TIn, TOut>(
   Future<TIn> Function() apiCall,
