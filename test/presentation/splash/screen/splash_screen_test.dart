@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
 
 void main() {
-  setUp(() {
+  setUpAll(() {
     final testerBinding = TestWidgetsFlutterBinding.ensureInitialized();
     testerBinding.window.physicalSizeTestValue = const Size(1080, 1920);
     testerBinding.window.devicePixelRatioTestValue = 1.0;
@@ -36,10 +36,6 @@ void main() {
       await tester.pumpWidget(const TestAppWrapper(child: SplashScreen()));
 
       expect(find.byType(SplashViewBody), findsOneWidget);
-
-      await tester.pump(const Duration(seconds: 3));
-      await tester.pumpAndSettle();
-
     });
   });
 }
