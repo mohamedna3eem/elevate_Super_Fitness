@@ -49,5 +49,18 @@
   "forgotPassword": "Forgot Password ?",
   "doNotHaveAccountYet": "Don't have an account Yet ?",
   "register": "Register",
-  "or": "Or"
+  "or": "Or",
+  "category": "Category",
+  "recommendationToDay": "Recommendation to day",
+  "seeAll": "See all",
+  "upcomingWorkouts": "Upcoming Workouts",
+  "recommendationForYou": "Recommendation For You",
+  "popularTraining": "Popular Training",
+  "letsStartYourDay": "Let’s start your day",
+  "hi": "Hi",
+  "gym": "Gym",
+  "fitness": "Fitness",
+  "yoga": "Yoga",
+  "aerobics": "Aerobics",
+  "trainer": "Trainer"
 }
