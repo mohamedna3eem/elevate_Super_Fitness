@@ -1,32 +1,32 @@
-import 'package:elevate_super_fitness/api/models/excercise_difficulty_level_dto.dart';
+import 'package:elevate_super_fitness/api/models/exercise_difficulty_level_dto.dart';
 import 'package:elevate_super_fitness/api/models/get_selected_exercise_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/excercise_difficulty_levels_response_dto/excercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
-import 'package:elevate_super_fitness/domain/entites/excercise_difficulty_level_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/exercise_difficulty_level_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/get_selected_exercise_entity.dart';
 
 class ExerciseDummy {
-  static ExcerciseDifficultyLevelDto dummyExcerciseDifficultyLevelDto =
-      const ExcerciseDifficultyLevelDto(id: "difficulty_001", name: "Beginner");
+  static ExerciseDifficultyLevelDto dummyExcerciseDifficultyLevelDto =
+      const ExerciseDifficultyLevelDto(id: "difficulty_001", name: "Beginner");
 
-  static ExcerciseDifficultyLevelEntity dummyExcerciseDifficultyLevelEntity =
-      const ExcerciseDifficultyLevelEntity(
+  static ExerciseDifficultyLevelEntity dummyExcerciseDifficultyLevelEntity =
+      const ExerciseDifficultyLevelEntity(
         id: "difficulty_001",
         name: "Beginner",
       );
 
-  static ExcerciseDifficultyLevelsResponseDto
+  static ExerciseDifficultyLevelsResponseDto
   dummyExcerciseDifficultyLevelsResponseDto =
-      const ExcerciseDifficultyLevelsResponseDto(
+      const ExerciseDifficultyLevelsResponseDto(
         message: "Difficulty levels fetched successfully",
         totalLevels: 3,
         difficultyLevels: [
-          ExcerciseDifficultyLevelDto(id: "difficulty_001", name: "Beginner"),
-          ExcerciseDifficultyLevelDto(
+          ExerciseDifficultyLevelDto(id: "difficulty_001", name: "Beginner"),
+          ExerciseDifficultyLevelDto(
             id: "difficulty_002",
             name: "Intermediate",
           ),
-          ExcerciseDifficultyLevelDto(id: "difficulty_003", name: "Advanced"),
+          ExerciseDifficultyLevelDto(id: "difficulty_003", name: "Advanced"),
         ],
       );
 

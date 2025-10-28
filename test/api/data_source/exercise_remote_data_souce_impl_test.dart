@@ -1,8 +1,8 @@
 import 'package:elevate_super_fitness/api/client/api_client.dart';
 import 'package:elevate_super_fitness/api/data_source/exercise_remote_data_souce_impl.dart';
-import 'package:elevate_super_fitness/api/mapper/excercise_mapper.dart';
+import 'package:elevate_super_fitness/api/mapper/exercise_mapper.dart';
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
-import 'package:elevate_super_fitness/domain/entites/excercise_difficulty_level_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/exercise_difficulty_level_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/get_selected_exercise_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -23,7 +23,7 @@ void main() {
 
     group("test getAllDifficultyLevelsByPrimeMoverMuscle", () {
       test(
-        "when call it should return List of ExcerciseDifficultyLevelEntity from api with correct parameters",
+        "when call it should return List of ExerciseDifficultyLevelEntity from api with correct parameters",
         () async {
           //Arrange
           final expectedResult =
@@ -48,9 +48,9 @@ void main() {
           ).called(1);
           expect(
             result,
-            isA<ApiSuccessResult<List<ExcerciseDifficultyLevelEntity>>>(),
+            isA<ApiSuccessResult<List<ExerciseDifficultyLevelEntity>>>(),
           );
-          result as ApiSuccessResult<List<ExcerciseDifficultyLevelEntity>>;
+          result as ApiSuccessResult<List<ExerciseDifficultyLevelEntity>>;
           expect(
             result.data,
             expectedResult.difficultyLevels!.map((e) => e.toEntity()).toList(),
@@ -79,9 +79,9 @@ void main() {
           ).called(1);
           expect(
             result,
-            isA<ApiErrorResult<List<ExcerciseDifficultyLevelEntity>>>(),
+            isA<ApiErrorResult<List<ExerciseDifficultyLevelEntity>>>(),
           );
-          result as ApiErrorResult<List<ExcerciseDifficultyLevelEntity>>;
+          result as ApiErrorResult<List<ExerciseDifficultyLevelEntity>>;
           expect(
             result.errorMessage,
             contains(ExerciseDummy.expectedError),

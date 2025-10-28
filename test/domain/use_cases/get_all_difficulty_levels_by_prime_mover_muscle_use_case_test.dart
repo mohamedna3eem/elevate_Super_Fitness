@@ -1,5 +1,5 @@
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
-import 'package:elevate_super_fitness/domain/entites/excercise_difficulty_level_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/exercise_difficulty_level_entity.dart';
 import 'package:elevate_super_fitness/domain/repo/exercise_repo.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_all_difficulty_levels_by_prime_mover_muscle_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,14 +23,14 @@ void main() {
 
   group("test GetAllDifficultyLevelsByPrimeMoverMuscleUseCase", () {
     test(
-      "when call it should return List of ExcerciseDifficultyLevelEntity from repo with correct parameters",
+      "when call it should return List of ExerciseDifficultyLevelEntity from repo with correct parameters",
       () async {
         //Arrange
         final expectedEntity = [
           ExerciseDummy.dummyExcerciseDifficultyLevelEntity,
         ];
         final expectedResult = ApiSuccessResult(expectedEntity);
-        provideDummy<ApiResult<List<ExcerciseDifficultyLevelEntity>>>(
+        provideDummy<ApiResult<List<ExerciseDifficultyLevelEntity>>>(
           expectedResult,
         );
         when(
@@ -49,8 +49,8 @@ void main() {
             primeMoverMuscleId: ExerciseDummy.dummyPrimeMoverMuscleId,
           ),
         ).called(1);
-        expect(result, isA<ApiSuccessResult<List<ExcerciseDifficultyLevelEntity>>>());
-        result as ApiSuccessResult<List<ExcerciseDifficultyLevelEntity>>;
+        expect(result, isA<ApiSuccessResult<List<ExerciseDifficultyLevelEntity>>>());
+        result as ApiSuccessResult<List<ExerciseDifficultyLevelEntity>>;
         expect(result.data.length, expectedEntity.length);
         expect(result.data[0], expectedEntity[0]);
       },
@@ -59,8 +59,8 @@ void main() {
       //Arrange
       final expectedError = ExerciseDummy.expectedError;
       final expectedResult =
-          ApiErrorResult<List<ExcerciseDifficultyLevelEntity>>(expectedError);
-      provideDummy<ApiResult<List<ExcerciseDifficultyLevelEntity>>>(
+          ApiErrorResult<List<ExerciseDifficultyLevelEntity>>(expectedError);
+      provideDummy<ApiResult<List<ExerciseDifficultyLevelEntity>>>(
         expectedResult,
       );
       when(
@@ -75,9 +75,9 @@ void main() {
       verify(mockExerciseRepo.getAllDifficultyLevelsByPrimeMoverMuscle(primeMoverMuscleId: ExerciseDummy.dummyPrimeMoverMuscleId)).called(1);
       expect(
         result,
-        isA<ApiErrorResult<List<ExcerciseDifficultyLevelEntity>>>(),
+        isA<ApiErrorResult<List<ExerciseDifficultyLevelEntity>>>(),
       );
-      result as ApiErrorResult<List<ExcerciseDifficultyLevelEntity>>;
+      result as ApiErrorResult<List<ExerciseDifficultyLevelEntity>>;
       expect(result.errorMessage, expectedError);
     });
   });

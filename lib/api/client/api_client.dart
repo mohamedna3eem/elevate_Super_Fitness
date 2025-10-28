@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_super_fitness/api/models/responses/excercise_difficulty_levels_response_dto/excercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +14,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @GET(Endpoints.getAllDifficultyLevelsByPrimeMoverMuscle)
-  Future<ExcerciseDifficultyLevelsResponseDto> getAllDifficultyLevelsByPrimeMoverMuscle(
+  Future<ExerciseDifficultyLevelsResponseDto> getAllDifficultyLevelsByPrimeMoverMuscle(
       @Query("primeMoverMuscleId") String primeMoverMuscleId
   );
 

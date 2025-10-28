@@ -1,5 +1,5 @@
-import 'package:elevate_super_fitness/api/mapper/excercise_mapper.dart';
-import 'package:elevate_super_fitness/api/models/excercise_difficulty_level_dto.dart';
+import 'package:elevate_super_fitness/api/mapper/exercise_mapper.dart';
+import 'package:elevate_super_fitness/api/models/exercise_difficulty_level_dto.dart';
 import 'package:elevate_super_fitness/api/models/get_selected_exercise_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -7,12 +7,12 @@ import '../../dummy/exercise_dummy.dart';
 
 void main() {
   group("test ExerciseMapper", () {
-    group("test ExcerciseDifficultyLevelMapper", () {
+    group("test ExerciseDifficultyLevelMapper", () {
       test(
-        "when call toEntity with right values should return ExcerciseDifficultyLevelEntity with right values",
+        "when call toEntity with right values should return ExerciseDifficultyLevelEntity with right values",
         () {
           //Arrange
-          final ExcerciseDifficultyLevelDto excerciseDifficultyLevelDto =
+          final ExerciseDifficultyLevelDto excerciseDifficultyLevelDto =
               ExerciseDummy.dummyExcerciseDifficultyLevelDto;
 
           //Act

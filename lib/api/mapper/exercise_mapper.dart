@@ -1,11 +1,11 @@
-import 'package:elevate_super_fitness/api/models/excercise_difficulty_level_dto.dart';
+import 'package:elevate_super_fitness/api/models/exercise_difficulty_level_dto.dart';
 import 'package:elevate_super_fitness/api/models/get_selected_exercise_dto.dart';
-import 'package:elevate_super_fitness/domain/entites/excercise_difficulty_level_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/exercise_difficulty_level_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/get_selected_exercise_entity.dart';
 
-extension ExcerciseDifficultyLevelMapper on ExcerciseDifficultyLevelDto {
-  ExcerciseDifficultyLevelEntity toEntity() {
-    return ExcerciseDifficultyLevelEntity(
+extension ExcerciseDifficultyLevelMapper on ExerciseDifficultyLevelDto {
+  ExerciseDifficultyLevelEntity toEntity() {
+    return ExerciseDifficultyLevelEntity(
       id: id ?? '',
       name: name ?? '',
     );

@@ -1,11 +1,11 @@
 
 import 'package:equatable/equatable.dart';
 
-class ExcerciseDifficultyLevelEntity extends Equatable {
+class ExerciseDifficultyLevelEntity extends Equatable {
 	final String? id;
 	final String? name;
 
-	const ExcerciseDifficultyLevelEntity({this.id, this.name});
+	const ExerciseDifficultyLevelEntity({this.id, this.name});
 
 
 	@override
