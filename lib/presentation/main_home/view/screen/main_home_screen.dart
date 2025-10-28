@@ -18,7 +18,10 @@ class MainHomeScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.backGroundL[10],
-          body: SafeArea(child: MainHomeViewBody(mainHomeViewModel: mainHomeViewModel,state: state,)),
+          body: MainHomeViewBody(
+            mainHomeViewModel: mainHomeViewModel,
+            state: state,
+          ),
         );
       },
     );
