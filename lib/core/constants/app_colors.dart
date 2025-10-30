@@ -27,6 +27,7 @@ abstract class AppColors {
     80: Color(0xFFBDBDBD),
     90: Color(0xFFD3D3D3),
     100: Color(0xFFE9E9E9),
+    110: Color(0xFF1A1A1A),
   });
   static MaterialColor backGroundD = const MaterialColor(0xFF242424, <int, Color>{
     10: Color(0xFF242424),
@@ -87,4 +88,5 @@ abstract class AppColors {
   static const Color green = Color(0xFF0CB359);
   static const Color lightPink = Color(0xFFF9ECF0);
   static const Color yellow = Color(0xFFC8D444);
+  static const Color dividerColor = Color(0xFF2D2D2D);
 }

@@ -49,5 +49,8 @@
   "forgotPassword": "Forgot Password ?",
   "doNotHaveAccountYet": "Don't have an account Yet ?",
   "register": "Register",
-  "or": "Or"
+  "or": "Or",
+  "foodRecommendation": "Food Recommendation",
+  "ingredients": "Ingredients",
+  "recommendation": "Recommendation"
 }
