@@ -1,7 +1,7 @@
 class MealDetailsEntity {
   final String? idMeal;
   final String? strMeal;
-  final dynamic? strMealAlternate;
+  final dynamic strMealAlternate;
   final String? strCategory;
   final String? strArea;
   final String? strInstructions;
@@ -49,9 +49,9 @@ class MealDetailsEntity {
   final String? strMeasure19;
   final String? strMeasure20;
   final String? strSource;
-  final dynamic? strImageSource;
-  final dynamic? strCreativeCommonsConfirmed;
-  final dynamic? dateModified;
+  final dynamic strImageSource;
+  final dynamic strCreativeCommonsConfirmed;
+  final dynamic dateModified;
 
   MealDetailsEntity({
     required this.idMeal,

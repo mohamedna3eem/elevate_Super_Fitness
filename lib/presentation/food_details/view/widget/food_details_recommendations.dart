@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/router/route_names.dart';
 import '../../../../domain/entites/meal_entity.dart';
 import '../../view_model/food_details_events.dart';
 import '../../view_model/food_details_view_model.dart';
@@ -20,7 +19,7 @@ class FoodDetailsRecommendations extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.only(right: 16.w, left: 16.w, bottom: 16.h),
       itemCount: mealsList.length,
-      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 18.sp,
         crossAxisSpacing: 18.sp,
@@ -31,7 +30,7 @@ class FoodDetailsRecommendations extends StatelessWidget {
         return FoodMealItem(
           mealImage: meal.strMealThumb ?? "",
           mealName: meal.strMeal ?? "",
-          onTap: (){
+          onTap: () {
             context.read<FoodDetailsViewModel>().doIntent(
               GetMealDetailsFoodDetailsEvent(meal.idMeal ?? ""),
             );
