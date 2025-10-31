@@ -25,7 +25,7 @@ abstract class AppRouter {
         return MaterialPageRoute(builder: (_) => const FoodScreen());
 
       case RouteNames.foodDetails:
-        final mealId = settings.arguments as String;
+        final mealId = settings.arguments as String? ?? "";
         return MaterialPageRoute(
           builder: (_) => FoodDetailsScreen(mealId: mealId),
         );

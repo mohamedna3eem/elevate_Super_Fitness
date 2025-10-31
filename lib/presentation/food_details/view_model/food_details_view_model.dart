@@ -50,7 +50,10 @@ class FoodDetailsViewModel extends Cubit<FoodDetailsState> {
     final result = await _getMealsByCategoryUseCase(category);
     switch (result) {
       case ApiSuccessResult<List<MealEntity>>():
-        emit(state.copyWith(mealsList: result.data, isMealsLoading: false));
+        final meals = result.data;
+        meals.removeWhere((meal) => meal.idMeal == state.mealDetails?.idMeal);
+        meals.shuffle();
+        emit(state.copyWith(mealsList: meals, isMealsLoading: false));
         break;
       case ApiErrorResult<List<MealEntity>>():
         emit(

@@ -52,5 +52,12 @@
   "or": "Or",
   "foodRecommendation": "Food Recommendation",
   "ingredients": "Ingredients",
-  "recommendation": "Recommendation"
+  "recommendation": "Recommendation",
+  "showMore": "Show More",
+  "energy": "Energy",
+  "protein": "Protein",
+  "carbs": "Carbs",
+  "fat": "Fat",
+  "noMealsAvailable": "No Meals Available",
+  "error": "Error"
 }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/custom_widget/custom_dialog.dart';
 import '../../../../generated/l10n.dart';
 import '../../view_model/food_events.dart';
 import '../../view_model/food_view_model.dart';
@@ -71,8 +72,17 @@ class _FoodViewBodyState extends State<FoodViewBody>
           ),
         ),
         Expanded(
-          child: BlocBuilder<FoodViewModel, FoodState>(
+          child: BlocConsumer<FoodViewModel, FoodState>(
             bloc: _foodViewModel,
+            listener: (context, state) {
+              if (state.errorMessage != null) {
+                CustomDialog.positiveButton(
+                  context: context,
+                  title: AppLocalizations.of(context).error,
+                  message: state.errorMessage!,
+                );
+              }
+            },
             builder: (context, state) {
               if (state.mealsCategoriesList != null &&
                   state.mealsCategoriesList!.isNotEmpty) {
@@ -85,18 +95,34 @@ class _FoodViewBodyState extends State<FoodViewBody>
                       tabController: _tabController!,
                     ),
                     SizedBox(height: 24.h),
-                    Expanded(
-                      child: state.isMealsLoading
-                          ? const Center(child: CircularProgressIndicator())
-                          : TabBarView(
-                              controller: _tabController,
-                              children: state.mealsCategoriesList!.map((_) {
-                                return FoodTabBarView(
-                                  mealsList:
-                                      _foodViewModel.state.mealsList ?? [],
-                                );
-                              }).toList(),
-                            ),
+                    ?const Expanded(
+                      child: Center(child: CircularProgressIndicator()),
+                    ).showIf(state.isMealsLoading),
+                    ?Expanded(
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context).noMealsAvailable,
+                          style: context.bodyMedium?.copyWith(
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                    ).showIf(
+                      state.isMealsLoading == false && state.mealsList!.isEmpty,
+                    ),
+                    ?Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: state.mealsCategoriesList!.map((_) {
+                          return FoodTabBarView(
+                            mealsList: _foodViewModel.state.mealsList ?? [],
+                          );
+                        }).toList(),
+                      ),
+                    ).showIf(
+                      !state.isMealsLoading &&
+                          state.mealsList != null &&
+                          state.mealsList!.isNotEmpty,
                     ),
                   ],
                 );

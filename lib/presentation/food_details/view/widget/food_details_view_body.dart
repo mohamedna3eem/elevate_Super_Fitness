@@ -1,4 +1,5 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
+import 'package:elevate_super_fitness/core/custom_widget/custom_dialog.dart';
 import 'package:elevate_super_fitness/presentation/food_details/view/widget/food_details_meal_info.dart';
 import 'package:elevate_super_fitness/presentation/food_details/view_model/food_details_view_model.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +29,17 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FoodDetailsViewModel, FoodDetailsState>(
+    return BlocConsumer<FoodDetailsViewModel, FoodDetailsState>(
       bloc: _foodDetailsViewModel,
+      listener: (context, state) {
+        if (state.errorMessage != null) {
+          CustomDialog.positiveButton(
+            context: context,
+            title: AppLocalizations.of(context).error,
+            message: state.errorMessage!,
+          );
+        }
+      },
       builder: (context, state) {
         if (state.mealDetails != null) {
           return SingleChildScrollView(
@@ -66,13 +76,24 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                state.isMealsLoading == false &&
-                        state.mealsList != null &&
-                        state.mealsList!.isNotEmpty
-                    ? FoodDetailsRecommendations(
-                        mealsList: state.mealsList ?? [],
-                      )
-                    : const Center(child: CircularProgressIndicator()),
+                ?const Center(
+                  child: CircularProgressIndicator(),
+                ).showIf(state.isMealsLoading),
+                ?Center(
+                  child: Text(
+                    AppLocalizations.of(context).noMealsAvailable,
+                    style: context.bodyMedium?.copyWith(color: AppColors.white),
+                  ),
+                ).showIf(
+                  state.isMealsLoading == false && state.mealsList!.isEmpty,
+                ),
+                ?FoodDetailsRecommendations(
+                  mealsList: state.mealsList ?? [],
+                ).showIf(
+                  state.isMealsLoading == false &&
+                      state.mealsList != null &&
+                      state.mealsList!.isNotEmpty,
+                ),
               ],
             ),
           );

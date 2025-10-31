@@ -2,8 +2,10 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../generated/l10n.dart';
 
 class FoodDetailsMealInfo extends StatelessWidget {
   final String imageUrl;
@@ -84,20 +86,55 @@ class FoodDetailsMealInfo extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                Text(
-                  mealInstructions,
-                  style: context.bodyMedium?.copyWith(color: AppColors.white),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                GestureDetector(
+                  onTap: () {
+                    showInstructionsDialog(context);
+                  },
+                  child: AbsorbPointer(
+                    child: ReadMoreText(
+                      mealInstructions,
+                      trimLines: 2,
+                      colorClickableText: AppColors.mainColorL,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText:
+                          " ${AppLocalizations.of(context).showMore}",
+                      style: context.bodyMedium?.copyWith(
+                        color: AppColors.white,
+                        inherit: true,
+                      ),
+                      moreStyle: context.bodyMedium?.copyWith(
+                        color: AppColors.mainColorL,
+                      ),
+                      lessStyle: context.bodyMedium?.copyWith(
+                        color: AppColors.mainColorL,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildNutritionFacts(context, "Energy", "100 K"),
-                    buildNutritionFacts(context, "Protein", "15.6"),
-                    buildNutritionFacts(context, "Carbs", "58 G"),
-                    buildNutritionFacts(context, "Fat", "20 G"),
+                    buildNutritionFacts(
+                      context,
+                      AppLocalizations.of(context).energy,
+                      "100 K",
+                    ),
+                    buildNutritionFacts(
+                      context,
+                      AppLocalizations.of(context).protein,
+                      "15.6",
+                    ),
+                    buildNutritionFacts(
+                      context,
+                      AppLocalizations.of(context).carbs,
+                      "58 G",
+                    ),
+                    buildNutritionFacts(
+                      context,
+                      AppLocalizations.of(context).fat,
+                      "20 G",
+                    ),
                   ],
                 ),
                 SizedBox(height: 16.h),
@@ -133,6 +170,44 @@ class FoodDetailsMealInfo extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void showInstructionsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          backgroundColor: AppColors.backGroundL.withValues(alpha: .8),
+          child: Padding(
+            padding: EdgeInsets.all(8.sp),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Icon(Icons.close, color: AppColors.white),
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      mealInstructions,
+                      style: ctx.bodyMedium?.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
