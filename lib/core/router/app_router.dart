@@ -1,4 +1,5 @@
 import 'package:elevate_super_fitness/core/router/route_names.dart';
+import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise_screen.dart';
 import 'package:elevate_super_fitness/presentation/auth/login/view/screen/login_view.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view/screen/main_home_screen.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
@@ -26,9 +27,12 @@ abstract class AppRouter {
       case RouteNames.register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
         
-        case RouteNames.forgetPassword:
+      case RouteNames.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
 
+        
+      case RouteNames.exercise:
+        return MaterialPageRoute(builder: (_) => const ExerciseScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());

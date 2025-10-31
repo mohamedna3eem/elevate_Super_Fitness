@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
@@ -25,8 +27,22 @@ abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
 
+  @GET(Endpoints.getAllDifficultyLevelsByPrimeMoverMuscle)
+  Future<ExerciseDifficultyLevelsResponseDto> getAllDifficultyLevelsByPrimeMoverMuscle(
+      @Query("primeMoverMuscleId") String primeMoverMuscleId
+  );
+
+  @GET(Endpoints.getExercisesByPrimeMoverMuscleandDifficultyLevel)
+  Future<GetSelectedExercisesReponseDto> getExercisesByPrimeMoverMuscleandDifficultyLevel(
+      @Query("primeMoverMuscleId") String primeMoverMuscleId,
+      @Query("difficultyLevelId") String difficultyLevelId
+  );
+
+
   @POST(Endpoints.signIn)
   Future<LoginResponseDto> login(@Body() LoginRequestDto request);
+
+
 
   @POST(Endpoints.signUp)
   Future<RegisterResponse> register(@Body() RegisterRequest request);
@@ -48,12 +64,18 @@ abstract class ApiClient {
 
   @GET(Endpoints.randomPrimeMoverMuscles)
   Future<MusclesResponseDto> getRandomMuscles();
+
+
   @GET(Endpoints.allMusclesGroups)
   Future<MusclesGroupResponseDto> getAllMusclesGroups();
+
+
   @GET("${Endpoints.musclesByMuscleGroupId}/{id}")
   Future<MuscleGroupDetailsDto> getAllMusclesByMuscleGroupId(
     @Path("id") String id,
   );
+
+
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
 }

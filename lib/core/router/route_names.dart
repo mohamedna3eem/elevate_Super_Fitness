@@ -8,5 +8,6 @@ abstract class RouteNames {
   static const String forgetPassword = "/forgetPassword";
   static const String resetPassword = "/resetPassword";
   static const String profile = "/profile";
+  static const String exercise = "/exercise";
   static const String home = "/home";
 }
