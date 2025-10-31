@@ -14,8 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExerciseViewBody extends StatefulWidget {
-  final String primeMoverMuscleId;
-  const ExerciseViewBody({super.key, required this.primeMoverMuscleId});
+  final String primeMoverMuscleId, exciseName;
+  const ExerciseViewBody({
+    super.key,
+    required this.primeMoverMuscleId,
+    required this.exciseName,
+  });
 
   @override
   State<ExerciseViewBody> createState() => _ExerciseViewBodyState();
@@ -79,7 +83,7 @@ class _ExerciseViewBodyState extends State<ExerciseViewBody> {
               ),
               ListView(
                 children: [
-                  const ExerciseVideoCoverSection(),
+                  ExerciseVideoCoverSection(exciseName: widget.exciseName),
                   state.difficultyLevelsLoading
                       ? const SizedBox(
                           height: 200,

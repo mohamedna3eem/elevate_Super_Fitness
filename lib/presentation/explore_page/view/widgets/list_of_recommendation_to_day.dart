@@ -1,5 +1,7 @@
 import 'package:elevate_super_fitness/core/api_result/base_state.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
+import 'package:elevate_super_fitness/core/model/exercise.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/domain/entites/muscles_response_entity.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_recommendation_item.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +33,21 @@ class ListOfRecommendationToDay extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     final selectedItem = muscles[index];
-                    return CustomRecommendationItem(
-                      title: selectedItem.name,
-                      imagePath: selectedItem.image,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.exercise,
+                          arguments: ExerciseModel(
+                            exciseName: selectedItem.name ?? "",
+                            primeMoverMuscleId: selectedItem.id ?? "",
+                          ),
+                        );
+                      },
+                      child: CustomRecommendationItem(
+                        title: selectedItem.name,
+                        imagePath: selectedItem.image,
+                      ),
                     );
                   },
                   separatorBuilder: (_, _) => SizedBox(width: 16.w),

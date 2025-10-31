@@ -3,13 +3,22 @@ import 'package:elevate_super_fitness/presentation/exercise/view/widgets/exercis
 import 'package:flutter/material.dart';
 
 class ExerciseScreen extends StatelessWidget {
-  const ExerciseScreen({super.key});
-
+  const ExerciseScreen({
+    super.key,
+    required this.primeMoverMuscleId,
+    required this.exciseName,
+  });
+  final String primeMoverMuscleId, exciseName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backGroundL[10],
-      body: const SafeArea(child: ExerciseViewBody(primeMoverMuscleId: "67c8499726895f87ce0aa9bc",)),
+      body: SafeArea(
+        child: ExerciseViewBody(
+          primeMoverMuscleId: primeMoverMuscleId,
+          exciseName: exciseName,
+        ),
+      ),
     );
   }
 }

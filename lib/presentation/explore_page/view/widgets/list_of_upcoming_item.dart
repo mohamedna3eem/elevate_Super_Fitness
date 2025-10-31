@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:elevate_super_fitness/core/api_result/base_state.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
+import 'package:elevate_super_fitness/core/model/exercise.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/domain/entites/muscle_group_details_entity.dart';
+import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise_screen.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_recommendation_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,10 +21,7 @@ class ListOfUpcomingItem extends StatelessWidget {
       child: Builder(
         builder: (context) {
           if (musclesGroupDetailsById?.isLoading == true) {
-            return buildShimmerList(
-              heightMediaQuery * 0.125,
-              104.w,
-            );
+            return buildShimmerList(heightMediaQuery * 0.125, 104.w);
           }
           if (musclesGroupDetailsById?.errorMessage != null) {
             return Center(child: Text(musclesGroupDetailsById!.errorMessage!));
@@ -32,10 +34,22 @@ class ListOfUpcomingItem extends StatelessWidget {
               itemBuilder: (context, index) {
                 final selectedItem =
                     musclesGroupDetailsById?.data?.musclesEntity?[index];
-                return CustomRecommendationItem(
-                  border: false,
-                  title: selectedItem?.name,
-                  imagePath: selectedItem?.image,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.exercise,
+                      arguments: ExerciseModel(
+                        exciseName: selectedItem?.name ?? "",
+                        primeMoverMuscleId: selectedItem?.id ?? "",
+                      ),
+                    );
+                  },
+                  child: CustomRecommendationItem(
+                    border: false,
+                    title: selectedItem?.name,
+                    imagePath: selectedItem?.image,
+                  ),
                 );
               },
               separatorBuilder: (_, _) => SizedBox(width: 16.w),
