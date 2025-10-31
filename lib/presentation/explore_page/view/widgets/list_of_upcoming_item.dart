@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:elevate_super_fitness/core/api_result/base_state.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
@@ -6,7 +5,6 @@ import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dar
 import 'package:elevate_super_fitness/core/model/exercise.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/domain/entites/muscle_group_details_entity.dart';
-import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise_screen.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_recommendation_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
