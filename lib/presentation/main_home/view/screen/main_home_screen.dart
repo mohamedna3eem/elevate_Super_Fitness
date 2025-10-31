@@ -13,17 +13,20 @@ class MainHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainHomeViewModel, MainHomeStates>(
-      bloc: mainHomeViewModel,
-      builder: (context, state) {
-        return Scaffold(
-          backgroundColor: AppColors.backGroundL[10],
-          body: MainHomeViewBody(
-            mainHomeViewModel: mainHomeViewModel,
-            state: state,
-          ),
-        );
-      },
+    return BlocProvider(
+      create: (context) => mainHomeViewModel,
+      child: BlocBuilder<MainHomeViewModel, MainHomeStates>(
+        bloc: mainHomeViewModel,
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: AppColors.backGroundL[10],
+            body: MainHomeViewBody(
+              mainHomeViewModel: mainHomeViewModel,
+              state: state,
+            ),
+          );
+        },
+      ),
     );
   }
 }

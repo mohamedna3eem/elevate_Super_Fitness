@@ -29,7 +29,7 @@ class CustomExploreIdentifierList extends StatelessWidget {
         if (onTap != null)
           GestureDetector(
             key: const Key(WidgetsKeys.kExploreScreenIdentifierSubtitleKey),
-            onTap: () => onTap,
+            onTap: onTap,
             child: Text(
               local.seeAll,
               style: theme.textTheme.headlineSmall?.copyWith(

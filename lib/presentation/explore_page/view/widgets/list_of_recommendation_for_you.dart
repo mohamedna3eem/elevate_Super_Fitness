@@ -1,0 +1,47 @@
+import 'package:elevate_super_fitness/core/api_result/base_state.dart';
+import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
+import 'package:elevate_super_fitness/domain/entites/meals_categories_response_entity.dart';
+import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_recommendation_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class ListOfRecommendationForYou extends StatelessWidget {
+  const ListOfRecommendationForYou({super.key, this.mealsCategory});
+  final BaseState<MealsCategoriesResponseEntity>? mealsCategory;
+  @override
+  Widget build(BuildContext context) {
+    final heightMediaQuery = MediaQuery.of(context).size.height;
+    return SliverToBoxAdapter(
+      child: Builder(
+        builder: (context) {
+          if (mealsCategory?.isLoading == true) {
+            return buildShimmerList(heightMediaQuery * 0.15, 104.w);
+          }
+          if (mealsCategory?.errorMessage != null) {
+            return Center(child: Text(mealsCategory!.errorMessage!));
+          }
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: heightMediaQuery * 0.15),
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    final selectedItem =
+                        mealsCategory?.data?.categories?[index];
+                    return CustomRecommendationItem(
+                      title: selectedItem?.strCategory,
+                      imagePath: selectedItem?.strCategoryThumb,
+                    );
+                  },
+                  separatorBuilder: (_, _) => SizedBox(width: 16.w),
+                  itemCount: mealsCategory?.data?.categories?.length ?? 0,
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
