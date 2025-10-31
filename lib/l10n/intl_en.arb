@@ -49,5 +49,14 @@
   "forgotPassword": "Forgot Password ?",
   "doNotHaveAccountYet": "Don't have an account Yet ?",
   "register": "Register",
-  "or": "Or"
+  "or": "Or",
+  "loremIpsumDolorSitAmetConsecteturTempusVolutpatUtNisiMorbi": "Lorem ipsum dolor sit amet consectetur. Tempus volutpat ut nisi morbi. ",
+  "min30": "30 MIN",
+  "cal130": "130 Cal",
+  "numberOfExerciseGroups": "3 groups * 15 times",
+  "loremIpsumDolorSitAmetconsecteturTempus": "Lorem ipsum dolor sit\n amet consectetur. Tempus ",
+  "noExerciseAvailable": "No Exercises Available",
+  "exercise": "Exercise",
+  "chestExercise": "Chest Exercise",
+  "videoNotAvailableForThisExercise": "Video not available for this exercise."
 }
