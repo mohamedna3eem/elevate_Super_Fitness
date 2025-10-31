@@ -58,5 +58,18 @@
   "noExerciseAvailable": "No Exercises Available",
   "exercise": "Exercise",
   "chestExercise": "Chest Exercise",
-  "videoNotAvailableForThisExercise": "Video not available for this exercise."
+  "videoNotAvailableForThisExercise": "Video not available for this exercise.",
+  "category": "Category",
+  "recommendationToDay": "Recommendation to day",
+  "seeAll": "See all",
+  "upcomingWorkouts": "Upcoming Workouts",
+  "recommendationForYou": "Recommendation For You",
+  "popularTraining": "Popular Training",
+  "letsStartYourDay": "Let’s start your day",
+  "hi": "Hi",
+  "gym": "Gym",
+  "fitness": "Fitness",
+  "yoga": "Yoga",
+  "aerobics": "Aerobics",
+  "trainer": "Trainer"
 }
