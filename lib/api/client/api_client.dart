@@ -3,6 +3,8 @@ import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_l
 import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/muscles_by_id.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/workout_response.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_response_dto.dart';
@@ -78,4 +80,10 @@ abstract class ApiClient {
 
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
+
+  @GET(Endpoints.workouts)
+  Future<WorkoutResponseDto> workout();
+
+  @GET(Endpoints.muscles)
+  Future<MusclesByIdDto> getAllMucsles( @Path("id") String id );
 }

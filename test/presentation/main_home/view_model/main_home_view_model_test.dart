@@ -58,7 +58,7 @@ void main() {
 
     test('close runs without errors', () async {
       await viewModel.close();
-      expect(true, true); 
+      expect(true, true);
     });
   });
 }

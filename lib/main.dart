@@ -10,9 +10,7 @@ import 'core/router/route_names.dart';
 import 'generated/l10n.dart';
 import 'my_bloc_observer.dart';
 
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   Bloc.observer = MyBlocObserver();

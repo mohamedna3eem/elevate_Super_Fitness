@@ -1,11 +1,12 @@
 abstract class Endpoints {
-
   static const String signUp = "api/v1/auth/signup";
   static const String signIn = "api/v1/auth/signin";
   static const String forgetPassword = "api/v1/auth/forgotPassword";
   static const String verifyResetCode = "api/v1/auth/verifyResetCode";
   static const String resetPassword = "api/v1/auth/resetPassword";
   static const String changePassword = "api/v1/auth/change-password";
+  static const String workouts = "api/v1/muscles";
+  static const String muscles = "api/v1/musclesGroup/{id}";
   static const String getAllDifficultyLevelsByPrimeMoverMuscle =
       "api/v1/levels/difficulty-levels/by-prime-mover";
   static const String getExercisesByPrimeMoverMuscleandDifficultyLevel =
