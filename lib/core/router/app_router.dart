@@ -19,8 +19,7 @@ abstract class AppRouter {
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
 
       case RouteNames.login:
-        return MaterialPageRoute(builder: (_) => const SizedBox());
-
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.food:
         return MaterialPageRoute(builder: (_) => const FoodScreen());
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -37,6 +38,24 @@ abstract class ApiModule {
         enabled: kDebugMode,
       ),
     );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final String? token = await TokenStorage.getToken();
+          if (token != null && token.isNotEmpty) {
+            options.headers["Authorization"] = "Bearer $token";
+          }
+          return handler.next(options);
+        },
+      ),
+    );
+    return dio;
+  }
+
+  @singleton
+  @Named(Endpoints.mealsDio)
+  Dio provideMealsDio() {
+    final dio = Dio(BaseOptions(baseUrl: Endpoints.urlThemeAdb));
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
