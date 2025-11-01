@@ -1,5 +1,6 @@
 import 'package:elevate_super_fitness/core/api_result/base_state.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/domain/entites/meals_categories_response_entity.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_recommendation_item.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,14 @@ class ListOfRecommendationForYou extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final selectedItem =
                         mealsCategory?.data?.categories?[index];
-                    return CustomRecommendationItem(
-                      title: selectedItem?.strCategory,
-                      imagePath: selectedItem?.strCategoryThumb,
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).pushNamed(RouteNames.food, arguments: index);
+                      },
+                      child: CustomRecommendationItem(
+                        title: selectedItem?.strCategory,
+                        imagePath: selectedItem?.strCategoryThumb,
+                      ),
                     );
                   },
                   separatorBuilder: (_, _) => SizedBox(width: 16.w),

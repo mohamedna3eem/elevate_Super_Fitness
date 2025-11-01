@@ -12,7 +12,8 @@ import '../../view_model/food_view_model.dart';
 import 'food_tab_bar.dart';
 
 class FoodViewBody extends StatefulWidget {
-  const FoodViewBody({super.key});
+  final int? categoryIndex;
+  const FoodViewBody({super.key, this.categoryIndex});
 
   @override
   State<FoodViewBody> createState() => _FoodViewBodyState();
@@ -86,7 +87,7 @@ class _FoodViewBodyState extends State<FoodViewBody>
             builder: (context, state) {
               if (state.mealsCategoriesList != null &&
                   state.mealsCategoriesList!.isNotEmpty) {
-                initTabBar(state.mealsCategoriesList!.length);
+                initTabBar(state.mealsCategoriesList!.length, index: widget.categoryIndex);
                 return Column(
                   children: [
                     FoodTabBar(
@@ -135,7 +136,7 @@ class _FoodViewBodyState extends State<FoodViewBody>
     );
   }
 
-  void initTabBar(int length) {
+  void initTabBar(int length, {int? index}) {
     if (_tabController == null || _tabController!.length != length) {
       _tabController?.dispose();
       _tabController = TabController(length: length, vsync: this);
@@ -146,6 +147,15 @@ class _FoodViewBodyState extends State<FoodViewBody>
           ChangeTabAndGetMealsFoodEvent(_tabController!.index),
         );
       });
+
+      if (index != null) {
+        print("index: ${index}");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_tabController!.index != index) {
+            _tabController!.animateTo(index);
+          }
+        });
+      }
     }
   }
 }

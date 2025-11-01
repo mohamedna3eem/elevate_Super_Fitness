@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/router/route_names.dart';
+
 class ExplorePageBody extends StatelessWidget {
   const ExplorePageBody({super.key});
 
@@ -72,7 +74,7 @@ class ExplorePageBody extends StatelessWidget {
                 child: CustomExploreIdentifierList(
                   title: local.recommendationForYou,
                   onTap: () {
-                    // Navigator.pushNamed(context, RouteNames.food);
+                     Navigator.of(context).pushNamed(RouteNames.food);
                   },
                 ),
               ),
