@@ -21,4 +21,6 @@ abstract class Endpoints {
   static const String mealDetails = "api/json/v1/1/lookup.php";
   static const String mealCategoryQuery = "c";
   static const String mealIdQuery = "i";
+  static const String workouts  = "api/v1/muscles";
+  static const String muscles  = "api/v1/musclesGroup/{id}";
 }

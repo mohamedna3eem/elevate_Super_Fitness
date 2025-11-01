@@ -78,4 +78,10 @@ abstract class ApiClient {
 
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
+
+  @GET(Endpoints.workouts)
+  Future<WorkoutResponseDto> workout();
+
+  @GET(Endpoints.muscles)
+  Future<MusclesByIdDto> getAllMucsles( @Path("id") String id );
 }

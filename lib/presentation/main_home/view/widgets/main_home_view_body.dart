@@ -41,7 +41,7 @@ class MainHomeViewBody extends StatelessWidget {
           children: [
             ExplorePage(mainHomeViewModel: mainHomeViewModel,),
             SmartCoachPage(mainHomeViewModel: mainHomeViewModel),
-            WorkoutsPage(mainHomeViewModel: mainHomeViewModel),
+            WorkoutsPage(mainHomeViewModel: mainHomeViewModel ),
             ProfilePage(mainHomeViewModel: mainHomeViewModel),
           ],
         ),
