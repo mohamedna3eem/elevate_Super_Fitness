@@ -21,8 +21,7 @@ import '../models/forget_password_response/forget_password_dto.dart';
 import '../models/forget_password_response/reset_password_response_dto.dart';
 import '../models/requests/auth/register/register_request.dart';
 import '../models/responses/auth/register/register_response.dart';
-import '../models/workout_response/muscles_by_id.dart';
-import '../models/workout_response/workout_response.dart';
+
 
 part 'api_client.g.dart';
 

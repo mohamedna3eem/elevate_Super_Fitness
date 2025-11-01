@@ -149,7 +149,6 @@ class _FoodViewBodyState extends State<FoodViewBody>
       });
 
       if (index != null) {
-        print("index: ${index}");
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (_tabController!.index != index) {
             _tabController!.animateTo(index);
