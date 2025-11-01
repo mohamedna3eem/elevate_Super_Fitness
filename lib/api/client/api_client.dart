@@ -30,13 +30,13 @@ abstract class ApiClient {
   @GET(Endpoints.getAllDifficultyLevelsByPrimeMoverMuscle)
   Future<ExerciseDifficultyLevelsResponseDto> getAllDifficultyLevelsByPrimeMoverMuscle(
       @Query("primeMoverMuscleId") String primeMoverMuscleId
-  );
+      );
 
   @GET(Endpoints.getExercisesByPrimeMoverMuscleandDifficultyLevel)
   Future<GetSelectedExercisesReponseDto> getExercisesByPrimeMoverMuscleandDifficultyLevel(
       @Query("primeMoverMuscleId") String primeMoverMuscleId,
       @Query("difficultyLevelId") String difficultyLevelId
-  );
+      );
 
 
   @POST(Endpoints.signIn)
@@ -72,8 +72,8 @@ abstract class ApiClient {
 
   @GET("${Endpoints.musclesByMuscleGroupId}/{id}")
   Future<MuscleGroupDetailsDto> getAllMusclesByMuscleGroupId(
-    @Path("id") String id,
-  );
+      @Path("id") String id,
+      );
 
 
   @GET(Endpoints.loggedUserData)

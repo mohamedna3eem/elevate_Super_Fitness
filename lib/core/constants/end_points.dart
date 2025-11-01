@@ -17,4 +17,8 @@ abstract class Endpoints {
   static const String loggedUserData = "api/v1/auth/profile-data";
   static const String urlThemeAdb = "https://www.themealdb.com/";
   static const String mealsDio = 'MealsDio';
+  static const String mealsByCategory = "api/json/v1/1/filter.php";
+  static const String mealDetails = "api/json/v1/1/lookup.php";
+  static const String mealCategoryQuery = "c";
+  static const String mealIdQuery = "i";
 }

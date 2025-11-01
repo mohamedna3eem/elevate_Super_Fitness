@@ -40,6 +40,15 @@ abstract class AppRouter {
           ),
         );
 
+      case RouteNames.food:
+        return MaterialPageRoute(builder: (_) => const FoodScreen());
+
+      case RouteNames.foodDetails:
+        final mealId = settings.arguments as String? ?? "";
+        return MaterialPageRoute(
+          builder: (_) => FoodDetailsScreen(mealId: mealId),
+        );
+
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());
     }
