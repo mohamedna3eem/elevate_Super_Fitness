@@ -4,23 +4,15 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/constants/const_keys.dart';
 import '../../core/utils/token_storage/token_storage.dart';
 
 @module
 abstract class ApiModule {
   @singleton
-  @Named(ConstKeys.mainDio)
-  Dio provideMainDio() => _provideDio("https://fitness.elevateegy.com/");
-
-  @singleton
-  @Named(ConstKeys.secondDio)
-  Dio provideSecondDio() => _provideDio("https://www.themealdb.com/");
-
-  Dio _provideDio(String baseUrl) {
+  Dio provideDio() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: baseUrl,
+        baseUrl: "https://fitness.elevateegy.com/",
         receiveDataWhenStatusError: true,
         receiveTimeout: const Duration(seconds: 20),
         connectTimeout: const Duration(seconds: 20),

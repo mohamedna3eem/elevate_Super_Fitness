@@ -16,16 +16,21 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
+
   @POST(Endpoints.signIn)
   Future<LoginResponseDto> login(@Body() LoginRequestDto request);
+
   @GET(Endpoints.randomPrimeMoverMuscles)
   Future<MusclesResponseDto> getRandomMuscles();
+
   @GET(Endpoints.allMusclesGroups)
   Future<MusclesGroupResponseDto> getAllMusclesGroups();
+
   @GET("${Endpoints.musclesByMuscleGroupId}/{id}")
   Future<MuscleGroupDetailsDto> getAllMusclesByMuscleGroupId(
-      @Path("id") String id,
-      );
+    @Path("id") String id,
+  );
+
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
 }

@@ -6,6 +6,8 @@ import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boardin
 import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/auth/login/view/screen/login_view.dart';
+
 abstract class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
