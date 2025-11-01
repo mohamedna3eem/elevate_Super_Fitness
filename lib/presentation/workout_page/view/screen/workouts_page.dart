@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/di.dart';
+import '../../../../core/model/exercise.dart';
+import '../../../../core/router/route_names.dart';
 import '../../view_model/workout_event.dart';
 import '../../view_model/workout_states.dart';
 import '../../view_model/workout_view_model.dart';
@@ -153,7 +155,14 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                                         imageUrl: muscle.image ?? "'https://via.placeholder.com/150'",
                                         title: muscle.name!,
                                         onTap: () {
-
+                                          Navigator.pushNamed(
+                                            context,
+                                            RouteNames.exercise,
+                                            arguments: ExerciseModel(
+                                              exciseName: muscle.name ?? "",
+                                              primeMoverMuscleId: muscle.Id ?? "",
+                                            ),
+                                          );
                                         },
                                       );
                                     },
