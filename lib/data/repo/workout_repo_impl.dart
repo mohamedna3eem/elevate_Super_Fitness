@@ -9,7 +9,7 @@ import '../../domain/repo/workout_repo.dart';
 
 @Injectable(as: WorkoutRepo)
 class WorkoutRepoImpl implements WorkoutRepo{
-  WorkoutRemoteDataSource _workoutRemoteDataSource;
+  final WorkoutRemoteDataSource _workoutRemoteDataSource;
 
   WorkoutRepoImpl(this._workoutRemoteDataSource);
 

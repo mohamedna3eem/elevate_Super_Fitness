@@ -4,12 +4,12 @@ part 'muscles_response.g.dart';
 @JsonSerializable()
 class MusclesGroupDto {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "name")
   final String? name;
 
   MusclesGroupDto ({
-    this.Id,
+    this.id,
     this.name,
   });
 

@@ -4,14 +4,14 @@ part 'muscles_data.g.dart';
 @JsonSerializable()
 class MusclesDto {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "name")
   final String? name;
   @JsonKey(name: "image")
   final String? image;
 
   MusclesDto ({
-    this.Id,
+    this.id,
     this.name,
     this.image,
   });

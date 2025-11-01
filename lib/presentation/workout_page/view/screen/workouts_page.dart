@@ -67,13 +67,13 @@ class _WorkoutsPageState extends State<WorkoutsPage>
 
                   _tabController!.addListener(() {
                     if (_tabController!.indexIsChanging) return;
-                    final muscleId = musclesGroup[_tabController!.index].Id;
+                    final muscleId = musclesGroup[_tabController!.index].id;
                     context.read<WorkoutViewModel>().doIntent(
                       MusclesEvent(id: muscleId ?? ""),
                     );
                   });
 
-                  final firstId = musclesGroup.first.Id;
+                  final firstId = musclesGroup.first.id;
                   context.read<WorkoutViewModel>().doIntent(
                     MusclesEvent(id: firstId ?? ""),
                   );
@@ -178,7 +178,7 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                                               arguments: ExerciseModel(
                                                 exciseName: muscle.name ?? "",
                                                 primeMoverMuscleId:
-                                                    muscle.Id ?? "",
+                                                    muscle.id ?? "",
                                               ),
                                             );
                                           },
@@ -189,7 +189,7 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                                 }).toList(),
                               );
                             }
-                            return SizedBox();
+                            return const SizedBox();
                           },
                         ),
                       ),

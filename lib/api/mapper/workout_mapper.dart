@@ -22,7 +22,7 @@ extension WorkoutMapper on WorkoutResponseDto{
 extension MusclesMapper on MusclesGroupDto{
   MusclesGroupEntity toEntity(){
     return MusclesGroupEntity(
-      Id: Id,
+      id: id,
       name: name
     );
   }
@@ -44,7 +44,7 @@ extension MucslesDataMapper on MusclesDto{
   MusclesEntity toEntity(){
     return MusclesEntity(
    image: image,
-      Id: Id,
+      id: id,
       name: name,
     );
   }

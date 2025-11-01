@@ -78,7 +78,7 @@ class WorkoutViewModel extends Cubit<WorkoutStates> {
   final GetAllMusclesUseCase getAllMusclesUseCase;
 
   WorkoutViewModel(this.getAllWorkoutUseCase, this.getAllMusclesUseCase)
-      : super( WorkoutStates());
+      : super( const WorkoutStates());
 
   // ✅ استقبال الأحداث
   void doIntent(WorkoutEvents event) {
