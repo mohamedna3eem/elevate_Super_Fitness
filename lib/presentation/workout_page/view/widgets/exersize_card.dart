@@ -1,3 +1,4 @@
+import 'package:elevate_super_fitness/core/custom_widget/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCard extends StatelessWidget {
@@ -21,8 +22,8 @@ class ExerciseCard extends StatelessWidget {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.network(
-                imageUrl,
+              child: CustomCachedNetworkImage(
+                imageUrl: imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,10 +34,7 @@ class ExerciseCard extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.center,
-                    colors: [
-                      Colors.black.withOpacity(0.6),
-                      Colors.transparent,
-                    ],
+                    colors: [Colors.black.withOpacity(0.6), Colors.transparent],
                   ),
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:elevate_super_fitness/presentation/main_home/view_model/main_hom
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/di/di.dart';
 import '../../../../core/model/exercise.dart';
 import '../../../../core/router/route_names.dart';
@@ -26,8 +27,6 @@ class WorkoutsPage extends StatefulWidget {
 class _WorkoutsPageState extends State<WorkoutsPage>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-
-
 
   @override
   void dispose() {
@@ -69,15 +68,15 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                   _tabController!.addListener(() {
                     if (_tabController!.indexIsChanging) return;
                     final muscleId = musclesGroup[_tabController!.index].Id;
-                    context
-                        .read<WorkoutViewModel>()
-                        .doIntent(MusclesEvent(id: muscleId ?? ""));
+                    context.read<WorkoutViewModel>().doIntent(
+                      MusclesEvent(id: muscleId ?? ""),
+                    );
                   });
 
                   final firstId = musclesGroup.first.Id;
-                  context
-                      .read<WorkoutViewModel>()
-                      .doIntent(MusclesEvent(id: firstId ?? ""));
+                  context.read<WorkoutViewModel>().doIntent(
+                    MusclesEvent(id: firstId ?? ""),
+                  );
                 }
 
                 if (state.status == WorkoutStatus.loading) {
@@ -86,16 +85,20 @@ class _WorkoutsPageState extends State<WorkoutsPage>
 
                 if (state.status == WorkoutStatus.error) {
                   return const Center(
-                    child: Text("Error loading workouts",
-                        style: TextStyle(color: Colors.red)),
+                    child: Text(
+                      "Error loading workouts",
+                      style: TextStyle(color: Colors.red),
+                    ),
                   );
                 }
 
                 if (state.status == WorkoutStatus.success) {
                   if (musclesGroup.isEmpty) {
                     return const Center(
-                      child: Text(" No muscles data available ",
-                          style: TextStyle(color: Colors.white)),
+                      child: Text(
+                        " No muscles data available ",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     );
                   }
 
@@ -105,9 +108,7 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                       Center(
                         child: Text(
                           AppLocalizations.of(context).workouts,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
+                          style: Theme.of(context).textTheme.bodyLarge
                               ?.copyWith(color: AppColors.white),
                         ),
                       ),
@@ -119,60 +120,77 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                       ),
 
                       Expanded(
-
                         child: Builder(
                           builder: (BuildContext context) {
                             if (state.musclesStatus == MusclesStatus.loading) {
-                              return const Center(child: CircularProgressIndicator());
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
                             }
 
                             if (state.musclesStatus == MusclesStatus.error) {
                               return const Center(
-                                child: Text("Error loading workouts",
-                                    style: TextStyle(color: Colors.red)),
+                                child: Text(
+                                  "Error loading workouts",
+                                  style: TextStyle(color: Colors.red),
+                                ),
                               );
                             }
                             if (state.musclesStatus == MusclesStatus.success) {
-                              return  TabBarView(
-                              controller: _tabController,
-                              children: musclesGroup.map((group) {
-                                final muscles = state.musclesByIdEntity?.muscles ?? [];
-
-                                return Padding(
-                                  padding: EdgeInsets.all(12.w),
-                                  child: GridView.builder(
-                                    itemCount: muscles.length,
-                                    gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 12,
-                                      mainAxisSpacing: 12,
-                                      childAspectRatio: 1,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      final muscle = muscles[index];
-                                      return ExerciseCard(
-                                        imageUrl: muscle.image ?? "'https://via.placeholder.com/150'",
-                                        title: muscle.name!,
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                            context,
-                                            RouteNames.exercise,
-                                            arguments: ExerciseModel(
-                                              exciseName: muscle.name ?? "",
-                                              primeMoverMuscleId: muscle.Id ?? "",
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
+                              if (state.musclesByIdEntity?.muscles != null &&
+                                  state.musclesByIdEntity!.muscles!.isEmpty) {
+                                return Center(
+                                  child: Text(
+                                    "no workouts available",
+                                    style: TextStyle(color: AppColors.white),
                                   ),
                                 );
-                              }).toList(),
-                            );}
-                            return SizedBox();
-                            },
+                              }
 
+                              return TabBarView(
+                                controller: _tabController,
+                                children: musclesGroup.map((group) {
+                                  final muscles =
+                                      state.musclesByIdEntity?.muscles ?? [];
+
+                                  return Padding(
+                                    padding: EdgeInsets.all(12.w),
+                                    child: GridView.builder(
+                                      itemCount: muscles.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 12,
+                                            mainAxisSpacing: 12,
+                                            childAspectRatio: 1,
+                                          ),
+                                      itemBuilder: (context, index) {
+                                        final muscle = muscles[index];
+                                        return ExerciseCard(
+                                          imageUrl:
+                                              muscle.image ??
+                                              "'https://via.placeholder.com/150'",
+                                          title: muscle.name!,
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                              context,
+                                              RouteNames.exercise,
+                                              arguments: ExerciseModel(
+                                                exciseName: muscle.name ?? "",
+                                                primeMoverMuscleId:
+                                                    muscle.Id ?? "",
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }).toList(),
+                              );
+                            }
+                            return SizedBox();
+                          },
                         ),
                       ),
                     ],
@@ -180,10 +198,7 @@ class _WorkoutsPageState extends State<WorkoutsPage>
                 }
 
                 return const Center(
-                  child: Text(
-                    "No Data",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: Text("No Data", style: TextStyle(color: Colors.white)),
                 );
               },
             ),
