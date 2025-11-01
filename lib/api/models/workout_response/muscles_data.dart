@@ -10,6 +10,7 @@ class MusclesDto {
   @JsonKey(name: "image")
   final String? image;
 
+
   MusclesDto ({
     this.id,
     this.name,

@@ -23,10 +23,9 @@ class WorkoutRemoteDataSourceImpl implements WorkoutRemoteDataSource {
 
   @override
   Future<ApiResult<MusclesByIdEntity>> getAllMuscles(String id) {
-
-      return safeApiCall<MusclesByIdDto, MusclesByIdEntity>(() async {
-        final response = await _apiClient.getAllMucsles(id);
-        return response;
-      }, (response) => response.toEntity());
+    return safeApiCall<MusclesByIdDto, MusclesByIdEntity>(() async {
+      final response = await _apiClient.getAllMucsles(id);
+      return response;
+    }, (response) => response.toEntity());
   }
 }

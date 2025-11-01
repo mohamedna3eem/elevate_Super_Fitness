@@ -19,6 +19,7 @@ class ListUpcomingWorkoutsCategory extends StatelessWidget {
       listen: false,
     );
     final heightMediaQuery = MediaQuery.of(context).size.height;
+
     return SliverToBoxAdapter(
       child: Builder(
         builder: (context) {
@@ -42,6 +43,9 @@ class ListUpcomingWorkoutsCategory extends StatelessWidget {
                 final selectedItem = musclesGroupList[index];
                 return GestureDetector(
                   onTap: () {
+                    // context.read<MainHomeViewModel>().doIntent(
+                    //   OnBottomNavBarTappedEvent(2),
+                    // );
                     if (!cubit.isClosed) {
                       cubit.selectedCategory.value = index;
                       cubit.doIntent(

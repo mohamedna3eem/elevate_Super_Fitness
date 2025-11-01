@@ -8,10 +8,12 @@ class MusclesGroupDto {
   @JsonKey(name: "name")
   final String? name;
 
+
   MusclesGroupDto ({
     this.id,
     this.name,
   });
+
 
   factory MusclesGroupDto.fromJson(Map<String, dynamic> json) {
     return _$MusclesGroupDtoFromJson(json);

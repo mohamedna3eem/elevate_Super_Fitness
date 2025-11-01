@@ -2,7 +2,6 @@ import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class CustomTabBarPage extends StatelessWidget {
   final TabController tabController;
   final List<String> tabs;
@@ -16,29 +15,25 @@ class CustomTabBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.h,
+      height: 45.h,
       child: TabBar(
         tabAlignment: TabAlignment.start,
         dividerColor: Colors.transparent,
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         controller: tabController,
         isScrollable: true,
-        labelPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 0),
-        indicatorPadding:  EdgeInsets.symmetric(vertical: 6.w,horizontal: 5.h),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        indicatorPadding: EdgeInsets.symmetric(vertical: 6.w, horizontal: 5.h),
         indicator: BoxDecoration(
           color: AppColors.mainColorL,
-           borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
         ),
         indicatorSize: TabBarIndicatorSize.tab,
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white70,
-        labelStyle: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        onTap: (index){
+        labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        onTap: (index) {
           tabController.index = index;
-
         },
         tabs: tabs.map((name) => Tab(text: name)).toList(),
       ),

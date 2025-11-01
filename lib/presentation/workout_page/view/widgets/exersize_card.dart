@@ -27,7 +27,6 @@ class ExerciseCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(

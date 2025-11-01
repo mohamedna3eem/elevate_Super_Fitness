@@ -10,9 +10,7 @@ import 'core/router/route_names.dart';
 import 'generated/l10n.dart';
 import 'my_bloc_observer.dart';
 
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   Bloc.observer = MyBlocObserver();
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: RouteNames.mainHome,
+          initialRoute: RouteNames.splash,
           localizationsDelegates: [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

@@ -3,6 +3,8 @@ import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart
 import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/muscles_by_id.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/workout_response.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_response_dto.dart';
@@ -19,8 +21,7 @@ import '../models/forget_password_response/forget_password_dto.dart';
 import '../models/forget_password_response/reset_password_response_dto.dart';
 import '../models/requests/auth/register/register_request.dart';
 import '../models/responses/auth/register/register_response.dart';
-import '../models/workout_response/muscles_by_id.dart';
-import '../models/workout_response/workout_response.dart';
+
 
 part 'api_client.g.dart';
 

@@ -78,9 +78,9 @@ class WorkoutViewModel extends Cubit<WorkoutStates> {
   final GetAllMusclesUseCase getAllMusclesUseCase;
 
   WorkoutViewModel(this.getAllWorkoutUseCase, this.getAllMusclesUseCase)
+
       : super( const WorkoutStates());
 
-  // ✅ استقبال الأحداث
   void doIntent(WorkoutEvents event) {
     if (event is WorkoutEvent) {
       _getAllWorkouts();
@@ -95,16 +95,20 @@ class WorkoutViewModel extends Cubit<WorkoutStates> {
     final result = await getAllWorkoutUseCase();
 
     if (result is ApiSuccessResult<WorkoutResponseEntity>) {
-      emit(state.copyWith(
-        status: WorkoutStatus.success,
-        workoutResponseEntity: result.data,
-        errorMessage: null,
-      ));
+      emit(
+        state.copyWith(
+          status: WorkoutStatus.success,
+          workoutResponseEntity: result.data,
+          errorMessage: null,
+        ),
+      );
     } else if (result is ApiErrorResult) {
-      emit(state.copyWith(
-        status: WorkoutStatus.error,
-        errorMessage: "Error loading workouts",
-      ));
+      emit(
+        state.copyWith(
+          status: WorkoutStatus.error,
+          errorMessage: "Error loading workouts",
+        ),
+      );
     }
   }
 
@@ -114,16 +118,19 @@ class WorkoutViewModel extends Cubit<WorkoutStates> {
     final result = await getAllMusclesUseCase(id);
     switch (result) {
       case ApiSuccessResult<MusclesByIdEntity>():
-        emit(state.copyWith(
-          musclesStatus: MusclesStatus.success,
-          musclesByIdEntity: result.data,
-        ));
+        emit(
+          state.copyWith(
+            musclesStatus: MusclesStatus.success,
+            musclesByIdEntity: result.data,
+          ),
+        );
       case ApiErrorResult<MusclesByIdEntity>():
-        emit(state.copyWith(
-          musclesStatus: MusclesStatus.error,
-          errorMessage: "Error loading muscles",
-        ));
+        emit(
+          state.copyWith(
+            musclesStatus: MusclesStatus.error,
+            errorMessage: "Error loading muscles",
+          ),
+        );
     }
   }
 }
-
