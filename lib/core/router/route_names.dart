@@ -11,4 +11,6 @@ abstract class RouteNames {
   static const String workouts = "/workouts";
   static const String exercise = "/exercise";
   static const String home = "/home";
+  static const String food = "/food";
+  static const String foodDetails = "/foodDetails";
 }

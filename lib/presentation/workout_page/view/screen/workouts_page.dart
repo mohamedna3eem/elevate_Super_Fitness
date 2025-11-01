@@ -1,4 +1,6 @@
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:elevate_super_fitness/core/model/exercise.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
