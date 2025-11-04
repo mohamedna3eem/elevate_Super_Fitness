@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:elevate_super_fitness/api/models/requests/change_password_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/change_password_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
@@ -28,4 +30,8 @@ abstract class ApiClient {
   );
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
+  @PATCH(Endpoints.changePassword)
+  Future<ChangePasswordResponseDto> changePassword(
+    @Body() ChangePasswordRequestDto request,
+  );
 }
