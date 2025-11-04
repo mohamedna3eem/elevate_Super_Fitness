@@ -1,0 +1,77 @@
+import 'package:dio/dio.dart';
+import 'package:elevate_super_fitness/api/client/api_client.dart';
+import 'package:elevate_super_fitness/api/data_source/profile_remote_data_source_impl.dart';
+import 'package:elevate_super_fitness/api/mapper/profile_mapper.dart';
+import 'package:elevate_super_fitness/core/api_result/api_result.dart';
+import 'package:elevate_super_fitness/data/data_source/profile_remote_data_source.dart';
+import 'package:elevate_super_fitness/domain/entites/change_password_response_entity.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
+import '../../dummy/profile_dummy_data.dart';
+import 'profile_remote_data_source_impl_test.mocks.dart';
+
+@GenerateMocks([ApiClient])
+void main() {
+  group("test profile change password", () {
+    late ApiClient apiClient;
+    late ProfileRemoteDataSource dataSource;
+    setUpAll(() {
+      apiClient = MockApiClient();
+      dataSource = ProfileRemoteDataSourceImpl(apiClient);
+    });
+    final requestEntity = ProfileDummyData.dummyChangePasswordRequestEntity;
+    final dtoResponse = ProfileDummyData.dummyChangePasswordResponseDto;
+    final entityResponse = ProfileDummyData.dummyChangePasswordResponseEntity;
+    final DioException dioException = ProfileDummyData.dummyDioException;
+    final Exception exception = ProfileDummyData.dummyException;
+    test("test changePassword() success data", () async {
+      //Arrange
+      when(
+        apiClient.changePassword(requestEntity.toDto()),
+      ).thenAnswer((_) async => dtoResponse);
+      //Act
+      final result = await dataSource.changePassword(request: requestEntity);
+      //Assert
+      verify(apiClient.changePassword(requestEntity.toDto())).called(1);
+      expect(result, isA<ApiSuccessResult<ChangePasswordResponseEntity>>());
+      expect(
+        (result as ApiSuccessResult<ChangePasswordResponseEntity>).data.message,
+        entityResponse.message,
+      );
+      expect(result.data.message, equals(entityResponse.message));
+      expect(result.data.token, equals(entityResponse.token));
+    });
+    test("test changePassword()() DioError", () async {
+      //Arrange
+      when(
+        apiClient.changePassword(requestEntity.toDto()),
+      ).thenThrow(dioException);
+      //Act
+      final result = await dataSource.changePassword(request: requestEntity);
+      //Assert
+      verify(apiClient.changePassword(requestEntity.toDto())).called(1);
+      expect(result, isA<ApiErrorResult<ChangePasswordResponseEntity>>());
+      expect(
+        (result as ApiErrorResult<ChangePasswordResponseEntity>).errorMessage,
+        equals(contains(dioException.message)),
+      );
+    });
+    test("test changePassword()() Exception", () async {
+      //Arrange
+      when(
+        apiClient.changePassword(requestEntity.toDto()),
+      ).thenThrow(exception);
+      //Act
+      final result = await dataSource.changePassword(request: requestEntity);
+      //Assert
+      verify(apiClient.changePassword(requestEntity.toDto())).called(1);
+      expect(result, isA<ApiErrorResult<ChangePasswordResponseEntity>>());
+      expect(
+        (result as ApiErrorResult<ChangePasswordResponseEntity>).error,
+        equals(exception),
+      );
+    });
+  });
+}
