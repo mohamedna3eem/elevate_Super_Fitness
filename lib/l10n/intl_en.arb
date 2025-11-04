@@ -62,5 +62,11 @@
   "fitness": "Fitness",
   "yoga": "Yoga",
   "aerobics": "Aerobics",
-  "trainer": "Trainer"
+  "trainer": "Trainer",
+  "makeSureIts8CharactersOrMore": "make sure its 8 characters or more",
+  "createNewPassword": "Create new password",
+  "oldPassword": "Old Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "done": "Done"
 }
