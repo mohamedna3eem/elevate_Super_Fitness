@@ -89,7 +89,7 @@ void main() {
       //Arrange
       changePasswordViewModel.showOldPassword = ValueNotifier(true);
       //Act
-      final result = changePasswordViewModel.doIntent(
+      changePasswordViewModel.doIntent(
         ChangePasswordShowIconEvent(
           enumEvent: ChangePasswordEnum.confirmPassword,
         ),
