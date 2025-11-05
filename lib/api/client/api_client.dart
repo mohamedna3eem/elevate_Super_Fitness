@@ -10,6 +10,8 @@ import 'package:elevate_super_fitness/api/models/responses/user_info_dto.dart';
 import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import '../models/requests/register_request.dart';
+import '../models/responses/register_response.dart';
 
 part 'api_client.g.dart';
 
@@ -34,4 +36,7 @@ abstract class ApiClient {
   Future<ChangePasswordResponseDto> changePassword(
     @Body() ChangePasswordRequestDto request,
   );
+
+  @POST(Endpoints.signUp)
+  Future<RegisterResponse> register(@Body() RegisterRequest request);
 }
