@@ -3,6 +3,7 @@ import 'package:elevate_super_fitness/data/data_source/auth_local_data_source.da
 import 'package:elevate_super_fitness/data/data_source/auth_remote_data_source.dart';
 import 'package:elevate_super_fitness/domain/entites/login_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/login_request_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/requests/register_request_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/repo/auth_repo.dart';
@@ -27,5 +28,10 @@ class AuthRepoImpl implements AuthRepo {
       );
     }
     return responseEntity;
+  }
+
+  @override
+  Future<ApiResult<String>> register(RegisterRequestEntity request) {
+    return _authRemoteDataSource.register(request);
   }
 }
