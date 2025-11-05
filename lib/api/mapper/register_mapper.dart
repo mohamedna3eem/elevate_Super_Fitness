@@ -1,4 +1,4 @@
-import 'package:elevate_super_fitness/api/models/requests/auth/register/register_request.dart';
+import 'package:elevate_super_fitness/api/models/requests/register_request.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/register_request_entity.dart';
 
 extension RegisterRequestMapper on RegisterRequestEntity {

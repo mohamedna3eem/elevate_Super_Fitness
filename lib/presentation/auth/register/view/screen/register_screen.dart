@@ -54,12 +54,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
 
           if (state.isLoading) {
-            CustomDialog.loading(context: context);
+            CustomDialog.fitnessLoading(context: context);
             isDialogVisible = true;
           }
 
-          if (state.errorMessage != null){
-            CustomDialog.positiveButton(
+          if (state.errorMessage != null) {
+            CustomDialog.fitnessPositiveButton(
               context: context,
               title: AppLocalizations.of(context).error,
               message: state.errorMessage,
@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
 
           if (state.isSuccessful) {
-            CustomDialog.positiveButton(
+            CustomDialog.fitnessPositiveButton(
               context: context,
               cancelable: false,
               title: AppLocalizations.of(context).success,

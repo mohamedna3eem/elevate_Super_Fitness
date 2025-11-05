@@ -79,5 +79,25 @@
   "learnTheBasic": "Learn the basic",
   "error": "Error",
   "success": "Success",
-  "accountCreatedSuccessfully": "Account created successfully"
+  "accountCreatedSuccessfully": "Account created successfully",
+    "category": "Category",
+  "recommendationToDay": "Recommendation to day",
+  "seeAll": "See all",
+  "upcomingWorkouts": "Upcoming Workouts",
+  "recommendationForYou": "Recommendation For You",
+  "popularTraining": "Popular Training",
+  "letsStartYourDay": "Let’s start your day",
+  "hi": "Hi",
+  "gym": "Gym",
+  "fitness": "Fitness",
+  "yoga": "Yoga",
+  "aerobics": "Aerobics",
+  "trainer": "Trainer",
+  "makeSureIts8CharactersOrMore": "make sure its 8 characters or more",
+  "createNewPassword": "Create new password",
+  "oldPassword": "Old Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "done": "Done"
+
 }
