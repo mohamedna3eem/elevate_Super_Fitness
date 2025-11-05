@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:elevate_super_fitness/api/models/exercise_widget_model.dart';
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/core/di/di.dart';
@@ -14,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExerciseViewBody extends StatefulWidget {
-  final String primeMoverMuscleId;
-  const ExerciseViewBody({super.key, required this.primeMoverMuscleId});
+  final ExerciseWidgetModel exerciseWidgetModel;
+  const ExerciseViewBody({super.key, required this.exerciseWidgetModel});
 
   @override
   State<ExerciseViewBody> createState() => _ExerciseViewBodyState();
@@ -27,7 +28,7 @@ class _ExerciseViewBodyState extends State<ExerciseViewBody> {
     super.initState();
     exerciseViewModel.doIntent(
       OnLoadDifficultyLevelsEvent(
-        primeMoverMuscleId: widget.primeMoverMuscleId,
+        primeMoverMuscleId: widget.exerciseWidgetModel.primeMoverMuscleId,
       ),
     );
   }
@@ -37,7 +38,7 @@ class _ExerciseViewBodyState extends State<ExerciseViewBody> {
       exerciseFirstLoad = false;
       exerciseViewModel.doIntent(
         OnLoadExercisesEvent(
-          primeMoverMuscleId: widget.primeMoverMuscleId,
+          primeMoverMuscleId: widget.exerciseWidgetModel.primeMoverMuscleId,
           difficultyLevelId: difficultyLevels[0].id,
         ),
       );
@@ -79,7 +80,9 @@ class _ExerciseViewBodyState extends State<ExerciseViewBody> {
               ),
               ListView(
                 children: [
-                  const ExerciseVideoCoverSection(),
+                  ExerciseVideoCoverSection(
+                    title: widget.exerciseWidgetModel.exciseName,
+                  ),
                   state.difficultyLevelsLoading
                       ? const SizedBox(
                           height: 200,
@@ -127,8 +130,9 @@ class _ExerciseViewBodyState extends State<ExerciseViewBody> {
                                   });
                                   exerciseViewModel.doIntent(
                                     OnLoadExercisesEvent(
-                                      primeMoverMuscleId:
-                                          widget.primeMoverMuscleId,
+                                      primeMoverMuscleId: widget
+                                          .exerciseWidgetModel
+                                          .primeMoverMuscleId,
                                       difficultyLevelId:
                                           difficultyLevels[index].id!,
                                     ),

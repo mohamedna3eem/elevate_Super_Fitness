@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExerciseVideoCoverSection extends StatelessWidget {
-  const ExerciseVideoCoverSection({super.key});
-
+  const ExerciseVideoCoverSection({super.key, required this.title});
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -58,7 +58,7 @@ class ExerciseVideoCoverSection extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  AppLocalizations.of(context).chestExercise,
+                  "${title ?? ""} ${AppLocalizations.of(context).exercise}",
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w500,
