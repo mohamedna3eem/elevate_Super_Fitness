@@ -23,7 +23,10 @@ abstract class AppRouter {
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.food:
-        return MaterialPageRoute(builder: (_) => const FoodScreen());
+        final categoryIndex = settings.arguments as int?;
+        return MaterialPageRoute(
+          builder: (_) => FoodScreen(categoryIndex: categoryIndex),
+        );
 
       case RouteNames.foodDetails:
         final mealId = settings.arguments as String? ?? "";

@@ -9,7 +9,8 @@ import '../../view_model/food_events.dart';
 import '../../view_model/food_view_model.dart';
 
 class FoodScreen extends StatelessWidget {
-  const FoodScreen({super.key});
+  final int? categoryIndex;
+  const FoodScreen({super.key, this.categoryIndex});
 
   @override
   Widget build(BuildContext context) {
