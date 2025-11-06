@@ -3,7 +3,10 @@ import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_cached_network_image.dart';
 import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -55,14 +58,21 @@ class CustomExploreHeaderInfo extends StatelessWidget {
                 ),
               );
             }
-            return ClipRRect(
-              key: const Key(WidgetsKeys.kExploreScreenHeaderImageKey),
-              borderRadius: BorderRadiusGeometry.circular(18.sp),
-              child: CustomCachedNetworkImage(
-                imageUrl: userInfoEntity?.data?.photo ?? "",
-                width: 36.w,
-                height: 36.h,
-                fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                context.read<MainHomeViewModel>().doIntent(
+                  OnBottomNavBarTappedEvent(3),
+                );
+              },
+              child: ClipRRect(
+                key: const Key(WidgetsKeys.kExploreScreenHeaderImageKey),
+                borderRadius: BorderRadiusGeometry.circular(18.sp),
+                child: CustomCachedNetworkImage(
+                  imageUrl: userInfoEntity?.data?.photo ?? "",
+                  width: 36.w,
+                  height: 36.h,
+                  fit: BoxFit.cover,
+                ),
               ),
             );
           },

@@ -1,5 +1,6 @@
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/core/api_result/base_state.dart';
+import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/domain/entites/meals_categories_response_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/muscle_group_details_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/muscles_group_response_entity.dart';
@@ -10,6 +11,7 @@ import 'package:elevate_super_fitness/domain/use_cases/get_all_muscles_by_muscle
 import 'package:elevate_super_fitness/domain/use_cases/get_all_muscles_groups_use_case.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_random_muscles_use_case.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_user_logged_data_use_case.dart';
+import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view_model/explore_event.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
@@ -35,6 +37,13 @@ class ExploreViewModelCubit extends Cubit<ExploreViewModelState> {
   final GetAllMealsCategoriesUseCase _getAllMealsCategoriesUseCase;
   String selectedId = "";
   ValueNotifier<int> selectedCategory = ValueNotifier<int>(0);
+  final categories = [
+    {'title': AppLocalizations().gym, 'image': AppImages.gymImage},
+    {'title': AppLocalizations().fitness, 'image': AppImages.fitnessImage},
+    {'title': AppLocalizations().yoga, 'image': AppImages.yogaImage},
+    {'title': AppLocalizations().aerobics, 'image': AppImages.aerobicsImage},
+    {'title': AppLocalizations().trainer, 'image': AppImages.trainerImage},
+  ];
   void doIntent(ExploreEvent event) {
     switch (event) {
       case ExploreGetAllDataEvent():
@@ -50,7 +59,7 @@ class ExploreViewModelCubit extends Cubit<ExploreViewModelState> {
       _getUserData(),
       _getRandomMuscles(),
       _getAllMealsCategories(),
-     _getAllMusclesGroups(),
+      _getAllMusclesGroups(),
     ]);
     await _getAllMusclesByMuscleGroupId(selectedId);
   }
@@ -124,5 +133,4 @@ class ExploreViewModelCubit extends Cubit<ExploreViewModelState> {
         );
     }
   }
-  
 }

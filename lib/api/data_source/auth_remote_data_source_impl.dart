@@ -8,9 +8,15 @@ import 'package:elevate_super_fitness/domain/entites/login_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/login_request_entity.dart';
 import 'package:elevate_super_fitness/api/mapper/register_mapper.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/register_request_entity.dart';
+import 'package:elevate_super_fitness/api/mapper/forget_mapper.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../data/data_source/auth_remote_data_source.dart';
+import '../../domain/entites/requests/email_verification_request_entity.dart';
+import '../../domain/entites/requests/forget_password_request_entity.dart';
+import '../../domain/entites/requests/reset_password_request_entity.dart';
+import '../../domain/entites/email_verification_entity.dart';
+import '../../domain/entites/forget_password_response_entity.dart';
+import '../../domain/entites/reset_password_response_entity.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -32,6 +38,34 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return safeApiCall(
       () => _apiClient.register(request.toRequest()),
       (response) => response.message ?? "",
+    );
+  }
+    @override
+  Future<ApiResult<ForgetPasswordResponseEntity>>
+  forgetPassword(ForgetPasswordRequestEntity request) {
+    return safeApiCall(
+          () =>_apiClient.forgetPassword(request.fromDomain()) ,
+          (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<EmailVerificationEntity>> verifyResetCode(
+      EmailVerificationRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () =>_apiClient.emailVerification(request.fromDomain()) ,
+          (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<ResetPasswordResponseEntity>> resetPassword(
+      ResetPasswordRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () => _apiClient.resetPassword(request.fromDomain()),
+          (response) => response.toEntity(),
     );
   }
 }

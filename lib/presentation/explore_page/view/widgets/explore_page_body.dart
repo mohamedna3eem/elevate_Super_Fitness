@@ -1,4 +1,5 @@
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/list_of_recommendation_for_you.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/list_of_upcoming_workouts_category.dart';
@@ -72,7 +73,7 @@ class ExplorePageBody extends StatelessWidget {
                 child: CustomExploreIdentifierList(
                   title: local.recommendationForYou,
                   onTap: () {
-                    // Navigator.pushNamed(context, RouteNames.food);
+                    Navigator.of(context).pushNamed(RouteNames.food);
                   },
                 ),
               ),
