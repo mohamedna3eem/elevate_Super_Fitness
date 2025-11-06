@@ -1,5 +1,5 @@
 abstract class AppImages {
-  
+
   static const _imagesPath = "assets/images" ;
 
   static const String imageUserPhoto = "$_imagesPath/user_photo.png";
@@ -15,6 +15,12 @@ abstract class AppImages {
   static const String logoImage = "$_imagesPath/logo.png";
   static const String onBoardingBgImage = "$_imagesPath/onboarding_bg.png";
   static const String homeBgImage = "$_imagesPath/home_bg.png";
-  static const String authBg = "$_imagesPath/auth_bg.png"; 
-}
+  static const String authBg = "$_imagesPath/auth_bg.png";
+  static const String maleImage = "$_imagesPath/male.svg";
+  static const String femaleImage = "$_imagesPath/female.svg";
+  static const String chestExerciseImage = "$_imagesPath/chest_exercise.jpg";
+  static const String exerciseCardImage = "$_imagesPath/exercise_card_image.png";
+  static const String foodBg = "$_imagesPath/food_bg.jpg";
+  static const String forgetPasswordPG = "$_imagesPath/forgetPasswordPG.png";
 
+}

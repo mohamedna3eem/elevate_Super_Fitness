@@ -230,10 +230,10 @@ abstract class ExploreDummyData {
     muscleGroup: dummyMuscleGroupDto,
     muscles: [dummyMuscleDto1, dummyMuscleDto2, dummyMuscleDto3],
   );
-
+  static const String groupId = "fake_id";
   static final dummyDioException = DioException(
     requestOptions: RequestOptions(path: '/meals/categories'),
-    type: DioExceptionType.receiveTimeout,
+    // type: DioExceptionType.receiveTimeout,
     message: "dio_error_timeout",
   );
 

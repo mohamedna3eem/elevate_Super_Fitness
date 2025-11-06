@@ -64,8 +64,18 @@ class Validations {
     }
   }
 
+  static String? validateSixNumber(String? val) {
+    if (val == null || val.isEmpty) {
+      return AppLocalizations().thisFieldIsRequired;
+    } else if (val.length < 6 && val.length > 6) {
+      return AppLocalizations().thisFieldIsRequired;
+    } else {
+      return null;
+    }
+  }
+
   static String? validatePhoneNumber(String? val) {
-    final regex = RegExp(r'^(?:\+2)?01[0125][0-9]{8}$'); 
+    final regex = RegExp(r'^(?:\+2)?01[0125][0-9]{8}$');
 
     if (val == null || val.trim().isEmpty) {
       return AppLocalizations().thisFieldIsRequired;

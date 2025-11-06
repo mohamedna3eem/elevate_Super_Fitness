@@ -18,6 +18,7 @@ migrate_working_dir/
 # Generated Dart files
 # ------------------------------
 *.g.dart
+*.auto_mappr.dart
 *.freezed.dart
 *.gen.dart
 *.mocks.dart
