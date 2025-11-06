@@ -7,6 +7,7 @@ import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise
 import 'package:elevate_super_fitness/presentation/main_home/view/screen/main_home_screen.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
 import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/food/view/screen/food_screen.dart';
@@ -50,6 +51,8 @@ abstract class AppRouter {
         return MaterialPageRoute(
           builder: (_) => FoodDetailsScreen(mealId: mealId),
         );
+        case RouteNames.forgetPassword:
+        return MaterialPageRoute(builder: (_) => const ForgetPassword());
 
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());

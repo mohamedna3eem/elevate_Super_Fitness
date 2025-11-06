@@ -17,4 +17,7 @@ abstract class Endpoints {
   static const String mealDetails = "api/json/v1/1/lookup.php";
   static const String mealCategoryQuery = "c";
   static const String mealIdQuery = "i";
+  static const String forgetPassword = "api/v1/auth/forgotPassword";
+  static const String verifyResetCode = "api/v1/auth/verifyResetCode";
+  static const String resetPassword = "api/v1/auth/resetPassword";
 }

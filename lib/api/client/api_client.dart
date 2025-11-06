@@ -14,6 +14,12 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import '../models/requests/register_request.dart';
 import '../models/responses/register_response.dart';
+import '../models/requests/email_verification_request_dto.dart';
+import '../models/requests/forget_password_request_dto.dart';
+import '../models/requests/reset_password_request_dto.dart';
+import '../models/responses/email_verification_dto.dart';
+import '../models/responses/forget_password_dto.dart';
+import '../models/responses/reset_password_response_dto.dart';
 
 part 'api_client.g.dart';
 
@@ -61,4 +67,18 @@ abstract class ApiClient {
 
   @POST(Endpoints.signUp)
   Future<RegisterResponse> register(@Body() RegisterRequest request);
+  @POST(Endpoints.forgetPassword)
+  Future<ForgetPasswordResponseDto> forgetPassword(
+      @Body() ForgetPasswordRequestDto body,
+      );
+
+  @POST(Endpoints.verifyResetCode)
+  Future<EmailVerificationDto>emailVerification(
+      @Body() EmailVerificationRequestDto body
+      );
+
+  @PUT(Endpoints.resetPassword)
+  Future<ResetPasswordResponseDto>resetPassword(
+      @Body() ResetPasswordRequestDto body
+      );
 }
