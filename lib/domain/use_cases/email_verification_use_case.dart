@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import '../../core/api_result/api_result.dart';
-import '../entites/forget_password_request/email_verification_request_entity.dart';
-import '../entites/forget_password_response/email_verification_entity.dart';
+import '../entites/requests/email_verification_request_entity.dart';
+import '../entites/email_verification_entity.dart';
 import '../repo/auth_repo.dart';
 
 @injectable

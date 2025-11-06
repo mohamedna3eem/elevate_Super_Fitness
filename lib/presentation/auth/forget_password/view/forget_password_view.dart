@@ -1,6 +1,7 @@
 import 'package:elevate_super_fitness/core/constants/app_icons.dart';
 import 'package:elevate_super_fitness/presentation/auth/forget_password/view/widgets/new_password.dart';
-import 'package:elevate_super_fitness/presentation/auth/forget_password/view/widgets/otp_iput.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view/widgets/custom_otp_input_page.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view_model/forget_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,6 @@ import '../../../../core/constants/app_images.dart';
 import '../../../../core/custom_widget/custom_dialog.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/router/route_names.dart';
-import '../view_model/foget_password_states.dart';
 import '../view_model/forget_password_events.dart';
 import '../view_model/forget_password_view_model.dart';
 import 'widgets/email_input.dart';
@@ -24,7 +24,7 @@ class ForgetPassword extends StatefulWidget {
 class _ForgetPasswordState extends State<ForgetPassword> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  bool isDialogShow = false;
+  bool _isDialogShown = false;
 
   late final ForgetPasswordViewModel _forgetPasswordViewModel;
 
@@ -45,14 +45,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     }
   }
 
-  void _prevPage() {
-    if (_currentPage > 0) {
-      setState(() => _currentPage--);
-      _pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-      );
+  void _hideDialogIfShown(BuildContext context) {
+    if (_isDialogShown) {
+      Navigator.of(context, rootNavigator: true).pop();
+      _isDialogShown = false;
     }
   }
 
@@ -69,45 +65,57 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           ),
         ),
         child: SafeArea(
-          child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordStates>(
+          child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
             bloc: _forgetPasswordViewModel,
             listenWhen: (previous, current) =>
-                previous.status != current.status,
-            listener: (context, state) {
-              if (state.status == ForgetPasswordStatus.loading) {
-                if (!isDialogShow) {
-                  isDialogShow = true;
-                  CustomDialog.loading(context: context);
-                }
+                previous.requestEmailState != current.requestEmailState ||
+                previous.verifyCodeState != current.verifyCodeState ||
+                previous.resetPasswordState != current.resetPasswordState,
+            listener: (context, state) async {
+              final isLoading =
+                  state.requestEmailState?.isLoading == true ||
+                  state.verifyCodeState?.isLoading == true ||
+                  state.resetPasswordState?.isLoading == true;
+              if (isLoading && !_isDialogShown) {
+                _isDialogShown = true;
+                CustomDialog.fitnessLoading(context: context);
                 return;
               }
-
-              if (isDialogShow) {
-                Navigator.of(context).pop();
-                isDialogShow = false;
+              if (!isLoading) {
+                _hideDialogIfShown(context);
               }
+              final error =
+                  state.requestEmailState?.errorMessage ??
+                  state.verifyCodeState?.errorMessage ??
+                  state.resetPasswordState?.errorMessage;
 
-              if (state.status == ForgetPasswordStatus.error) {
-                CustomDialog.positiveButton(
+              if (error != null) {
+                CustomDialog.fitnessPositiveButton(
                   context: context,
                   title: AppLocalizations.of(context).error,
-                  message: state.errorMessage ?? "error",
+                  message: error,
                 );
                 return;
               }
 
-              if (state.status == ForgetPasswordStatus.success) {
-                if (_currentPage == 2) {
-                  Navigator.of(context).pushReplacementNamed(RouteNames.login);
-                } else {
-                  _nextPage();
-                }
+              if (state.requestEmailState?.data != null && _currentPage == 0) {
+                _nextPage();
               }
-              if (state.status == ForgetPasswordStatus.resendSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("OTP code resent successfully")),
+              if (state.verifyCodeState?.data != null && _currentPage == 1) {
+                _nextPage();
+              }
+
+              if (state.resetPasswordState?.data != null && _currentPage == 2) {
+                CustomDialog.fitnessPositiveButton(
+                  context: context,
+                  title: AppLocalizations.of(context).passwordResetSuccessfully,
+                  message: AppLocalizations.of(
+                    context,
+                  ).passwordResetSuccessfully,
+                  positiveOnClick: () => Navigator.of(
+                    context,
+                  ).pushReplacementNamed(RouteNames.login),
                 );
-                return;
               }
             },
             builder: (context, state) {
@@ -115,8 +123,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 children: [
                   SizedBox(height: 0.02 * height),
                   Image.asset(AppIcons.logo, height: 100, width: 100),
-
-                  // 🔹 PageView
                   Expanded(
                     child: PageView(
                       controller: _pageController,
@@ -129,34 +135,24 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                 .forgetPasswordFormKey
                                 .currentState!
                                 .validate()) {
-                              _nextPage();
                               _forgetPasswordViewModel.doIntent(
                                 ForgetPasswordEvent(),
                               );
                             }
                           },
                         ),
-
-                        OtpInputContainer(
-                          forgetPasswordViewModel: _forgetPasswordViewModel,
-                          onConfirm: () {
-                            _currentPage = 1;
-                            _nextPage();
-                          },
-                        ),
-
+                        CustomOtpInputPage(viewModel: _forgetPasswordViewModel),
                         CreateNewPasswordContainer(
                           forgetPasswordViewModel: _forgetPasswordViewModel,
                           onDone: () {
+                            _forgetPasswordViewModel.doIntent(
+                              ResetPasswordEvent(),
+                            );
                           },
                         ),
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 20),
-                  if (_currentPage > 0)
-
                   const SizedBox(height: 20),
                 ],
               );

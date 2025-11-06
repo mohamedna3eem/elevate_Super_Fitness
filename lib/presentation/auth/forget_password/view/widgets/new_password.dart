@@ -1,6 +1,9 @@
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
-import 'package:elevate_super_fitness/core/router/route_names.dart';
+import 'package:elevate_super_fitness/core/custom_widget/custom_glass_shape_widget.dart';
+import 'package:elevate_super_fitness/core/utils/validations.dart';
+import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../view_model/forget_password_events.dart';
 import '../../view_model/forget_password_view_model.dart';
@@ -22,189 +25,143 @@ class CreateNewPasswordContainer extends StatefulWidget {
 
 class _CreateNewPasswordContainerState
     extends State<CreateNewPasswordContainer> {
-  bool isDialogShow = false;
-
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Form(
-        key: widget.forgetPasswordViewModel.resetPasswordFormKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 25),
-            Text(
-              "Make sure it's 8 characters or more",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              "Create new password",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            const SizedBox(height: 25),
-
-            // 🔹 Container with shadow
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // 🔹 Password field
-                  _buildPasswordField(
-                    controller:
-                        widget.forgetPasswordViewModel.newPasswordController,
-                    label: "Password",
-                    obscure: _obscurePassword,
-                    onToggle: () =>
-                        setState(() => _obscurePassword = !_obscurePassword),
+    final theme = Theme.of(context);
+    final local = AppLocalizations.of(context);
+    return Form(
+      key: widget.forgetPasswordViewModel.resetPasswordFormKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 25),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  local.makeSureIts8CharactersOrMore,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.w400,
                   ),
-                  const SizedBox(height: 15),
-
-                  // 🔹 Confirm Password field
-                  TextFormField(
-                    controller: widget
-                        .forgetPasswordViewModel
-                        .confirmPasswordController,
-                    obscureText: _obscureConfirm,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please confirm your password";
-                      }
-                      if (value.length < 8) {
-                        return "Password must be at least 8 characters";
-                      }
-                      if (value !=
-                          widget
-                              .forgetPasswordViewModel
-                              .newPasswordController
-                              .text) {
-                        return "Passwords do not match";
-                      }
-                      return null;
-                    },
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.lock_outline,
-                        color: Colors.white,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureConfirm
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.white70,
-                        ),
-                        onPressed: () =>
-                            setState(() => _obscureConfirm = !_obscureConfirm),
-                      ),
-                      hintText: "Confirm Password",
-                      hintStyle: const TextStyle(color: Colors.white54),
-                      filled: true,
-                      fillColor: Colors.black.withOpacity(0.2),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  local.createNewPassword,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.w800,
                   ),
-
-                  const SizedBox(height: 25),
-
-                  // 🔹 Done button
-                  SizedBox(
-                    width: width,
-                    height: 48,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.mainColorL,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-
-                      onPressed: () {
-                        if (widget
-                            .forgetPasswordViewModel
-                            .resetPasswordFormKey
-                            .currentState!
-                            .validate()) {
-                          widget.forgetPasswordViewModel.doIntent(
-                            ResetPasswordEvent(),
-                          );
-                        }
-                      },
-                      child: const Text(
-                        "Done",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPasswordField({
-    required TextEditingController controller,
-    required String label,
-    required bool obscure,
-    required VoidCallback onToggle,
-  }) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscure,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Please enter a password";
-        }
-        if (value.length < 8) {
-          return "Password must be at least 8 characters";
-        }
-        return null;
-      },
-      style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
-        suffixIcon: IconButton(
-          icon: Icon(
-            obscure ? Icons.visibility_off : Icons.visibility,
-            color: Colors.white70,
           ),
-          onPressed: onToggle,
-        ),
-        hintText: label,
-        hintStyle: const TextStyle(color: Colors.white54),
-        filled: true,
-        fillColor: Colors.black.withOpacity(0.2),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide.none,
-        ),
+          const SizedBox(height: 25),
+          CustomGlassShapeWidget(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  validator: Validations.validatePassword,
+                  controller:
+                      widget.forgetPasswordViewModel.newPasswordController,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSecondary,
+                  ),
+                  obscureText: _obscurePassword,
+                  decoration: InputDecoration(
+                    errorStyle: const TextStyle(height: 0.08),
+                    hintText: local.password,
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                      color: Colors.white70,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white70,
+                      ),
+                      onPressed: () =>
+                          setState(() => _obscurePassword = !_obscurePassword),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextFormField(
+                  controller:
+                      widget.forgetPasswordViewModel.confirmPasswordController,
+                  obscureText: _obscureConfirm,
+                  validator: (value) => Validations.validateConfirmPassword(
+                    value,
+                    widget.forgetPasswordViewModel.newPasswordController.text,
+                  ),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSecondary,
+                  ),
+                  decoration: InputDecoration(
+                    errorStyle: const TextStyle(height: 0.08),
+                    hintText: local.password,
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                      color: Colors.white70,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirm
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white70,
+                      ),
+                      onPressed: () =>
+                          setState(() => _obscureConfirm = !_obscureConfirm),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+                SizedBox(
+                  width: width,
+                  height: 38,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.mainColorL,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+
+                    onPressed: () {
+                      if (widget
+                          .forgetPasswordViewModel
+                          .resetPasswordFormKey
+                          .currentState!
+                          .validate()) {
+                        widget.forgetPasswordViewModel.doIntent(
+                          ResetPasswordEvent(),
+                        );
+                      }
+                    },
+                    child: Text(
+                      local.done,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.onSecondary,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
