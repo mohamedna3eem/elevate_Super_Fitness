@@ -12,8 +12,6 @@ import 'my_bloc_observer.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
-  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   Bloc.observer = MyBlocObserver();
   runApp(DevicePreview(builder: (context) => const MyApp(), enabled: false));

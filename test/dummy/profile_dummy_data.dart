@@ -48,7 +48,7 @@ abstract class ProfileDummyData {
   // 🧩 Dummy exception examples
   static final dummyDioException = DioException(
     requestOptions: RequestOptions(path: '/user'),
-    type: DioExceptionType.connectionTimeout,
+    // type: DioExceptionType.connectionTimeout,
     message: "dio_error",
   );
 

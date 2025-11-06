@@ -51,7 +51,7 @@ abstract class AppRouter {
         return MaterialPageRoute(
           builder: (_) => FoodDetailsScreen(mealId: mealId),
         );
-        case RouteNames.forgetPassword:
+      case RouteNames.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
 
       default:

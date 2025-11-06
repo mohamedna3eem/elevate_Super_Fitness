@@ -12,8 +12,8 @@ import '../../view_model/food_view_model.dart';
 import 'food_tab_bar.dart';
 
 class FoodViewBody extends StatefulWidget {
-  final int? categoryIndex;
-  const FoodViewBody({super.key, this.categoryIndex});
+  final int categoryIndex;
+  const FoodViewBody({super.key,required this.categoryIndex});
 
   @override
   State<FoodViewBody> createState() => _FoodViewBodyState();
@@ -56,6 +56,7 @@ class _FoodViewBodyState extends State<FoodViewBody>
                     shape: BoxShape.circle,
                     color: AppColors.mainColorL,
                   ),
+                  padding: const EdgeInsets.all(1),
                   child: Icon(
                     Icons.arrow_back_ios_new_outlined,
                     color: AppColors.white,
@@ -87,7 +88,10 @@ class _FoodViewBodyState extends State<FoodViewBody>
             builder: (context, state) {
               if (state.mealsCategoriesList != null &&
                   state.mealsCategoriesList!.isNotEmpty) {
-                initTabBar(state.mealsCategoriesList!.length, index: widget.categoryIndex);
+                initTabBar(
+                  state.mealsCategoriesList!.length,
+                  index: widget.categoryIndex,
+                );
                 return Column(
                   children: [
                     FoodTabBar(
