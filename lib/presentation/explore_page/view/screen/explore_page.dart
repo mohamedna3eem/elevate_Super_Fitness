@@ -21,7 +21,9 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   void initState() {
     viewModel = getIt.get<ExploreViewModelCubit>();
-    viewModel.doIntent(ExploreGetAllDataEvent());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.doIntent(ExploreGetAllDataEvent());
+    });
     super.initState();
   }
 

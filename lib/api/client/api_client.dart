@@ -9,6 +9,8 @@ import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/user_info_dto.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/muscles_by_id.dart';
+import 'package:elevate_super_fitness/api/models/workout_response/workout_response.dart';
 import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -30,33 +32,31 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @GET(Endpoints.getAllDifficultyLevelsByPrimeMoverMuscle)
-  Future<ExerciseDifficultyLevelsResponseDto> getAllDifficultyLevelsByPrimeMoverMuscle(
-      @Query("primeMoverMuscleId") String primeMoverMuscleId
+  Future<ExerciseDifficultyLevelsResponseDto>
+  getAllDifficultyLevelsByPrimeMoverMuscle(
+    @Query("primeMoverMuscleId") String primeMoverMuscleId,
   );
 
   @GET(Endpoints.getExercisesByPrimeMoverMuscleandDifficultyLevel)
-  Future<GetSelectedExercisesReponseDto> getExercisesByPrimeMoverMuscleandDifficultyLevel(
-      @Query("primeMoverMuscleId") String primeMoverMuscleId,
-      @Query("difficultyLevelId") String difficultyLevelId
+  Future<GetSelectedExercisesReponseDto>
+  getExercisesByPrimeMoverMuscleandDifficultyLevel(
+    @Query("primeMoverMuscleId") String primeMoverMuscleId,
+    @Query("difficultyLevelId") String difficultyLevelId,
   );
 
   @POST(Endpoints.signIn)
   Future<LoginResponseDto> login(@Body() LoginRequestDto request);
 
-
   @GET(Endpoints.randomPrimeMoverMuscles)
   Future<MusclesResponseDto> getRandomMuscles();
 
-
   @GET(Endpoints.allMusclesGroups)
   Future<MusclesGroupResponseDto> getAllMusclesGroups();
-
 
   @GET("${Endpoints.musclesByMuscleGroupId}/{id}")
   Future<MuscleGroupDetailsDto> getAllMusclesByMuscleGroupId(
     @Path("id") String id,
   );
-
 
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
@@ -69,16 +69,22 @@ abstract class ApiClient {
   Future<RegisterResponse> register(@Body() RegisterRequest request);
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponseDto> forgetPassword(
-      @Body() ForgetPasswordRequestDto body,
-      );
+    @Body() ForgetPasswordRequestDto body,
+  );
 
   @POST(Endpoints.verifyResetCode)
-  Future<EmailVerificationDto>emailVerification(
-      @Body() EmailVerificationRequestDto body
-      );
+  Future<EmailVerificationDto> emailVerification(
+    @Body() EmailVerificationRequestDto body,
+  );
 
   @PUT(Endpoints.resetPassword)
-  Future<ResetPasswordResponseDto>resetPassword(
-      @Body() ResetPasswordRequestDto body
-      );
+  Future<ResetPasswordResponseDto> resetPassword(
+    @Body() ResetPasswordRequestDto body,
+  );
+
+  @GET(Endpoints.workouts)
+  Future<WorkoutResponseDto> workout();
+
+  @GET(Endpoints.muscles)
+  Future<MusclesByIdDto> getAllMuscles(@Path("id") String id);
 }
