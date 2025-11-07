@@ -1,7 +1,9 @@
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
+import 'package:elevate_super_fitness/presentation/workout_page/view/widgets/list_workouts_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,12 +12,16 @@ import '../../view_model/workout_event.dart';
 import '../../view_model/workout_states.dart';
 import '../../view_model/workout_view_model.dart';
 import '../widgets/custom_tab_bar.dart';
-import '../widgets/exersize_card.dart';
 
 class WorkoutsPage extends StatefulWidget {
   final MainHomeViewModel mainHomeViewModel;
+  final String? selectedTebId;
 
-  const WorkoutsPage({super.key, required this.mainHomeViewModel});
+  const WorkoutsPage({
+    super.key,
+    required this.mainHomeViewModel,
+    required this.selectedTebId,
+  });
 
   @override
   State<WorkoutsPage> createState() => _WorkoutsPageState();
@@ -24,8 +30,7 @@ class WorkoutsPage extends StatefulWidget {
 class _WorkoutsPageState extends State<WorkoutsPage>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-
-
+  String? _selectedMuscleId;
 
   @override
   void dispose() {
@@ -35,150 +40,103 @@ class _WorkoutsPageState extends State<WorkoutsPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: NotificationListener<ScrollNotification>(
-        key: const ValueKey('workouts page'),
-        onNotification: (notification) {
-          if (notification is ScrollUpdateNotification) {
-            widget.mainHomeViewModel.doIntent(
-              OnScrollUpdateEvent(
-                notification.metrics.pixels,
-                notification.scrollDelta ?? 0,
-              ),
+    return NotificationListener<ScrollNotification>(
+      key: const ValueKey('workouts page'),
+      onNotification: (notification) {
+        if (notification is ScrollUpdateNotification) {
+          widget.mainHomeViewModel.doIntent(
+            OnScrollUpdateEvent(
+              notification.metrics.pixels,
+              notification.scrollDelta ?? 0,
+            ),
+          );
+        }
+        return true;
+      },
+      child: BlocProvider(
+        create: (_) => getIt<WorkoutViewModel>()..doIntent(WorkoutEvent()),
+        child: BlocBuilder<WorkoutViewModel, WorkoutStates>(
+          builder: (context, state) {
+            final musclesGroup = state.musclesGroup?.data?.musclesGroup ?? [];
+
+            if (musclesGroup.isEmpty) {
+              return Column(
+                children: [
+                  SizedBox(height: 40.h),
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context).workouts,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge?.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: buildShimmerList(40.h, 104.w),
+                  ),
+                  Expanded(child: buildShimmerGridWorkoutsItems()),
+                ],
+              );
+            }
+
+            int selectedIndex = musclesGroup.indexWhere(
+              (element) => element.id == widget.selectedTebId,
             );
-          }
-          return true;
-        },
-        child: SafeArea(
-          child: BlocProvider(
-            create: (_) => getIt<WorkoutViewModel>()..doIntent(WorkoutEvent()),
-            child: BlocBuilder<WorkoutViewModel, WorkoutStates>(
-              builder: (context, state) {
-                final musclesGroup =
-                    state.workoutResponseEntity?.musclesGroup ?? [];
+            if (selectedIndex < 0) selectedIndex = 0;
 
-                if (_tabController == null && musclesGroup.isNotEmpty) {
-                  _tabController = TabController(
-                    length: musclesGroup.length,
-                    vsync: this,
-                  );
+            if (_tabController == null) {
+              _tabController = TabController(
+                length: musclesGroup.length,
+                vsync: this,
+                initialIndex: selectedIndex,
+              );
 
-                  _tabController!.addListener(() {
-                    if (_tabController!.indexIsChanging) return;
-                    final muscleId = musclesGroup[_tabController!.index].Id;
-                    context
-                        .read<WorkoutViewModel>()
-                        .doIntent(MusclesEvent(id: muscleId ?? ""));
-                  });
+              _selectedMuscleId = musclesGroup[selectedIndex].id;
 
-                  final firstId = musclesGroup.first.Id;
-                  context
-                      .read<WorkoutViewModel>()
-                      .doIntent(MusclesEvent(id: firstId ?? ""));
-                }
-
-                if (state.status == WorkoutStatus.loading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (state.status == WorkoutStatus.error) {
-                  return const Center(
-                    child: Text("Error loading workouts",
-                        style: TextStyle(color: Colors.red)),
-                  );
-                }
-
-                if (state.status == WorkoutStatus.success) {
-                  if (musclesGroup.isEmpty) {
-                    return const Center(
-                      child: Text(" No muscles data available ",
-                          style: TextStyle(color: Colors.white)),
+              context.read<WorkoutViewModel>().doIntent(
+                MusclesEvent(id: _selectedMuscleId ?? ""),
+              );
+              _tabController!.addListener(() {
+                if (!_tabController!.indexIsChanging) {
+                  final newMuscleId = musclesGroup[_tabController!.index].id;
+                  if (newMuscleId != _selectedMuscleId) {
+                    _selectedMuscleId = newMuscleId;
+                    context.read<WorkoutViewModel>().doIntent(
+                      MusclesEvent(id: newMuscleId ?? ""),
                     );
                   }
-
-                  return Column(
-                    children: [
-                      SizedBox(height: 40.h),
-                      Center(
-                        child: Text(
-                          AppLocalizations.of(context).workouts,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(color: AppColors.white),
-                        ),
-                      ),
-                      SizedBox(height: 24.h),
-
-                      CustomTabBarPage(
-                        tabController: _tabController!,
-                        tabs: musclesGroup.map((e) => e.name ?? '').toList(),
-                      ),
-
-                      Expanded(
-
-                        child: Builder(
-                          builder: (BuildContext context) {
-                            if (state.musclesStatus == MusclesStatus.loading) {
-                              return const Center(child: CircularProgressIndicator());
-                            }
-
-                            if (state.musclesStatus == MusclesStatus.error) {
-                              return const Center(
-                                child: Text("Error loading workouts",
-                                    style: TextStyle(color: Colors.red)),
-                              );
-                            }
-                            if (state.musclesStatus == MusclesStatus.success) {
-                              return  TabBarView(
-                              controller: _tabController,
-                              children: musclesGroup.map((group) {
-                                final muscles = state.musclesByIdEntity?.muscles ?? [];
-
-                                return Padding(
-                                  padding: EdgeInsets.all(12.w),
-                                  child: GridView.builder(
-                                    itemCount: muscles.length,
-                                    gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 12,
-                                      mainAxisSpacing: 12,
-                                      childAspectRatio: 1,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      final muscle = muscles[index];
-                                      return ExerciseCard(
-                                        imageUrl: muscle.image ?? "'https://via.placeholder.com/150'",
-                                        title: muscle.name!,
-                                        onTap: () {
-
-                                        },
-                                      );
-                                    },
-                                  ),
-                                );
-                              }).toList(),
-                            );}
-                            return SizedBox();
-                            },
-
-                        ),
-                      ),
-                    ],
-                  );
                 }
+              });
+            }
 
-                return const Center(
+            return Column(
+              children: [
+                SizedBox(height: 40.h),
+                Center(
                   child: Text(
-                    "No Data",
-                    style: TextStyle(color: Colors.white),
+                    AppLocalizations.of(context).workouts,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: AppColors.white),
                   ),
-                );
-              },
-            ),
-          ),
+                ),
+                SizedBox(height: 24.h),
+
+                CustomTabBarPage(
+                  isLoading: state.musclesGroup?.isLoading ?? false,
+                  tabController: _tabController!,
+                  tabs: musclesGroup.map((e) => e.name ?? '').toList(),
+                ),
+
+                ListWorkoutsItem(
+                  musclesGroups:
+                      state.musclesGroupDetailsById?.data?.musclesEntity ?? [],
+                  isLoading: state.musclesGroupDetailsById?.isLoading ?? true,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

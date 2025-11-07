@@ -8,24 +8,22 @@ import 'package:injectable/injectable.dart';
 import '../../domain/repo/workout_repo.dart';
 
 @Injectable(as: WorkoutRepo)
-class WorkoutRepoImpl implements WorkoutRepo{
-  WorkoutRemoteDataSource _workoutRemoteDataSource;
+class WorkoutRepoImpl implements WorkoutRepo {
+  final WorkoutRemoteDataSource _workoutRemoteDataSource;
 
   WorkoutRepoImpl(this._workoutRemoteDataSource);
 
   @override
-  Future<ApiResult<WorkoutResponseEntity>> workout() async{
-
-    final response= await _workoutRemoteDataSource.workout();
+  Future<ApiResult<WorkoutResponseEntity>> workout() async {
+    final response = await _workoutRemoteDataSource.workout();
 
     return response;
   }
 
   @override
   Future<ApiResult<MusclesByIdEntity>> getAllMuscles(String id) async {
-    final response= await _workoutRemoteDataSource.getAllMuscles(id);
+    final response = await _workoutRemoteDataSource.getAllMuscles(id);
 
     return response;
   }
-
 }

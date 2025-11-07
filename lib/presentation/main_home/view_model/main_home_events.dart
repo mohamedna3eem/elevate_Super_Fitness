@@ -1,9 +1,9 @@
-
 sealed class MainHomeEvent {}
 
 class OnBottomNavBarTappedEvent extends MainHomeEvent {
   final int index;
-  OnBottomNavBarTappedEvent(this.index);
+  final String? selectedTabId;
+  OnBottomNavBarTappedEvent({required this.index, this.selectedTabId});
 }
 
 class OnPageChangedEvent extends MainHomeEvent {

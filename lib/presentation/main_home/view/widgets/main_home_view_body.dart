@@ -17,7 +17,11 @@ import 'package:flutter/material.dart';
 class MainHomeViewBody extends StatelessWidget {
   final MainHomeViewModel mainHomeViewModel;
   final MainHomeStates state;
-  const MainHomeViewBody({super.key, required this.mainHomeViewModel,required this.state});
+  const MainHomeViewBody({
+    super.key,
+    required this.mainHomeViewModel,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +43,12 @@ class MainHomeViewBody extends StatelessWidget {
             mainHomeViewModel.doIntent(OnPageChangedEvent(index));
           },
           children: [
-            ExplorePage(mainHomeViewModel: mainHomeViewModel,),
+            ExplorePage(mainHomeViewModel: mainHomeViewModel),
             SmartCoachPage(mainHomeViewModel: mainHomeViewModel),
-            WorkoutsPage(mainHomeViewModel: mainHomeViewModel ),
+            WorkoutsPage(
+              mainHomeViewModel: mainHomeViewModel,
+              selectedTebId: mainHomeViewModel.selectedTabIdWorkouts,
+            ),
             ProfilePage(mainHomeViewModel: mainHomeViewModel),
           ],
         ),
@@ -84,7 +91,7 @@ class MainHomeViewBody extends StatelessWidget {
                           isActive: state.selectedIndex == 0,
                           onTap: () {
                             mainHomeViewModel.doIntent(
-                              OnBottomNavBarTappedEvent(0),
+                              OnBottomNavBarTappedEvent(index: 0),
                             );
                           },
                         ),
@@ -94,7 +101,7 @@ class MainHomeViewBody extends StatelessWidget {
                           isActive: state.selectedIndex == 1,
                           onTap: () {
                             mainHomeViewModel.doIntent(
-                              OnBottomNavBarTappedEvent(1),
+                              OnBottomNavBarTappedEvent(index: 1),
                             );
                           },
                         ),
@@ -104,7 +111,7 @@ class MainHomeViewBody extends StatelessWidget {
                           isActive: state.selectedIndex == 2,
                           onTap: () {
                             mainHomeViewModel.doIntent(
-                              OnBottomNavBarTappedEvent(2),
+                              OnBottomNavBarTappedEvent(index: 2),
                             );
                           },
                         ),
@@ -114,7 +121,7 @@ class MainHomeViewBody extends StatelessWidget {
                           isActive: state.selectedIndex == 3,
                           onTap: () {
                             mainHomeViewModel.doIntent(
-                              OnBottomNavBarTappedEvent(3),
+                              OnBottomNavBarTappedEvent(index: 3),
                             );
                           },
                         ),

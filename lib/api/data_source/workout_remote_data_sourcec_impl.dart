@@ -11,11 +11,10 @@ import '../../data/data_source/workout_remote_data_source.dart';
 
 @Injectable(as: WorkoutRemoteDataSource)
 class WorkoutRemoteDataSourceImpl implements WorkoutRemoteDataSource {
-  ApiClient _apiClient;
+  final ApiClient _apiClient;
   WorkoutRemoteDataSourceImpl(this._apiClient);
   @override
   Future<ApiResult<WorkoutResponseEntity>> workout() async {
-    // TODO: implement workout
     return safeApiCall<WorkoutResponseDto, WorkoutResponseEntity>(() async {
       final response = await _apiClient.workout();
       return response;
@@ -24,10 +23,9 @@ class WorkoutRemoteDataSourceImpl implements WorkoutRemoteDataSource {
 
   @override
   Future<ApiResult<MusclesByIdEntity>> getAllMuscles(String id) {
-
-      return safeApiCall<MusclesByIdDto, MusclesByIdEntity>(() async {
-        final response = await _apiClient.getAllMucsles(id);
-        return response;
-      }, (response) => response.toEntity());
+    return safeApiCall<MusclesByIdDto, MusclesByIdEntity>(() async {
+      final response = await _apiClient.getAllMuscles(id);
+      return response;
+    }, (response) => response.toEntity());
   }
 }

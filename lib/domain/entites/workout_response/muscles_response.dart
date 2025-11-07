@@ -1,12 +1,6 @@
-
-
 class MusclesGroupEntity {
-  final String? Id;
+  final String? id;
   final String? name;
 
-  MusclesGroupEntity ({
-    this.Id,
-    this.name,
-  });
-
+  MusclesGroupEntity({this.id, this.name});
 }

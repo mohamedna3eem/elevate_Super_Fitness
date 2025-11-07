@@ -20,7 +20,7 @@ void main() {
     blocTest<MainHomeViewModel, MainHomeStates>(
       'OnBottomNavBarTappedEvent emits correct state',
       build: () => viewModel,
-      act: (cubit) => cubit.doIntent(OnBottomNavBarTappedEvent(2)),
+      act: (cubit) => cubit.doIntent(OnBottomNavBarTappedEvent(index: 2)),
       expect: () => [
         const MainHomeStates(selectedIndex: 2, isBottomBarVisible: true),
       ],
@@ -58,7 +58,7 @@ void main() {
 
     test('close runs without errors', () async {
       await viewModel.close();
-      expect(true, true); 
+      expect(true, true);
     });
   });
 }
