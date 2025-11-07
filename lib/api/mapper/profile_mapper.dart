@@ -1,22 +1,33 @@
-import 'package:elevate_super_fitness/api/models/responses/user_info_dto.dart';
-import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
+import '../../domain/entites/profile/profile_response_entity.dart';
+import '../../domain/entites/profile/user_entity.dart';
+import '../models/profile/profile_response.dart';
+import '../models/profile/userDto.dart';
 
-extension UserInfoMapper on UserInfoDto {
-  UserInfoEntity toEntity() {
-    return UserInfoEntity(
+extension UserMapper on UserDto {
+  UserEntity toEntity() {
+    return UserEntity(
+
+      Id: Id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      gender: gender,
+      age: age,
+      weight: weight,
+      height: height,
+      activityLevel: activityLevel,
+      goal:goal,
+      photo: photo,
+      createdAt:createdAt,
+    );
+  }
+}
+
+extension ProfileMapper on ProfileResponseDto {
+  ProfileResponseEntity toEntity() {
+    return ProfileResponseEntity(
       message: message,
-      id: user?.id,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      email: user?.email,
-      gender: user?.gender,
-      age: user?.age,
-      weight: user?.weight,
-      height: user?.height,
-      activityLevel: user?.activityLevel,
-      goal: user?.goal,
-      photo: user?.photo,
-      createdAt: user?.createdAt,
+      user: user?.toEntity(),
     );
   }
 }

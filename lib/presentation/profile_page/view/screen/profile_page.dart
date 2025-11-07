@@ -1,6 +1,7 @@
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter/material.dart';
+import 'body.dart';
 
 class ProfilePage extends StatelessWidget {
   final MainHomeViewModel mainHomeViewModel;
@@ -21,18 +22,10 @@ class ProfilePage extends StatelessWidget {
         }
         return true;
       },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                "profile page",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-          ],
-        ),
-      ),
+      child:  const Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ProfileBody(),
+      )
     );
   }
 }

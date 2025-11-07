@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:elevate_super_fitness/api/models/logout/logout_resonse.dart';
+import 'package:elevate_super_fitness/api/models/profile/profile_response.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
@@ -28,4 +30,12 @@ abstract class ApiClient {
   );
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
+
+  @GET(Endpoints.profile)
+  Future<ProfileResponseDto>getProfileData();
+
+  @GET(Endpoints.logout)
+  Future<LogOutResponseDto>logout();
+
+
 }

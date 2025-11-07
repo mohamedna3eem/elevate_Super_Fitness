@@ -9,4 +9,6 @@ abstract class Endpoints {
   static const String loggedUserData = "api/v1/auth/profile-data";
   static const String urlThemeAdb = "https://www.themealdb.com/";
   static const String mealsDio = 'MealsDio';
+  static const String profile = 'api/v1/auth/profile-data';
+  static const String logout = 'api/v1/auth/logout';
 }

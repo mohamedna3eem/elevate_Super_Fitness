@@ -1,12 +1,108 @@
-import 'package:flutter/cupertino.dart';
+import 'package:elevate_super_fitness/core/constants/app_colors.dart';
+import 'package:elevate_super_fitness/core/constants/app_icons.dart';
+import 'package:elevate_super_fitness/generated/l10n.dart';
+import 'package:elevate_super_fitness/presentation/profile_page/view/widgets/CustomprofileRow.dart';
+import 'package:elevate_super_fitness/presentation/profile_page/view_model/profile_events.dart';
+import 'package:elevate_super_fitness/presentation/profile_page/view_model/profile_view_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileSetting extends StatelessWidget {
-  const ProfileSetting({super.key});
-
+ final ProfileViewModel profileViewModel;
+  const ProfileSetting(this.profileViewModel, {super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(12.r)),
+        color: AppColors.backGroundL,
+      ),
+      padding: EdgeInsets.all(8.r),
+      height: 300.h,
+      width: 345.w,
+      child: Column(
+        children: [
+          SizedBox(height: 8.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.profile,
+              tittle: AppLocalizations.of(context).editProfile,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 10.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.change,
+              tittle: AppLocalizations.of(context).changePassword,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 10.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.language,
+              tittle: AppLocalizations.of(context).selectLanguage,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 8.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.lockSetting,
+              tittle: AppLocalizations.of(context).security,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 10.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.securityWarning,
+              tittle: AppLocalizations.of(context).privacyPolicy,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 10.h),
+          InkWell(
+            onTap: () {},
+            child: CustomProfileRow(
+              icon: AppIcons.help,
+              tittle: AppLocalizations.of(context).help,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+          SizedBox(height: 10.h),
+          InkWell(
+            onTap: () {
+              profileViewModel.doIntent(LogoutEvent());
+            },
+            child: CustomProfileRow(
+              icon: AppIcons.logout,
+              tittle: AppLocalizations.of(context).logout,
+              icon2: Icons.arrow_forward_ios,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Container(height: 1, color: AppColors.gray),
+        ],
+      ),
     );
   }
 }

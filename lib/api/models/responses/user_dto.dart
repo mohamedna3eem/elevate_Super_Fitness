@@ -53,4 +53,5 @@ class UserDto extends Equatable {
         photo,
         createdAt,
       ];
+
 }

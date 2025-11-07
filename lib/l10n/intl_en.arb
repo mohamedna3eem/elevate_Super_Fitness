@@ -62,5 +62,12 @@
   "fitness": "Fitness",
   "yoga": "Yoga",
   "aerobics": "Aerobics",
-  "trainer": "Trainer"
+  "trainer": "Trainer",
+  "editProfile": "Edit Profile",
+  "changePassword": "Change Password",
+  "selectLanguage": "Select Language",
+  "security": "Security",
+  "privacyPolicy": "Privacy Policy",
+  "help": "Help",
+  "logout": "Logout"
 }
