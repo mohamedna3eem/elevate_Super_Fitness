@@ -10,3 +10,7 @@ class OnLoadSelectedConversationEvent extends SmartCoachEvents {
   final int conversationId;
   OnLoadSelectedConversationEvent({required this.conversationId});
 }
+
+class OnGetUserLoggedDataEvent extends SmartCoachEvents {}
+
+

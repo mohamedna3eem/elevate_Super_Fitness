@@ -6,6 +6,7 @@ part 'meals_categories_response_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class MealsCategoriesResponseDto extends Equatable {
+  @JsonKey(name: 'categories')
   final List<MealCategoryDto>? categories;
 
   const MealsCategoriesResponseDto({this.categories});

@@ -1,7 +1,10 @@
 import 'package:elevate_super_fitness/api/models/chat_message_model.dart';
+import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/core/utils/gemini_service.dart';
 import 'package:elevate_super_fitness/core/utils/object_box_service.dart';
+import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
+import 'package:elevate_super_fitness/domain/use_cases/get_user_logged_data_use_case.dart';
 import 'package:elevate_super_fitness/presentation/smart_coach_page/view_model/smart_coach_events.dart';
 import 'package:elevate_super_fitness/presentation/smart_coach_page/view_model/smart_coach_states.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +15,13 @@ import 'package:injectable/injectable.dart';
 class SmartCoachViewModel extends Cubit<SmartCoachStates> {
   final GeminiService _geminiService;
   final ObjectBoxService _db;
+  final GetUserLoggedDataUseCase _getUserLoggedDataUseCase;
 
-  SmartCoachViewModel(this._geminiService, this._db)
-    : super(const SmartCoachStates());
+  SmartCoachViewModel(
+    this._geminiService,
+    this._db,
+    this._getUserLoggedDataUseCase,
+  ) : super(const SmartCoachStates());
 
   final TextEditingController inputController = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -32,6 +39,9 @@ class SmartCoachViewModel extends Cubit<SmartCoachStates> {
         break;
       case OnLoadSelectedConversationEvent():
         _loadSelectedConversation(event.conversationId);
+        break;
+      case OnGetUserLoggedDataEvent():
+        _getUserLoggedData();
         break;
     }
   }
@@ -66,11 +76,19 @@ class SmartCoachViewModel extends Cubit<SmartCoachStates> {
 
     final isFirstMessage = state.messagesListSuccess.isEmpty;
 
+    await _getUserLoggedData();
+    final userPhoto = state.loggedUserDataSuccess?.photo;
+
+    final image = (userPhoto != null && userPhoto.isNotEmpty)
+        ? userPhoto
+        : AppImages.userImage;
+
+
     _db.addMessage(
       conversationId: cid,
       text: text,
       isUser: true,
-      image: AppImages.userImage,
+      image: image,
     );
 
     if (isFirstMessage) {
@@ -88,7 +106,7 @@ class SmartCoachViewModel extends Cubit<SmartCoachStates> {
             conversationId: cid,
             text: text,
             isUser: true,
-            image: AppImages.userImage,
+            image: image,
           ),
         ],
         conversationIds: _db.getAllConversationIds(),
@@ -166,6 +184,27 @@ class SmartCoachViewModel extends Cubit<SmartCoachStates> {
         curve: Curves.easeOut,
       );
     });
+  }
+
+   Future<void> _getUserLoggedData() async {
+    emit(state.copyWith(loggedUserDataLoading: true));
+    final result = await _getUserLoggedDataUseCase.call();
+    switch (result) {
+      case ApiSuccessResult<UserInfoEntity>():
+        emit(
+          state.copyWith(
+            loggedUserDataLoading: false,
+            loggedUserDataSuccess: result.data,
+          ),
+        );
+      case ApiErrorResult<UserInfoEntity>():
+        emit(
+          state.copyWith(
+            loggedUserDataLoading: false,
+            loggedUserDataFailure: result.errorMessage,
+          ),
+        );
+    }
   }
 
   @override

@@ -87,7 +87,7 @@ class _PreviousConversationsDrawerState
                                     decoration: const BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
-                                          color: AppColors.darkGray,
+                                          color: AppColors.dividerColor,
                                         ),
                                       ),
                                     ),

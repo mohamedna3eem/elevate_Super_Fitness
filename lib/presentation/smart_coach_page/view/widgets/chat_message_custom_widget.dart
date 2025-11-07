@@ -51,7 +51,9 @@ class ChatMessageCustomWidget extends StatelessWidget {
           if (message.isUser)
             CircleAvatar(
               radius: 18,
-              backgroundImage: AssetImage(message.image),
+              backgroundImage: message.image.startsWith('http')
+                  ? NetworkImage(message.image)
+                  : AssetImage(message.image),
               backgroundColor: AppColors.lightGray,
             ),
         ],

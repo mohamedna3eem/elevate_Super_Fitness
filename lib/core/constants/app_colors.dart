@@ -27,6 +27,7 @@ abstract class AppColors {
     80: Color(0xFFBDBDBD),
     90: Color(0xFFD3D3D3),
     100: Color(0xFFE9E9E9),
+    110: Color(0xFF1A1A1A),
   });
   static MaterialColor backGroundD = const MaterialColor(0xFF242424, <int, Color>{
     10: Color(0xFF242424),
@@ -90,6 +91,6 @@ abstract class AppColors {
   static const Color translucentBlack = Color(0xFF1A1A1A);
   static const Color transparentOrange = Color(0x80FF6A00);
   static const Color darkGray = Color(0xff2D2D2D);
-  
-  
+  static const Color dividerColor = Color(0xFF2D2D2D);
+  static const Color orange = Color(0xFFFF6A00);
 }
