@@ -39,7 +39,7 @@ class ListOfRecommendationToDay extends StatelessWidget {
                         RouteNames.exercise,
                         arguments: ExerciseWidgetModel(
                           primeMoverMuscleId: selectedItem.id ?? "",
-                          exciseName: selectedItem.id ?? "",
+                          exciseName: selectedItem.name ?? "",
                         ),
                       ),
                       child: CustomRecommendationItem(

@@ -59,7 +59,7 @@ class ExplorePageBody extends StatelessWidget {
                   title: local.upcomingWorkouts,
                   onTap: () {
                     context.read<MainHomeViewModel>().doIntent(
-                      OnBottomNavBarTappedEvent(2),
+                      OnBottomNavBarTappedEvent(index: 2),
                     );
                   },
                 ),
