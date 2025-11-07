@@ -42,7 +42,7 @@ abstract class AppRouter {
       case RouteNames.food:
         final categoryIndex = settings.arguments as int?;
         return MaterialPageRoute(
-          builder: (_) => FoodScreen(categoryIndex: categoryIndex),
+          builder: (_) => FoodScreen(categoryIndex: 3),
         );
 
       case RouteNames.foodDetails:

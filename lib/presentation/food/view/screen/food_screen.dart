@@ -38,7 +38,7 @@ class FoodScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const FoodViewBody(),
+            FoodViewBody(categoryIndex: categoryIndex),
           ],
         ),
       ),
