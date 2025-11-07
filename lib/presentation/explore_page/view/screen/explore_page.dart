@@ -44,7 +44,7 @@ class _ExplorePageState extends State<ExplorePage> {
       },
       child: BlocProvider(
         create: (context) => viewModel,
-        child: const ExplorePageBody(),
+        child: ExplorePageBody(mainHomeViewModel: widget.mainHomeViewModel,),
       ),
     );
   }
