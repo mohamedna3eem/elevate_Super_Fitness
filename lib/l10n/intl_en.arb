@@ -62,5 +62,12 @@
   "fitness": "Fitness",
   "yoga": "Yoga",
   "aerobics": "Aerobics",
-  "trainer": "Trainer"
+  "trainer": "Trainer",
+  "iAmYourSmartCoach": "I Am Your Smart Coach",
+  "howCanIAssistYouToday": "How Can I Assist You\n Today?",
+  "getStarted": "Get Started",
+  "messageSmartCoach": "Message Smart Coach",
+  "smartCoachIsTyping": "Smart Coach is typing...",
+  "previousConversations": "Previous Conversations",
+  "noConversationsYet": "No Conversations Yet"
 }
