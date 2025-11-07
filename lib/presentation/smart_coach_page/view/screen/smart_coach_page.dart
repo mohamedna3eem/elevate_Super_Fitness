@@ -82,19 +82,17 @@ class _SmartCoachPageState extends State<SmartCoachPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          InkWell(
-                            onTap: Navigator.of(context).maybePop,
-                            child: CircleAvatar(
-                              radius: 12,
-                              backgroundColor: AppColors.mainColorL,
-                              child: const ImageIcon(
-                                AssetImage(AppIcons.arrowBack),
-                                size: 10,
-                                color: AppColors.pureWhite,
-                              ),
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundColor: AppColors.mainColorL,
+                            child: const ImageIcon(
+                              AssetImage(AppIcons.arrowBack),
+                              size: 10,
+                              color: AppColors.pureWhite,
                             ),
                           ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               BlocBuilder<
                                 SmartCoachViewModel,
@@ -105,7 +103,7 @@ class _SmartCoachPageState extends State<SmartCoachPage> {
                                   final name =
                                       state.loggedUserDataSuccess?.firstName ??
                                       "";
-                                      AppImages.userImage;
+                                  AppImages.userImage;
                                   return Text(
                                     "${AppLocalizations.of(context).hi} $name,",
                                     style: Theme.of(context)

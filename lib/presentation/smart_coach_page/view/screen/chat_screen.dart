@@ -7,20 +7,21 @@ import 'package:flutter/material.dart';
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
 
-  final SmartCoachViewModel smartCoachViewModel = getIt.get<SmartCoachViewModel>();
-  GlobalKey<ScaffoldState> scafdoldKey = GlobalKey();
+  final SmartCoachViewModel smartCoachViewModel = getIt
+      .get<SmartCoachViewModel>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scafdoldKey,
+      key: scaffoldKey,
       endDrawer: PreviousConversationsDrawer(
         smartCoachViewModel: smartCoachViewModel,
       ),
       body: SafeArea(
         child: ChatViewBody(
           smartCoachViewModel: smartCoachViewModel,
-          scafdoldKey: scafdoldKey,
+          scaffoldKey: scaffoldKey,
         ),
       ),
     );

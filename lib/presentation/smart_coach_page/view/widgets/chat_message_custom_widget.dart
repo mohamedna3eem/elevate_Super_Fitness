@@ -1,6 +1,7 @@
 import 'package:elevate_super_fitness/api/models/chat_message_model.dart';
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 
 class ChatMessageCustomWidget extends StatelessWidget {
   final ChatMessageModel message;
@@ -39,7 +40,7 @@ class ChatMessageCustomWidget extends StatelessWidget {
                 topRight: Radius.circular(message.isUser ? 0 : 20),
               ),
             ),
-            child: Text(
+            child: GptMarkdown(
               message.text,
               style: Theme.of(
                 context,

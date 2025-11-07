@@ -14,15 +14,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatViewBody extends StatefulWidget {
   final SmartCoachViewModel smartCoachViewModel;
-  final GlobalKey<ScaffoldState> scafdoldKey;
-  const ChatViewBody({super.key,required this.smartCoachViewModel ,required this.scafdoldKey});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  const ChatViewBody({
+    super.key,
+    required this.smartCoachViewModel,
+    required this.scaffoldKey,
+  });
 
   @override
   State<ChatViewBody> createState() => _ChatViewBodyState();
 }
 
 class _ChatViewBodyState extends State<ChatViewBody> {
-
   @override
   void initState() {
     super.initState();
@@ -82,7 +85,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                         ),
                         InkWell(
                           onTap: () {
-                            widget.scafdoldKey.currentState!.openEndDrawer();
+                            widget.scaffoldKey.currentState!.openEndDrawer();
                           },
                           child: SizedBox(
                             height: 24,
@@ -148,13 +151,13 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            controller: widget.smartCoachViewModel.inputController,
+                            controller:
+                                widget.smartCoachViewModel.inputController,
                             textInputAction: TextInputAction.send,
                             onFieldSubmitted: state.isLoading
                                 ? null
-                                : (value) => widget.smartCoachViewModel.doIntent(
-                                    OnSendMessageEvent(),
-                                  ),
+                                : (value) => widget.smartCoachViewModel
+                                      .doIntent(OnSendMessageEvent()),
                             maxLines: null,
                             style: Theme.of(context).textTheme.bodyMedium!
                                 .copyWith(color: AppColors.pureWhite),

@@ -1,8 +1,9 @@
 import 'package:elevate_super_fitness/core/constants/app_colors.dart';
-import 'package:elevate_super_fitness/core/router/route_names.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCategoryItem extends StatelessWidget {
@@ -24,10 +25,8 @@ class CustomCategoryItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (lastItem) {
-          Navigator.pushNamed(
-            context,
-            RouteNames.smartCoach,
-            arguments: mainHomeViewModel,
+          context.read<MainHomeViewModel>().doIntent(
+            OnBottomNavBarTappedEvent(index: 1),
           );
         }
       },
