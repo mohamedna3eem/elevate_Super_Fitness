@@ -1,5 +1,9 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:elevate_super_fitness/core/utils/object_box_service.dart';
+import 'package:elevate_super_fitness/firebase_options.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
+import 'package:elevate_super_fitness/my_bloc_observer.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,11 +14,14 @@ import 'core/di/di.dart';
 import 'core/provider/app_config.dart';
 import 'core/router/app_router.dart';
 import 'core/router/route_names.dart';
-import 'my_bloc_observer.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   configureDependencies();
+  final objectBoxService = getIt<ObjectBoxService>();
+  await objectBoxService.init();
   Bloc.observer = MyBlocObserver();
   final appConfigProvider = AppConfigProvider();
   await appConfigProvider.getLocal();
@@ -50,7 +57,7 @@ class MyApp extends StatelessWidget {
           initialRoute: RouteNames.splash,
           locale: provider.locale,
           supportedLocales: AppLocalizations.delegate.supportedLocales,
-          localizationsDelegates: const [
+          localizationsDelegates: [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,

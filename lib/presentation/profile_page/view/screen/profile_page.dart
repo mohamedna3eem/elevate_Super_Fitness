@@ -5,7 +5,7 @@ import 'body.dart';
 
 class ProfilePage extends StatelessWidget {
   final MainHomeViewModel mainHomeViewModel;
-  const ProfilePage({super.key,required this.mainHomeViewModel});
+  const ProfilePage({super.key, required this.mainHomeViewModel});
 
   @override
   Widget build(BuildContext context) {
