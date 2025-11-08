@@ -29,4 +29,5 @@ abstract class AppIcons {
   static const String mailIconSvg = "$_iconsPath/mail.svg";
   static const String lockSvg = "$_iconsPath/lock.svg";
   static const String playButtonIcon = "$_iconsPath/play_button.png";
+  static const String editIcon = "$_iconsPath/edit.svg";
 }

@@ -138,5 +138,10 @@
   "otpCode": "OTP CODE",
   "enterYourOTPCheckYourEmail": "Enter Your OTP Check Your Email",
   "numberMustBeSixNumber": "Number must be 6 number",
-  "sentOtp": "Sent OTP"
+  "sentOtp": "Sent OTP",
+  "yourWeight": "Your Weight",
+  "yourGoal": "Your Goal",
+  "yourActivityLevel": "Your activity level",
+  "tapToEdit": "tap to edit",
+  "update": "Update"
 }

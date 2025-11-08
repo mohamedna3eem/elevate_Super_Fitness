@@ -1,15 +1,17 @@
 import 'package:elevate_super_fitness/api/models/exercise_widget_model.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/presentation/auth/change_password/view/screen/change_password_view.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:elevate_super_fitness/presentation/auth/login/view/screen/login_view.dart';
 import 'package:elevate_super_fitness/presentation/auth/register/view/screen/register_screen.dart';
+import 'package:elevate_super_fitness/presentation/edit_profile/view/screen/edit_profile_user_body_info_screen.dart';
 import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise_screen.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view/screen/main_home_screen.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
 import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.dart';
-import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/edit_profile/view/screen/edit_profile_screen.dart';
 import '../../presentation/food/view/screen/food_screen.dart';
 import '../../presentation/food_details/view/screen/food_details_screen.dart';
 
@@ -53,6 +55,9 @@ abstract class AppRouter {
         );
       case RouteNames.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
+
+      case RouteNames.editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());

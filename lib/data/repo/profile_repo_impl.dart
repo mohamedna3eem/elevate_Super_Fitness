@@ -1,5 +1,7 @@
+import 'package:dio/src/multipart_file.dart';
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/data/data_source/profile_remote_data_source.dart';
+import 'package:elevate_super_fitness/domain/entites/requests/edit_profile_request_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 import 'package:elevate_super_fitness/data/data_source/profile_local_data_source.dart';
 import 'package:elevate_super_fitness/domain/entites/change_password_response_entity.dart';
@@ -31,5 +33,15 @@ class ProfileRepoImpl implements ProfileRepo {
       );
     }
     return response;
+  }
+
+  @override
+  Future<ApiResult<UserInfoEntity>> editUserProfile(EditProfileRequestEntity request) {
+    return _profileRemoteDataSource.editUserProfile(request);
+  }
+
+  @override
+  Future<ApiResult<String>> uploadUserPhoto(MultipartFile photo) {
+    return _profileRemoteDataSource.uploadUserPhoto(photo);
   }
 }
