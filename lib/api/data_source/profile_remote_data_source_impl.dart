@@ -1,4 +1,4 @@
-import 'package:dio/src/multipart_file.dart';
+import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/api/client/api_client.dart';
 import 'package:elevate_super_fitness/api/mapper/profile_mapper.dart';
 import 'package:elevate_super_fitness/api/models/responses/change_password_response_dto.dart';

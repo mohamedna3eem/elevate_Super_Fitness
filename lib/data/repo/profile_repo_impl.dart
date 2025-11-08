@@ -1,4 +1,4 @@
-import 'package:dio/src/multipart_file.dart';
+import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/data/data_source/profile_remote_data_source.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/edit_profile_request_entity.dart';

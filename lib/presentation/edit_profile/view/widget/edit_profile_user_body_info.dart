@@ -1,5 +1,4 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
-import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +27,9 @@ class EditProfileUserBodyInfo extends StatelessWidget {
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
                   value: editProfileViewModel,
-                  child: EditProfileUserBodyInfoScreen(page: EditProfileUserBodyInfoPagesEnum.weight),
+                  child: EditProfileUserBodyInfoScreen(
+                    page: EditProfileUserBodyInfoPagesEnum.weight,
+                  ),
                 ),
               ),
             );
@@ -43,7 +44,9 @@ class EditProfileUserBodyInfo extends StatelessWidget {
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
                   value: editProfileViewModel,
-                  child: EditProfileUserBodyInfoScreen(page: EditProfileUserBodyInfoPagesEnum.goal),
+                  child: EditProfileUserBodyInfoScreen(
+                    page: EditProfileUserBodyInfoPagesEnum.goal,
+                  ),
                 ),
               ),
             );
@@ -58,7 +61,9 @@ class EditProfileUserBodyInfo extends StatelessWidget {
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
                   value: editProfileViewModel,
-                  child: EditProfileUserBodyInfoScreen(page: EditProfileUserBodyInfoPagesEnum.level),
+                  child: EditProfileUserBodyInfoScreen(
+                    page: EditProfileUserBodyInfoPagesEnum.level,
+                  ),
                 ),
               ),
             );
