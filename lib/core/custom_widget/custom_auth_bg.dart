@@ -4,7 +4,6 @@ import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CustomAuthBg extends StatelessWidget {
   const CustomAuthBg({super.key, this.arrowIconPath, required this.child});

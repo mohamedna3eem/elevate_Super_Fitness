@@ -3,7 +3,6 @@ import 'package:elevate_super_fitness/core/constants/app_icons.dart';
 import 'package:elevate_super_fitness/core/constants/const_keys.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_dialog.dart';
 import 'package:elevate_super_fitness/core/di/di.dart';
-import 'package:elevate_super_fitness/core/module/secure_storage_module.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/profile_page/view/widgets/CustomprofileRow.dart';
