@@ -13,6 +13,7 @@ import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.d
 import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/edit_profile/view/screen/edit_profile_screen.dart';
 import '../../presentation/food/view/screen/food_screen.dart';
 import '../../presentation/food_details/view/screen/food_details_screen.dart';
 
@@ -39,7 +40,7 @@ abstract class AppRouter {
 
       case RouteNames.exercise:
         final ExerciseWidgetModel exerciseModel =
-            settings.arguments as ExerciseWidgetModel;
+        settings.arguments as ExerciseWidgetModel;
         return MaterialPageRoute(
           builder: (_) => ExerciseScreen(exerciseModel: exerciseModel),
         );
@@ -67,6 +68,9 @@ abstract class AppRouter {
 
       case RouteNames.chat:
         return MaterialPageRoute(builder: (_) => ChatScreen());
+
+      case RouteNames.editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());

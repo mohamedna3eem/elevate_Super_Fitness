@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/api/models/requests/change_password_request_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/change_password_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
@@ -14,13 +14,16 @@ import 'package:elevate_super_fitness/api/models/workout_response/workout_respon
 import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-import '../models/requests/register_request.dart';
-import '../models/responses/register_response.dart';
+
+import '../models/requests/edit_profile_request.dart';
 import '../models/requests/email_verification_request_dto.dart';
 import '../models/requests/forget_password_request_dto.dart';
+import '../models/requests/register_request.dart';
 import '../models/requests/reset_password_request_dto.dart';
+import '../models/responses/common_response.dart';
 import '../models/responses/email_verification_dto.dart';
 import '../models/responses/forget_password_dto.dart';
+import '../models/responses/register_response.dart';
 import '../models/responses/reset_password_response_dto.dart';
 
 part 'api_client.g.dart';
@@ -60,6 +63,7 @@ abstract class ApiClient {
 
   @GET(Endpoints.loggedUserData)
   Future<UserInfoDto> getGetLoggedUserData();
+
   @PATCH(Endpoints.changePassword)
   Future<ChangePasswordResponseDto> changePassword(
     @Body() ChangePasswordRequestDto request,
@@ -67,6 +71,7 @@ abstract class ApiClient {
 
   @POST(Endpoints.signUp)
   Future<RegisterResponse> register(@Body() RegisterRequest request);
+
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponseDto> forgetPassword(
     @Body() ForgetPasswordRequestDto body,
@@ -87,4 +92,13 @@ abstract class ApiClient {
 
   @GET(Endpoints.muscles)
   Future<MusclesByIdDto> getAllMuscles(@Path("id") String id);
+
+  @PUT(Endpoints.editProfile)
+  Future<UserInfoDto> editUserProfile(@Body() EditProfileRequest request);
+
+  @PUT(Endpoints.uploadPhoto)
+  @MultiPart()
+  Future<CommonResponse> uploadUserPhoto(
+    @Part(name: Endpoints.queryPhoto) MultipartFile photo,
+  );
 }
