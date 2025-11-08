@@ -101,4 +101,7 @@ abstract class ApiClient {
   Future<CommonResponse> uploadUserPhoto(
     @Part(name: Endpoints.queryPhoto) MultipartFile photo,
   );
+
+  @GET(Endpoints.logout)
+  Future<CommonResponse> logout();
 }

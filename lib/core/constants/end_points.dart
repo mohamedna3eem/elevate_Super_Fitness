@@ -25,4 +25,5 @@ abstract class Endpoints {
   static const String editProfile = "api/v1/auth/editProfile";
   static const String uploadPhoto = "api/v1/auth/upload-photo";
   static const String queryPhoto = "photo";
+  static const String logout = "api/v1/auth/logout";
 }

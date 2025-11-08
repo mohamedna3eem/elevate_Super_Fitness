@@ -150,5 +150,14 @@
   "yourGoal": "Your Goal",
   "yourActivityLevel": "Your activity level",
   "tapToEdit": "tap to edit",
-  "update": "Update"
+  "update": "Update",
+  "logout": "Logout",
+  "english": "English",
+  "arabic": "Arabic",
+  "editProfile": "Edit Profile",
+  "changePassword": "Change Password",
+  "selectLanguage": "Select Language",
+  "security": "Security",
+  "privacyPolicy": "Privacy Policy",
+  "help": "Help"
 }

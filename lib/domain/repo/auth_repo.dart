@@ -25,4 +25,6 @@ abstract interface class AuthRepo {
   Future<ApiResult<ResetPasswordResponseEntity>> resetPassword(
     ResetPasswordRequestEntity request,
   );
+
+  Future<ApiResult<String>> logout();
 }

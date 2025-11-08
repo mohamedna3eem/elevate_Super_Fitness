@@ -68,4 +68,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           (response) => response.toEntity(),
     );
   }
+
+  @override
+  Future<ApiResult<String>> logout() {
+    return safeApiCall(
+      () => _apiClient.logout(),
+      (response) => response.message ?? "",
+    );
+  }
 }

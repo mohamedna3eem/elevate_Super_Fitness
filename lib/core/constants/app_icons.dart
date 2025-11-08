@@ -31,4 +31,5 @@ abstract class AppIcons {
   static const String menuIcon = "$_iconsPath/menu_icon.png";
   static const String playButtonIcon = "$_iconsPath/play_button.png";
   static const String editIcon = "$_iconsPath/edit.svg";
+  static const String arrowBack1 = "$_iconsPath/Back1.png";
 }

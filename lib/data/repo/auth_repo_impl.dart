@@ -57,4 +57,10 @@ class AuthRepoImpl implements AuthRepo {
       ) {
     return _authRemoteDataSource.resetPassword(request);
   }
+
+  @override
+  Future<ApiResult<String>> logout() async {
+    await _authLocalDataSource.clearUserToken();
+    return _authRemoteDataSource.logout();
+  }
 }

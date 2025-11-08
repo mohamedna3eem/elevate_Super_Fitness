@@ -25,5 +25,6 @@ abstract class AppImages {
   static const String exerciseCardImage = "$_imagesPath/exercise_card_image.png";
   static const String foodBg = "$_imagesPath/food_bg.jpg";
   static const String forgetPasswordPG = "$_imagesPath/forgetPasswordPG.png";
+  static const String defaultImage = "$_imagesPath/Ellipse 8.png";
 
 }

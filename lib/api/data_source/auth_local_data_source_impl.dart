@@ -11,6 +11,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     await _secureStorage.write(key: key, value: value);
   }
 
+  Future<void> _clearValue({required String key}) async {
+    await _secureStorage.delete(key: key);
+  }
+
   @override
   Future<void> saveUserRememberMe({required bool rememberMe}) {
     return _saveValue(
@@ -31,5 +35,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }) async {
     saveUserRememberMe(rememberMe: rememberMe);
     saveUserToken(token: token);
+  }
+
+  @override
+  Future<void> clearUserToken() async {
+    await _clearValue(key: ConstKeys.keyUserToken);
   }
 }
