@@ -4,17 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'core/constants/app_theme.dart';
 import 'core/di/di.dart';
+import 'core/provider/app_config.dart';
 import 'core/router/app_router.dart';
 import 'core/router/route_names.dart';
 import 'my_bloc_observer.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   Bloc.observer = MyBlocObserver();
-  runApp(DevicePreview(builder: (context) => const MyApp(), enabled: false));
+  final appConfigProvider = AppConfigProvider();
+  await appConfigProvider.getLocal();
+
+  runApp(
+    DevicePreview(
+      enabled: false,
+      builder: (context) => ChangeNotifierProvider.value(
+        value: appConfigProvider,
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +35,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AppConfigProvider>(context);
+
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -33,14 +48,14 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: RouteNames.splash,
-          localizationsDelegates: [
+          locale: provider.locale,
+          supportedLocales: AppLocalizations.delegate.supportedLocales,
+          localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: AppLocalizations.delegate.supportedLocales,
-          locale: const Locale("en"),
         );
       },
     );

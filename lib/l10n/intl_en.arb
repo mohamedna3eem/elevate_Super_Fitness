@@ -69,5 +69,7 @@
   "security": "Security",
   "privacyPolicy": "Privacy Policy",
   "help": "Help",
-  "logout": "Logout"
+  "logout": "Logout",
+  "english": "English",
+  "arabic": "Arabic"
 }
