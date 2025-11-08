@@ -27,7 +27,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
 
     return Row(
       children: [
-        Image.asset(AppIcons.language, color: AppColors.mainColorL),
+        Image.asset(AppIcons.language, color: AppColors.mainColorL, width: 24.sp, height: 24.sp),
         SizedBox(width: 16.w),
         Text(
           AppLocalizations.of(context).selectLanguage,

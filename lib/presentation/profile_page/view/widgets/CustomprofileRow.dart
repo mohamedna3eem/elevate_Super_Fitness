@@ -17,7 +17,7 @@ class CustomProfileRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-      Image.asset(icon,color: AppColors.mainColorL,),
+      Image.asset(icon,color: AppColors.mainColorL, width: 24.sp, height: 24.sp),
         SizedBox(width: 16.w,),
     Text(tittle,style: Theme.of(context).textTheme.bodyMedium?.
     copyWith(color: AppColors.white),),
