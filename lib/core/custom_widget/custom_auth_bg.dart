@@ -1,9 +1,9 @@
 import 'dart:ui';
+import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CustomAuthBg extends StatelessWidget {
   const CustomAuthBg({super.key, this.arrowIconPath, required this.child});
@@ -45,7 +45,14 @@ class CustomAuthBg extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: GestureDetector(
                         onTap: () => Navigator.pop(context),
-                        child: SvgPicture.asset(arrowIconPath!),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.mainColorL,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(6),
+                          child: Image.asset(arrowIconPath!),
+                        ),
                       ),
                     ),
                   ),

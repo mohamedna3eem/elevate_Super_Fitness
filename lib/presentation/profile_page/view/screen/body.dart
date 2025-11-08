@@ -2,6 +2,7 @@ import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:elevate_super_fitness/core/constants/app_icons.dart';
 import 'package:elevate_super_fitness/core/constants/app_images.dart';
 import 'package:elevate_super_fitness/core/di/di.dart';
+import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/profile_page/view/widgets/profile_setting.dart';
 import 'package:elevate_super_fitness/presentation/profile_page/view_model/profile_states.dart';
@@ -10,7 +11,6 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import '../../view_model/profile_events.dart';
 import '../widgets/profile_skleton.dart';
 
@@ -24,14 +24,17 @@ class ProfileBody extends StatelessWidget {
       child: BlocBuilder<ProfileViewModel, ProfileStates>(
         builder: (context, state) {
           if (state.status == ProfileStatus.loading) {
-            return  ProfileSkeleton(context.read<ProfileViewModel>());
+            return ProfileSkeleton(context.read<ProfileViewModel>());
           }
 
           if (state.status == ProfileStatus.error) {
-            return const Center(
-              child: Text(
-                "Error loading profile",
-                style: TextStyle(color: Colors.red),
+            return Center(
+              child: GestureDetector(
+                onTap: () => Navigator.pushNamed(context, RouteNames.login),
+                child: const Text(
+                  "Error loading profile",
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
             );
           }
@@ -58,10 +61,9 @@ class ProfileBody extends StatelessWidget {
                       ),
                       Text(
                         AppLocalizations.of(context).profile,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(color: AppColors.white),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: AppColors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -93,16 +95,14 @@ class ProfileBody extends StatelessWidget {
                         SizedBox(height: 8.h),
                         Text(
                           "${state.profileResponseEntity?.firstName ?? ''} ${state.profileResponseEntity?.lastName ?? ''}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
+                          style: Theme.of(context).textTheme.bodyLarge
                               ?.copyWith(color: AppColors.white),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: 40.h),
-                   ProfileSetting(context.read<ProfileViewModel>()),
+                  ProfileSetting(context.read<ProfileViewModel>()),
                 ],
               ),
             );

@@ -34,8 +34,12 @@ abstract class ApiModule {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           final String? token = await TokenStorage.getToken();
+          final String? local = await TokenStorage.getLocal();
           if (token != null && token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
+          }
+          if (local != null && local.isNotEmpty) {
+            options.headers["Accept-Language"] = local;
           }
           return handler.next(options);
         },
