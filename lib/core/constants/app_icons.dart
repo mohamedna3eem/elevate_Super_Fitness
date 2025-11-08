@@ -22,12 +22,14 @@ abstract class AppIcons {
   static const String gym = "$_iconsPath/gym.png";
   static const String home = "$_iconsPath/home.png";
   static const String profile = "$_iconsPath/profile.png";
-  static const String arrowBack = "$_iconsPath/arrow.svg";
+  static const String arrowBack = "$_iconsPath/back.png";
   static const String faceBook = "$_iconsPath/facebook.svg";
   static const String googleSvg = "$_iconsPath/Google.svg";
   static const String appelSvg = "$_iconsPath/Apple.svg";
   static const String mailIconSvg = "$_iconsPath/mail.svg";
   static const String lockSvg = "$_iconsPath/lock.svg";
+  static const String menuIcon = "$_iconsPath/menu_icon.png";
+  static const String playButtonIcon = "$_iconsPath/play_button.png";
   static const String arrowBack1 = "$_iconsPath/Back1.png";
   // static const String lockSetting = "$_iconsPath/Lock Setting.png";
 }

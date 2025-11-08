@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/api/mapper/profile_mapper.dart';
+import 'package:elevate_super_fitness/api/models/requests/change_password_request_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/change_password_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/user_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/user_info_dto.dart';
+import 'package:elevate_super_fitness/domain/entites/change_password_response_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/requests/change_password_request_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 
 abstract class ProfileDummyData {
@@ -44,7 +48,7 @@ abstract class ProfileDummyData {
   // 🧩 Dummy exception examples
   static final dummyDioException = DioException(
     requestOptions: RequestOptions(path: '/user'),
-    type: DioExceptionType.connectionTimeout,
+    // type: DioExceptionType.connectionTimeout,
     message: "dio_error",
   );
 
@@ -65,4 +69,24 @@ abstract class ProfileDummyData {
     createdAt: null,
   );
   static final dummyUserInfoDtoMappedToEntity = dummyUserInfoDto.toEntity();
+  static const dummyChangePasswordResponseDto = ChangePasswordResponseDto(
+    message: "success",
+    token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp.eyJ1c2VyIjoiNjkwYTAwOGU5NzYyZjQ1ZTJhOTkyNTNiIiwiaWF0IjoxNzYyMjYzMjM3fQ.e65f7-3ej7gXiapRiNZKtaDXOUSbgj07Siys6_LMuO4",
+  );
+
+  static const dummyChangePasswordResponseEntity = ChangePasswordResponseEntity(
+    message: "success",
+    token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp.eyJ1c2VyIjoiNjkwYTAwOGU5NzYyZjQ1ZTJhOTkyNTNiIiwiaWF0IjoxNzYyMjYzMjM3fQ.e65f7-3ej7gXiapRiNZKtaDXOUSbgj07Siys6_LMuO4",
+  );
+
+  static const dummyChangePasswordRequestEntity = ChangePasswordRequestEntity(
+    password: "Ahmed@123",
+    newPassword: "Ahmed@1234",
+  );
+  static const dummyChangePasswordRequestDto = ChangePasswordRequestDto(
+    password: "Ahmed@123",
+    newPassword: "Ahmed@1234",
+  );
 }
