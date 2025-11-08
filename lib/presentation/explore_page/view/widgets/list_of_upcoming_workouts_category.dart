@@ -2,8 +2,9 @@ import 'package:elevate_super_fitness/core/api_result/base_state.dart';
 import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
 import 'package:elevate_super_fitness/domain/entites/muscles_group_response_entity.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_explore_tab_bar_item.dart';
-import 'package:elevate_super_fitness/presentation/explore_page/view_model/explore_event.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view_model/explore_view_model_cubit.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,9 +45,10 @@ class ListUpcomingWorkoutsCategory extends StatelessWidget {
                   onTap: () {
                     if (!cubit.isClosed) {
                       cubit.selectedCategory.value = index;
-                      cubit.doIntent(
-                        ExploreGetMusclesByMuscleGroupIdEvent(
-                          selectedItem.id ?? "",
+                      context.read<MainHomeViewModel>().doIntent(
+                        OnBottomNavBarTappedEvent(
+                          index: 2,
+                          selectedTabId: selectedItem.id,
                         ),
                       );
                     }

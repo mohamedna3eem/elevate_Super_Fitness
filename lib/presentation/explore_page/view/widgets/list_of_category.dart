@@ -3,12 +3,14 @@ import 'package:elevate_super_fitness/core/constants/app_colors.dart';
 import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view/widgets/custom_category_item.dart';
 import 'package:elevate_super_fitness/presentation/explore_page/view_model/explore_view_model_cubit.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListOfCategory extends StatelessWidget {
-  const ListOfCategory({super.key});
+  final MainHomeViewModel mainHomeViewModel;
+  const ListOfCategory({super.key,required this.mainHomeViewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,8 @@ class ListOfCategory extends StatelessWidget {
                         child: CustomCategoryItem(
                           imagePath: category['image']!,
                           title: category['title']!,
+                          lastItem: index == 4 ,
+                          mainHomeViewModel: mainHomeViewModel,
                         ),
                       ),
                       if (index < cubit.categories.length - 1)

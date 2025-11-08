@@ -59,6 +59,7 @@ class ExerciseVideoCoverSection extends StatelessWidget {
               children: [
                 Text(
                   "${title ?? ""} ${AppLocalizations.of(context).exercise}",
+                  maxLines: 1,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w500,

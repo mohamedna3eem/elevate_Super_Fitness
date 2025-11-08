@@ -17,7 +17,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExplorePageBody extends StatelessWidget {
-  const ExplorePageBody({super.key});
+  final MainHomeViewModel mainHomeViewModel;
+  const ExplorePageBody({super.key,required this.mainHomeViewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,10 @@ class ExplorePageBody extends StatelessWidget {
                 child: CustomExploreIdentifierList(title: local.category),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: ListOfCategory(
-                  key: Key(WidgetsKeys.kExploreScreenListCategoryItemKey),
+                  mainHomeViewModel: mainHomeViewModel,
+                  key: const Key(WidgetsKeys.kExploreScreenListCategoryItemKey),
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 24.h)),
@@ -57,7 +59,7 @@ class ExplorePageBody extends StatelessWidget {
                   title: local.upcomingWorkouts,
                   onTap: () {
                     context.read<MainHomeViewModel>().doIntent(
-                      OnBottomNavBarTappedEvent(2),
+                      OnBottomNavBarTappedEvent(index: 2),
                     );
                   },
                 ),

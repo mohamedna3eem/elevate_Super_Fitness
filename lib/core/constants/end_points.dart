@@ -20,6 +20,8 @@ abstract class Endpoints {
   static const String forgetPassword = "api/v1/auth/forgotPassword";
   static const String verifyResetCode = "api/v1/auth/verifyResetCode";
   static const String resetPassword = "api/v1/auth/resetPassword";
+  static const String workouts = "api/v1/muscles";
+  static const String muscles = "api/v1/musclesGroup/{id}";
   static const String editProfile = "api/v1/auth/editProfile";
   static const String uploadPhoto = "api/v1/auth/upload-photo";
   static const String queryPhoto = "photo";

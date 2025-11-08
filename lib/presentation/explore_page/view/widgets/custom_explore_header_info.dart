@@ -61,7 +61,7 @@ class CustomExploreHeaderInfo extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 context.read<MainHomeViewModel>().doIntent(
-                  OnBottomNavBarTappedEvent(3),
+                  OnBottomNavBarTappedEvent(index: 3),
                 );
               },
               child: ClipRRect(

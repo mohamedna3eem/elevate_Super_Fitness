@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@singleton
 class MainHomeViewModel extends Cubit<MainHomeStates> {
   MainHomeViewModel() : super(const MainHomeStates());
 
   final PageController pageController = PageController();
-
+  String? selectedTabIdWorkouts = "";
   void doIntent(MainHomeEvent event) {
     switch (event) {
       case OnBottomNavBarTappedEvent():
         _bottomNavBarOnTap(event.index);
+        selectedTabIdWorkouts = event.selectedTabId;
         break;
       case OnPageChangedEvent():
         _onPageChanged(event.index);
@@ -36,9 +37,7 @@ class MainHomeViewModel extends Cubit<MainHomeStates> {
   }
 
   void _handleScroll(double pixels, double delta) {
-    if (pixels > 50 &&
-        delta > 0 &&
-        state.isBottomBarVisible) {
+    if (pixels > 50 && delta > 0 && state.isBottomBarVisible) {
       emit(state.copyWith(isBottomBarVisible: false));
     } else if (delta < 0 && !state.isBottomBarVisible) {
       emit(state.copyWith(isBottomBarVisible: true));

@@ -55,3 +55,30 @@ Widget buildShimmerCategoryItemList(double height) {
     ),
   );
 }
+
+Widget buildShimmerGridWorkoutsItems() {
+  return Padding(
+    padding: EdgeInsets.all(16.sp),
+    child: GridView.builder(
+      itemCount: 6,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1,
+      ),
+      itemBuilder: (context, index) {
+        return Shimmer.fromColors(
+          baseColor: Colors.white.withOpacity(0.15),
+          highlightColor: Colors.white.withOpacity(0.35),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+          ),
+        );
+      },
+    ),
+  );
+}

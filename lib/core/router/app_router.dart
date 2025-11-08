@@ -1,17 +1,18 @@
 import 'package:elevate_super_fitness/api/models/exercise_widget_model.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/presentation/auth/change_password/view/screen/change_password_view.dart';
-import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:elevate_super_fitness/presentation/auth/login/view/screen/login_view.dart';
 import 'package:elevate_super_fitness/presentation/auth/register/view/screen/register_screen.dart';
-import 'package:elevate_super_fitness/presentation/edit_profile/view/screen/edit_profile_user_body_info_screen.dart';
 import 'package:elevate_super_fitness/presentation/exercise/view/screen/exercise_screen.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view/screen/main_home_screen.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:elevate_super_fitness/presentation/on_boarding/screen/on_boarding_screen.dart';
+import 'package:elevate_super_fitness/presentation/smart_coach_page/view/screen/chat_screen.dart';
+import 'package:elevate_super_fitness/presentation/smart_coach_page/view/screen/smart_coach_page.dart';
 import 'package:elevate_super_fitness/presentation/splash/screen/splash_screen.dart';
+import 'package:elevate_super_fitness/presentation/auth/forget_password/view/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/edit_profile/view/screen/edit_profile_screen.dart';
 import '../../presentation/food/view/screen/food_screen.dart';
 import '../../presentation/food_details/view/screen/food_details_screen.dart';
 
@@ -29,6 +30,7 @@ abstract class AppRouter {
 
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
+
       case RouteNames.changePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordView());
 
@@ -37,7 +39,7 @@ abstract class AppRouter {
 
       case RouteNames.exercise:
         final ExerciseWidgetModel exerciseModel =
-            settings.arguments as ExerciseWidgetModel;
+        settings.arguments as ExerciseWidgetModel;
         return MaterialPageRoute(
           builder: (_) => ExerciseScreen(exerciseModel: exerciseModel),
         );
@@ -53,8 +55,18 @@ abstract class AppRouter {
         return MaterialPageRoute(
           builder: (_) => FoodDetailsScreen(mealId: mealId),
         );
+
       case RouteNames.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
+
+      case RouteNames.smartCoach:
+        final args = settings.arguments as MainHomeViewModel;
+        return MaterialPageRoute(
+          builder: (_) => SmartCoachPage(mainHomeViewModel: args),
+        );
+
+      case RouteNames.chat:
+        return MaterialPageRoute(builder: (_) => ChatScreen());
 
       case RouteNames.editProfile:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
