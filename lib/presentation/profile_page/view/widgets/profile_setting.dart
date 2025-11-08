@@ -9,6 +9,11 @@ import 'package:elevate_super_fitness/presentation/profile_page/view_model/profi
 import 'package:elevate_super_fitness/presentation/profile_page/view_model/profile_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../../../core/constants/const_keys.dart';
+import '../../../../core/custom_widget/custom_dialog.dart';
+import '../../../../core/di/di.dart';
 
 class ProfileSetting extends StatelessWidget {
  final ProfileViewModel profileViewModel;
@@ -95,7 +100,24 @@ class ProfileSetting extends StatelessWidget {
           Container(height: 1, color: AppColors.gray),
           SizedBox(height: 10.h),
         InkWell( onTap: () {
-          profileViewModel.doIntent(LogoutEvent());
+          CustomDialog.fitnessPositiveAndNegativeButton(
+            context: context,
+            message: AppLocalizations.of(context).logout,
+            positiveOnClick: () async {
+              Navigator.pushNamedAndRemoveUntil(
+                // ignore: use_build_context_synchronously
+                context,
+                RouteNames.login,
+                    (route) => true,
+              );
+              profileViewModel.doIntent(LogoutEvent());
+              final secureStorageModule = getIt.get<FlutterSecureStorage>();
+              await secureStorageModule.delete(
+                key: ConstKeys.keyRememberMe,
+              );
+              await secureStorageModule.delete(key: ConstKeys.keyUserToken);
+            },
+          );
         },
           child: Row(
             children: [
