@@ -32,7 +32,7 @@ class EditProfileViewBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap: () => Navigator.of(context).pop(true),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -73,13 +73,17 @@ class EditProfileViewBody extends StatelessWidget {
                         valueListenable: editProfileViewModel.isButtonEnabled,
                         builder: (context, value, child) {
                           return ElevatedButton(
-                            onPressed: value ? () {
-                              if (formKey.currentState!.validate()) {
-                                editProfileViewModel.doIntent(
-                                  UpdateUserProfileEvent(isBodyInfo: false),
-                                );
-                              }
-                            } : null,
+                            onPressed: value
+                                ? () {
+                                    if (formKey.currentState!.validate()) {
+                                      editProfileViewModel.doIntent(
+                                        UpdateUserProfileEvent(
+                                          isBodyInfo: false,
+                                        ),
+                                      );
+                                    }
+                                  }
+                                : null,
                             child: Text(AppLocalizations.of(context).update),
                           );
                         },
