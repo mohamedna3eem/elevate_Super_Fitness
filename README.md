@@ -139,9 +139,9 @@ Contributors
 ------------
 
 - [Mohamed Hossam El-Bably](https://github.com/Bablu521)
-* [Youssef Mohamed](https://github.com/youssefmdev22)
-* [Moaz Osama](https://github.com/moazosama1)
-* [Mohamed Naeem](https://github.com/mohamedna3eem)
+- [Youssef Mohamed](https://github.com/youssefmdev22)
+- [Moaz Osama](https://github.com/moazosama1)
+- [Mohamed Naeem](https://github.com/mohamedna3eem)
 
 Screenshots
 --------------
