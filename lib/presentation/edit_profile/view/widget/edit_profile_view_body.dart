@@ -1,9 +1,11 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
+import 'package:elevate_super_fitness/core/constants/app_icons.dart';
 import 'package:elevate_super_fitness/presentation/edit_profile/view/widget/edit_profile_form.dart';
 import 'package:elevate_super_fitness/presentation/edit_profile/view/widget/edit_profile_user_body_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../generated/l10n.dart';
@@ -19,6 +21,7 @@ class EditProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final editProfileViewModel = context.read<EditProfileViewModel>();
+    final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: SingleChildScrollView(
@@ -32,18 +35,8 @@ class EditProfileViewBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.mainColorL,
-                      ),
-                      padding: const EdgeInsets.all(1),
-                      child: Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: AppColors.white,
-                      ),
-                    ),
+                    onTap: () => Navigator.of(context).pop(true),
+                    child: SvgPicture.asset(AppIcons.arrowBackIcon),
                   ),
                 ),
                 Text(
@@ -73,14 +66,25 @@ class EditProfileViewBody extends StatelessWidget {
                         valueListenable: editProfileViewModel.isButtonEnabled,
                         builder: (context, value, child) {
                           return ElevatedButton(
-                            onPressed: value ? () {
-                              if (formKey.currentState!.validate()) {
-                                editProfileViewModel.doIntent(
-                                  UpdateUserProfileEvent(isBodyInfo: false),
-                                );
-                              }
-                            } : null,
-                            child: Text(AppLocalizations.of(context).update),
+                            onPressed: value
+                                ? () {
+                                    if (formKey.currentState!.validate()) {
+                                      editProfileViewModel.doIntent(
+                                        UpdateUserProfileEvent(
+                                          isBodyInfo: false,
+                                        ),
+                                      );
+                                    }
+                                  }
+                                : null,
+                            child: Text(
+                              AppLocalizations.of(context).update,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: value == true
+                                    ? theme.colorScheme.onSecondary
+                                    : theme.colorScheme.onSecondary,
+                              ),
+                            ),
                           );
                         },
                       ),

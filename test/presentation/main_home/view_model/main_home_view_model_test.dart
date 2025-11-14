@@ -1,14 +1,21 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:elevate_super_fitness/domain/use_cases/get_user_logged_data_use_case.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_states.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
+import '../../smart_coach_page/view_model/smart_coach_view_model_test.mocks.dart';
+
+@GenerateMocks([GetUserLoggedDataUseCase])
 void main() {
+  late GetUserLoggedDataUseCase userLoggedDataUseCase;
   late MainHomeViewModel viewModel;
 
   setUp(() {
-    viewModel = MainHomeViewModel();
+    userLoggedDataUseCase = MockGetUserLoggedDataUseCase();
+    viewModel = MainHomeViewModel(userLoggedDataUseCase);
   });
 
   group('test MainHomeViewModel', () {

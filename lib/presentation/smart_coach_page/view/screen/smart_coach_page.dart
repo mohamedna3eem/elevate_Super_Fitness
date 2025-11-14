@@ -7,13 +7,14 @@ import 'package:elevate_super_fitness/core/di/di.dart';
 import 'package:elevate_super_fitness/core/router/route_names.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_events.dart';
+import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_states.dart';
 import 'package:elevate_super_fitness/presentation/main_home/view_model/main_home_view_model.dart';
 import 'package:elevate_super_fitness/presentation/smart_coach_page/view_model/smart_coach_events.dart';
-import 'package:elevate_super_fitness/presentation/smart_coach_page/view_model/smart_coach_states.dart';
 import 'package:elevate_super_fitness/presentation/smart_coach_page/view_model/smart_coach_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SmartCoachPage extends StatefulWidget {
   final MainHomeViewModel mainHomeViewModel;
@@ -82,27 +83,14 @@ class _SmartCoachPageState extends State<SmartCoachPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundColor: AppColors.mainColorL,
-                            child: const ImageIcon(
-                              AssetImage(AppIcons.arrowBack),
-                              size: 10,
-                              color: AppColors.pureWhite,
-                            ),
-                          ),
+                          SvgPicture.asset(AppIcons.arrowBackIcon),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              BlocBuilder<
-                                SmartCoachViewModel,
-                                SmartCoachStates
-                              >(
-                                bloc: smartCoachViewModel,
+                              BlocBuilder<MainHomeViewModel, MainHomeStates>(
                                 builder: (context, state) {
                                   final name =
-                                      state.loggedUserDataSuccess?.firstName ??
-                                      "";
+                                      state.userInfo?.data?.firstName ?? "";
                                   AppImages.userImage;
                                   return Text(
                                     "${AppLocalizations.of(context).hi} $name,",

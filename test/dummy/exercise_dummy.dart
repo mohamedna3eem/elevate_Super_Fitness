@@ -1,7 +1,7 @@
 import 'package:elevate_super_fitness/api/models/exercise_difficulty_level_dto.dart';
 import 'package:elevate_super_fitness/api/models/get_selected_exercise_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_response_dto.dart';
 import 'package:elevate_super_fitness/domain/entites/exercise_difficulty_level_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/get_selected_exercise_entity.dart';
 
@@ -110,8 +110,8 @@ class ExerciseDummy {
             "https://youtube.com/watch?v=bench_press_tutorial",
       );
 
-  static GetSelectedExercisesReponseDto dummyGetSelectedExercisesReponseDto =
-      const GetSelectedExercisesReponseDto(
+  static GetSelectedExercisesResponseDto dummyGetSelectedExercisesReponseDto =
+      const GetSelectedExercisesResponseDto(
         message: "Exercises fetched successfully",
         totalExercises: 3,
         totalPages: 1,
@@ -226,7 +226,7 @@ class ExerciseDummy {
         ],
       );
 
-    static final dummyPrimeMoverMuscleId = "muscle_001";
-    static final dummyDifficultyLevelId = "difficulty_001";
-    static final expectedError = "Server-Error";
+  static final dummyPrimeMoverMuscleId = "muscle_001";
+  static final dummyDifficultyLevelId = "difficulty_001";
+  static final expectedError = "Server-Error";
 }

@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
+import 'package:elevate_super_fitness/core/constants/widgets_keys.dart';
 import 'package:elevate_super_fitness/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../constants/app_colors.dart';
 
 class CustomDialog {
@@ -14,30 +14,6 @@ class CustomDialog {
 
   VoidCallback? positiveOnClick, negativeOnClick;
 
-  CustomDialog.loading({
-    required this.context,
-    this.message,
-    bool cancelable = false,
-  }) {
-    showDialog(
-      context: context,
-      barrierDismissible: cancelable,
-      builder: (ctx) {
-        return AlertDialog(
-          content: Row(
-            spacing: 16.w,
-            children: [
-              const CircularProgressIndicator(),
-              Text(
-                message ?? AppLocalizations.of(ctx).loading,
-                style: Theme.of(ctx).textTheme.bodyLarge,
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
   CustomDialog.fitnessLoading({
     required this.context,
     this.message,
@@ -48,6 +24,7 @@ class CustomDialog {
       barrierDismissible: false,
       builder: (context) {
         return Center(
+          key: const Key(WidgetsKeys.kCustomDialogFitnessLoadingKey),
           child: SizedBox(
             width: 120.w,
             height: 120.h,
@@ -71,123 +48,6 @@ class CustomDialog {
     );
   }
 
-  CustomDialog.positiveButton({
-    required this.context,
-    this.title,
-    this.message,
-    this.positiveText,
-    this.positiveOnClick,
-    bool cancelable = true,
-  }) {
-    showDialog(
-      context: context,
-      barrierDismissible: cancelable,
-      builder: (ctx) {
-        return AlertDialog(
-          title: Text(title ?? ""),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: 20.h,
-            children: [
-              Text(message ?? ""),
-              ElevatedButton(
-                onPressed: () {
-                  if (positiveOnClick != null) {
-                    positiveOnClick!();
-                  } else {
-                    Navigator.of(ctx).pop();
-                  }
-                },
-                child: Text(
-                  positiveText ?? AppLocalizations.of(ctx).ok,
-                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  CustomDialog.positiveAndNegativeButton({
-    required this.context,
-    this.title,
-    this.message,
-    this.positiveText,
-    this.negativeText,
-    this.positiveOnClick,
-    this.negativeOnClick,
-    bool cancelable = true,
-  }) {
-    showDialog(
-      context: context,
-      barrierDismissible: cancelable,
-      builder: (ctx) {
-        return AlertDialog(
-          title: Text(title ?? ""),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: 20.h,
-            children: [
-              Text(message ?? ""),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                spacing: 16.w,
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        side: BorderSide(color: AppColors.black),
-                      ),
-                      onPressed: () {
-                        if (negativeOnClick != null) {
-                          negativeOnClick!();
-                        } else {
-                          Navigator.of(ctx).pop();
-                        }
-                      },
-                      child: Text(
-                        negativeText ?? AppLocalizations.of(ctx).no,
-                        style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (positiveOnClick != null) {
-                          positiveOnClick!();
-                        } else {
-                          Navigator.of(ctx).pop();
-                        }
-                      },
-                      child: Text(
-                        positiveText ?? AppLocalizations.of(ctx).yes,
-                        style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
   CustomDialog.fitnessPositiveButton({
     required this.context,
     this.title,
@@ -201,6 +61,7 @@ class CustomDialog {
       barrierDismissible: cancelable,
       builder: (ctx) {
         return Center(
+          key: const Key(WidgetsKeys.kCustomDialogFitnessPositiveButtonKey),
           child: Padding(
             padding: EdgeInsets.all(24.sp),
             child: ClipRRect(
@@ -283,7 +144,6 @@ class CustomDialog {
 
   CustomDialog.fitnessPositiveAndNegativeButton({
     required this.context,
-    String? title,
     String? message,
     String? positiveText,
     String? negativeText,
@@ -296,6 +156,9 @@ class CustomDialog {
       barrierDismissible: cancelable,
       builder: (ctx) {
         return Center(
+          key: const Key(
+            WidgetsKeys.kCustomDialogFitnessPositiveAndNegativeButtonKey,
+          ),
           child: Padding(
             padding: EdgeInsets.all(24.sp),
             child: ClipRRect(

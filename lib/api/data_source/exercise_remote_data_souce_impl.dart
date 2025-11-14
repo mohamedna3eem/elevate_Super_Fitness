@@ -33,7 +33,7 @@ class ExerciseRemoteDataSouceImpl implements ExerciseRemoteDataSource {
     required String difficultyLevelId,
   }) {
     return safeApiCall(
-      () => _apiClient.getExercisesByPrimeMoverMuscleandDifficultyLevel(
+      () => _apiClient.getExercisesByPrimeMoverMuscleAndDifficultyLevel(
         primeMoverMuscleId,
         difficultyLevelId,
       ),

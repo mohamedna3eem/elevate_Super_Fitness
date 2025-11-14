@@ -18,7 +18,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExplorePageBody extends StatelessWidget {
   final MainHomeViewModel mainHomeViewModel;
-  const ExplorePageBody({super.key,required this.mainHomeViewModel});
+  const ExplorePageBody({super.key, required this.mainHomeViewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,7 @@ class ExplorePageBody extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(child: SizedBox(height: 24.h)),
-              SliverToBoxAdapter(
-                child: CustomExploreHeaderInfo(userInfoEntity: state.userInfo),
-              ),
+              const SliverToBoxAdapter(child: CustomExploreHeaderInfo()),
               SliverToBoxAdapter(child: SizedBox(height: 24.h)),
               SliverToBoxAdapter(
                 child: CustomExploreIdentifierList(title: local.category),

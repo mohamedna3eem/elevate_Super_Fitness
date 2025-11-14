@@ -82,3 +82,47 @@ Widget buildShimmerGridWorkoutsItems() {
     ),
   );
 }
+
+Widget buildShimmerMainProfileItem() {
+  return Shimmer.fromColors(
+    baseColor: Colors.white.withOpacity(0.15),
+    highlightColor: Colors.white.withOpacity(0.35),
+    child: Column(
+      children: [
+        // Circular image shimmer
+        ClipOval(
+          child: Container(
+            width: 100.w,
+            height: 100.h,
+            color: Colors.grey.shade300,
+          ),
+        ),
+        SizedBox(height: 8.h),
+
+        // Text shimmer
+        Container(
+          width: 120.w,
+          height: 16.h,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget buildShimmerEditImage() {
+  return Shimmer.fromColors(
+    baseColor: Colors.white.withOpacity(0.15),
+    highlightColor: Colors.white.withOpacity(0.35),
+    child: ClipOval(
+      child: Container(
+        width: 100.w,
+        height: 100.h,
+        color: Colors.grey.shade300,
+      ),
+    ),
+  );
+}

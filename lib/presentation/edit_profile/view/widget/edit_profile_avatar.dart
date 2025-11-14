@@ -1,4 +1,5 @@
 import 'package:awesome_extensions/awesome_extensions.dart';
+import 'package:elevate_super_fitness/core/custom_widget/custom_shimmer_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,10 +12,7 @@ import '../../view_model/edit_profile_events.dart';
 import '../../view_model/edit_profile_view_model.dart';
 
 class EditProfileAvatar extends StatelessWidget {
-
-  const EditProfileAvatar({
-    super.key,
-  });
+  const EditProfileAvatar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +34,9 @@ class EditProfileAvatar extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                    color: AppColors.mainColorL.withAlpha(25), blurRadius: 10),
+                  color: AppColors.mainColorL.withAlpha(25),
+                  blurRadius: 10,
+                ),
               ],
             ),
             child: Stack(
@@ -46,10 +46,9 @@ class EditProfileAvatar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   child: BlocBuilder<EditProfileViewModel, EditProfileState>(
                     builder: (context, state) {
-                      if (state.isUserPhotoLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                      if (state.isUserPhotoLoading == true ||
+                          state.isLoading == true) {
+                        return buildShimmerEditImage();
                       }
                       if (state.pickedImage != null) {
                         return Image.file(
@@ -78,8 +77,7 @@ class EditProfileAvatar extends StatelessWidget {
           ),
         ),
         Text(
-          "${editProfileState.userData?.firstName ?? ""} ${editProfileState
-              .userData?.lastName ?? ""}",
+          "${editProfileState.userData?.firstName ?? ""} ${editProfileState.userData?.lastName ?? ""}",
           style: context.bodyLarge?.copyWith(color: AppColors.white),
         ),
       ],

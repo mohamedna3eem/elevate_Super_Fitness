@@ -33,9 +33,8 @@ class _FoodDetailsViewBodyState extends State<FoodDetailsViewBody> {
       bloc: _foodDetailsViewModel,
       listener: (context, state) {
         if (state.errorMessage != null) {
-          CustomDialog.positiveButton(
+          CustomDialog.fitnessPositiveButton(
             context: context,
-            title: AppLocalizations.of(context).error,
             message: state.errorMessage!,
           );
         }

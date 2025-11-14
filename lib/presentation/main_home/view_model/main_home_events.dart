@@ -17,3 +17,5 @@ class OnScrollUpdateEvent extends MainHomeEvent {
 
   OnScrollUpdateEvent(this.pixels, this.scrollDelta);
 }
+
+class GetUserInfoMainHomeEvent extends MainHomeEvent {}

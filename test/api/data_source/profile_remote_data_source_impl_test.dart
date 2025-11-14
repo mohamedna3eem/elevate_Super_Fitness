@@ -5,6 +5,7 @@ import 'package:elevate_super_fitness/api/mapper/profile_mapper.dart';
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/data/data_source/profile_remote_data_source.dart';
 import 'package:elevate_super_fitness/domain/entites/change_password_response_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/logout_response_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -128,6 +129,61 @@ void main() {
         (result as ApiErrorResult<ChangePasswordResponseEntity>).error,
         equals(exception),
       );
+    });
+  });
+  group("test logout functionality", () {
+    late MockApiClient mockApiClient;
+    late ProfileRemoteDataSource dataSource;
+    final fakeLogoutResponseDto = ProfileDummyData.dummyLogoutResponseDto;
+    final DioException fakeDioException = DioException(
+      requestOptions: RequestOptions(),
+      message: "fake_message",
+    );
+    final Exception fakeException = Exception();
+    setUp(() {
+      mockApiClient = MockApiClient();
+      dataSource = ProfileRemoteDataSourceImpl(mockApiClient);
+    });
+    test("logout success", () async {
+      //ARRANGE
+      when(
+        mockApiClient.logout(),
+      ).thenAnswer((_) async => fakeLogoutResponseDto);
+      //ACT
+      final result = await dataSource.logout();
+      //ASSERT
+      expect(result, isA<ApiSuccessResult<LogoutResponseEntity>>());
+      expect(
+        (result as ApiSuccessResult<LogoutResponseEntity>).data.message,
+        equals(fakeLogoutResponseDto.message),
+      );
+      verify(mockApiClient.logout()).called(1);
+    });
+    test("logout dio exception", () async {
+      //ARRANGE
+      when(mockApiClient.logout()).thenThrow(fakeDioException);
+      //ACT
+      final result = await dataSource.logout();
+      //ASSERT
+      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+      expect(
+        (result as ApiErrorResult<LogoutResponseEntity>).errorMessage,
+        equals(contains(fakeDioException.message)),
+      );
+      verify(mockApiClient.logout()).called(1);
+    });
+    test("logout exception", () async {
+      //ARRANGE
+      when(mockApiClient.logout()).thenThrow(fakeException);
+      //ACT
+      final result = await dataSource.logout();
+      //ASSERT
+      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+      expect(
+        (result as ApiErrorResult<LogoutResponseEntity>).error,
+        equals(fakeException),
+      );
+      verify(mockApiClient.logout()).called(1);
     });
   });
 }

@@ -4,7 +4,7 @@ abstract class Endpoints {
   static const String changePassword = "api/v1/auth/change-password";
   static const String getAllDifficultyLevelsByPrimeMoverMuscle =
       "api/v1/levels/difficulty-levels/by-prime-mover";
-  static const String getExercisesByPrimeMoverMuscleandDifficultyLevel =
+  static const String getExercisesByPrimeMoverMuscleAndDifficultyLevel =
       "api/v1/exercises/by-muscle-difficulty";
   static const String randomPrimeMoverMuscles = "api/v1/muscles/random";
   static const String allMusclesGroups = "api/v1/muscles";
@@ -25,4 +25,10 @@ abstract class Endpoints {
   static const String editProfile = "api/v1/auth/editProfile";
   static const String uploadPhoto = "api/v1/auth/upload-photo";
   static const String queryPhoto = "photo";
+  static const String logout = "api/v1/auth/logout";
+  static const String helpLocalData = "assets/data/help.json";
+  static const String privacyAndSecurityLocalData =
+      "assets/data/privacy_and_security.json";
+  static const String securityRolesConfigLocalData =
+      "assets/data/security_roles_config.json";
 }

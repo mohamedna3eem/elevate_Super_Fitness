@@ -5,7 +5,6 @@ import 'package:elevate_super_fitness/domain/entites/meals_categories_response_e
 import 'package:elevate_super_fitness/domain/entites/muscle_group_details_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/muscles_group_response_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/muscles_response_entity.dart';
-import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_all_meals_categories_use_case.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_all_muscles_by_muscle_group_id_use_case.dart';
 import 'package:elevate_super_fitness/domain/use_cases/get_all_muscles_groups_use_case.dart';
@@ -56,23 +55,11 @@ class ExploreViewModelCubit extends Cubit<ExploreViewModelState> {
 
   Future<void> _getAllData() async {
     await Future.wait([
-      _getUserData(),
       _getRandomMuscles(),
       _getAllMealsCategories(),
       _getAllMusclesGroups(),
     ]);
     await _getAllMusclesByMuscleGroupId(selectedId);
-  }
-
-  Future<void> _getUserData() async {
-    emit(state.copyWith(userInfo: BaseState.loading()));
-    final result = await _userLoggedDataUseCase.call();
-    switch (result) {
-      case ApiSuccessResult<UserInfoEntity>():
-        emit(state.copyWith(userInfo: BaseState.success(result.data)));
-      case ApiErrorResult<UserInfoEntity>():
-        emit(state.copyWith(userInfo: BaseState.error(result.errorMessage)));
-    }
   }
 
   Future<void> _getRandomMuscles() async {

@@ -13,7 +13,7 @@ import 'food_tab_bar.dart';
 
 class FoodViewBody extends StatefulWidget {
   final int categoryIndex;
-  const FoodViewBody({super.key,required this.categoryIndex});
+  const FoodViewBody({super.key, required this.categoryIndex});
 
   @override
   State<FoodViewBody> createState() => _FoodViewBodyState();
@@ -78,9 +78,8 @@ class _FoodViewBodyState extends State<FoodViewBody>
             bloc: _foodViewModel,
             listener: (context, state) {
               if (state.errorMessage != null) {
-                CustomDialog.positiveButton(
+                CustomDialog.fitnessPositiveButton(
                   context: context,
-                  title: AppLocalizations.of(context).error,
                   message: state.errorMessage!,
                 );
               }

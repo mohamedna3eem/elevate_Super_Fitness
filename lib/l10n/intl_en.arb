@@ -150,5 +150,13 @@
   "yourGoal": "Your Goal",
   "yourActivityLevel": "Your activity level",
   "tapToEdit": "tap to edit",
-  "update": "Update"
+  "update": "Update",
+  "editProfile": "Edit Profile",
+  "changePassword": "Change Password",
+  "logout": "Logout",
+  "selectLanguage": "Select Language",
+  "security": "Security",
+  "privacyPolicy": "Privacy Policy",
+  "help": "Help",
+  "doYouSureLogout": "Do you Sure Logout"
 }

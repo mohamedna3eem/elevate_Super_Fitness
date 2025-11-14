@@ -58,34 +58,31 @@ void main() {
           expect(result.data.length, expectedResult.difficultyLevels!.length);
         },
       );
-      test("when call failed it should return an error result", () async{
+      test("when call failed it should return an error result", () async {
         when(
-            mockApiClient.getAllDifficultyLevelsByPrimeMoverMuscle(
-              ExerciseDummy.dummyPrimeMoverMuscleId,
-            ),
-          ).thenThrow(Exception(ExerciseDummy.expectedError));
+          mockApiClient.getAllDifficultyLevelsByPrimeMoverMuscle(
+            ExerciseDummy.dummyPrimeMoverMuscleId,
+          ),
+        ).thenThrow(Exception(ExerciseDummy.expectedError));
 
-          //Call
-          final result = await exerciseRemoteDataSouceImpl
-              .getAllDifficultyLevelsByPrimeMoverMuscle(
-                primeMoverMuscleId: ExerciseDummy.dummyPrimeMoverMuscleId,
-              );
+        //Call
+        final result = await exerciseRemoteDataSouceImpl
+            .getAllDifficultyLevelsByPrimeMoverMuscle(
+              primeMoverMuscleId: ExerciseDummy.dummyPrimeMoverMuscleId,
+            );
 
-          //Assert
-          verify(
-            mockApiClient.getAllDifficultyLevelsByPrimeMoverMuscle(
-              ExerciseDummy.dummyPrimeMoverMuscleId,
-            ),
-          ).called(1);
-          expect(
-            result,
-            isA<ApiErrorResult<List<ExerciseDifficultyLevelEntity>>>(),
-          );
-          result as ApiErrorResult<List<ExerciseDifficultyLevelEntity>>;
-          expect(
-            result.errorMessage,
-            contains(ExerciseDummy.expectedError),
-          );
+        //Assert
+        verify(
+          mockApiClient.getAllDifficultyLevelsByPrimeMoverMuscle(
+            ExerciseDummy.dummyPrimeMoverMuscleId,
+          ),
+        ).called(1);
+        expect(
+          result,
+          isA<ApiErrorResult<List<ExerciseDifficultyLevelEntity>>>(),
+        );
+        result as ApiErrorResult<List<ExerciseDifficultyLevelEntity>>;
+        expect(result.errorMessage, contains(ExerciseDummy.expectedError));
       });
     });
     group("test getExercisesByPrimeMoverMuscleandDifficultyLevel", () {
@@ -96,7 +93,10 @@ void main() {
           final expectedResult =
               ExerciseDummy.dummyGetSelectedExercisesReponseDto;
           when(
-            mockApiClient.getExercisesByPrimeMoverMuscleandDifficultyLevel(ExerciseDummy.dummyPrimeMoverMuscleId, ExerciseDummy.dummyDifficultyLevelId),
+            mockApiClient.getExercisesByPrimeMoverMuscleAndDifficultyLevel(
+              ExerciseDummy.dummyPrimeMoverMuscleId,
+              ExerciseDummy.dummyDifficultyLevelId,
+            ),
           ).thenAnswer((_) async => expectedResult);
 
           //Call
@@ -108,7 +108,7 @@ void main() {
 
           //Assert
           verify(
-            mockApiClient.getExercisesByPrimeMoverMuscleandDifficultyLevel(
+            mockApiClient.getExercisesByPrimeMoverMuscleAndDifficultyLevel(
               ExerciseDummy.dummyPrimeMoverMuscleId,
               ExerciseDummy.dummyDifficultyLevelId,
             ),
@@ -127,7 +127,10 @@ void main() {
       );
       test("when call failed it should return an error result", () async {
         when(
-          mockApiClient.getExercisesByPrimeMoverMuscleandDifficultyLevel(ExerciseDummy.dummyPrimeMoverMuscleId, ExerciseDummy.dummyDifficultyLevelId),
+          mockApiClient.getExercisesByPrimeMoverMuscleAndDifficultyLevel(
+            ExerciseDummy.dummyPrimeMoverMuscleId,
+            ExerciseDummy.dummyDifficultyLevelId,
+          ),
         ).thenThrow(Exception(ExerciseDummy.expectedError));
 
         //Call
@@ -139,15 +142,12 @@ void main() {
 
         //Assert
         verify(
-          mockApiClient.getExercisesByPrimeMoverMuscleandDifficultyLevel(
+          mockApiClient.getExercisesByPrimeMoverMuscleAndDifficultyLevel(
             ExerciseDummy.dummyPrimeMoverMuscleId,
             ExerciseDummy.dummyDifficultyLevelId,
           ),
         ).called(1);
-        expect(
-          result,
-          isA<ApiErrorResult<List<GetSelectedExerciseEntity>>>(),
-        );
+        expect(result, isA<ApiErrorResult<List<GetSelectedExerciseEntity>>>());
         result as ApiErrorResult<List<GetSelectedExerciseEntity>>;
         expect(result.errorMessage, contains(ExerciseDummy.expectedError));
       });

@@ -31,4 +31,13 @@ abstract class AppIcons {
   static const String menuIcon = "$_iconsPath/menu_icon.png";
   static const String playButtonIcon = "$_iconsPath/play_button.png";
   static const String editIcon = "$_iconsPath/edit.svg";
+  static const String changePasswordIcon =
+      "$_iconsPath/change_password_icon.svg";
+  static const String helpIcon = "$_iconsPath/help_icon.svg";
+  static const String languageIcon = "$_iconsPath/language_icon.svg";
+  static const String lockSettingIcon = "$_iconsPath/lock_setting_icon.svg";
+  static const String logoutIcon = "$_iconsPath/logout_icon.svg";
+  static const String privacyPolicyIcon = "$_iconsPath/privacy_policy_icon.svg";
+  static const String profileIcon = "$_iconsPath/profile_icon.svg";
+  static const String arrowBackIcon = "$_iconsPath/arrow_back.svg";
 }

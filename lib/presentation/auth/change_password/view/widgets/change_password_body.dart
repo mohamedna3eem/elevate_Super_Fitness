@@ -56,7 +56,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
         }
       },
       child: CustomAuthBg(
-        arrowIconPath: AppIcons.arrowBack,
+        arrowIconPath: AppIcons.arrowBackIcon,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

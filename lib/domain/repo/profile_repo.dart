@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/core/api_result/api_result.dart';
 import 'package:elevate_super_fitness/domain/entites/change_password_response_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/help_response_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/logout_response_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/privacy_policy_response_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/requests/change_password_request_entity.dart';
+import 'package:elevate_super_fitness/domain/entites/security_roles_config_entity.dart';
 import 'package:elevate_super_fitness/domain/entites/user_info_entity.dart';
 
 import '../entites/requests/edit_profile_request_entity.dart';
@@ -18,4 +22,9 @@ abstract interface class ProfileRepo {
   );
 
   Future<ApiResult<String>> uploadUserPhoto(MultipartFile photo);
+  Future<ApiResult<LogoutResponseEntity>> logout();
+  Future<ApiResult<HelpResponseEntity>> getHelpData();
+  Future<ApiResult<PrivacyPolicyResponseEntity>> getPrivacyAndPolicyData();
+  Future<ApiResult<SecurityRolesConfigResponseEntity>>
+  getSecurityRolesConfigData();
 }

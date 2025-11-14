@@ -73,4 +73,22 @@ abstract final class WidgetsKeys {
       "change_password_screen_confirm_password_field_key";
   static const String kChangePasswordScreenPreIconConfirmPasswordFieldKey =
       "change_password_screen_pre_icon_confirm_password_field_key";
+  static const String kProfileScreenTitlePageKey =
+      "profile_screen_title_page_key";
+  static const String kProfileScreenImageUserKey =
+      "profile_screen_image_profile_key";
+  static const String kProfileScreenUserNameTextKey =
+      "profile_screen_user_name_text_key";
+  static const String kProfileScreenCustomRowItemKey =
+      "profile_screen_custom_row_item_key";
+  static const String kProfileScreenSectionProfileInfoKey =
+      "profile_screen_section_profile_info_key";
+  static const String kProfileScreenSectionProfileItemsKey =
+      "profile_screen_section_profile_items_key";
+  static const String kCustomDialogFitnessLoadingKey =
+      "custom_dialog_fitness_loading_key";
+  static const String kCustomDialogFitnessPositiveAndNegativeButtonKey =
+      "custom_dialog_fitness_positive_and_negative_button_key";
+  static const String kCustomDialogFitnessPositiveButtonKey =
+      "custom_dialog_fitness_positive_button_key";
 }

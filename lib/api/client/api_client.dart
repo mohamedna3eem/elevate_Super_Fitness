@@ -2,15 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:elevate_super_fitness/api/models/requests/change_password_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/requests/login_request_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/change_password_response_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto/exercise_difficulty_levels_response_dto.dart';
-import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_reponse_dto/get_selected_exercises_reponse_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/exercise_difficulty_levels_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/get_selected_exercises_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/login_response_dto.dart';
+import 'package:elevate_super_fitness/api/models/responses/logout_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscle_group_details_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_group_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/muscles_response_dto.dart';
 import 'package:elevate_super_fitness/api/models/responses/user_info_dto.dart';
-import 'package:elevate_super_fitness/api/models/workout_response/muscles_by_id.dart';
-import 'package:elevate_super_fitness/api/models/workout_response/workout_response.dart';
 import 'package:elevate_super_fitness/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -40,9 +39,9 @@ abstract class ApiClient {
     @Query("primeMoverMuscleId") String primeMoverMuscleId,
   );
 
-  @GET(Endpoints.getExercisesByPrimeMoverMuscleandDifficultyLevel)
-  Future<GetSelectedExercisesReponseDto>
-  getExercisesByPrimeMoverMuscleandDifficultyLevel(
+  @GET(Endpoints.getExercisesByPrimeMoverMuscleAndDifficultyLevel)
+  Future<GetSelectedExercisesResponseDto>
+  getExercisesByPrimeMoverMuscleAndDifficultyLevel(
     @Query("primeMoverMuscleId") String primeMoverMuscleId,
     @Query("difficultyLevelId") String difficultyLevelId,
   );
@@ -87,12 +86,6 @@ abstract class ApiClient {
     @Body() ResetPasswordRequestDto body,
   );
 
-  @GET(Endpoints.workouts)
-  Future<WorkoutResponseDto> workout();
-
-  @GET(Endpoints.muscles)
-  Future<MusclesByIdDto> getAllMuscles(@Path("id") String id);
-
   @PUT(Endpoints.editProfile)
   Future<UserInfoDto> editUserProfile(@Body() EditProfileRequest request);
 
@@ -101,4 +94,6 @@ abstract class ApiClient {
   Future<CommonResponse> uploadUserPhoto(
     @Part(name: Endpoints.queryPhoto) MultipartFile photo,
   );
+  @GET(Endpoints.logout)
+  Future<LogoutResponseDto> logout();
 }
